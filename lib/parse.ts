@@ -1,0 +1,359 @@
+// Deterministic SEBI monthly-portfolio XLS parser + derivation engine.
+// Code computes every number; the LLM never does. Handles the column/header
+// variation seen across AMC disclosure spreadsheets (see registry _meta).
+import * as XLSX from "xlsx";
+import type {
+  AnalyseData,
+  AssetClass,
+  CashItem,
+  Holding,
+  WeightItem,
+} from "./types";
+import type { SchemeIdentity } from "./mfapi";
+
+const ISIN_RE = /^[A-Z]{2}[A-Z0-9]{9}[0-9]$/;
+
+// ── instrument classification ────────────────────────────────
+export type InstrumentType =
+  | "equity"
+  | "foreign_equity"
+  | "gsec"
+  | "tbill"
+  | "cp"
+  | "cd"
+  | "debt"
+  | "arbitrage"
+  | "reit"
+  | "fund"
+  | "treps"
+  | "cash";
+
+export function classify(name: string, isin: string, industry: string): InstrumentType {
+  const t = `${name} ${industry}`.toLowerCase();
+  const n = name.toLowerCase();
+  if (/treps|tri[- ]?party|triparty|reverse repo|^repo\b|collateral.*borrow/.test(t)) return "treps";
+  if (/net receivable|net current asset|cash margin|cash\s*&|cash and|cash at bank|other current|sub total.*cash/.test(t))
+    return "cash";
+  if (/treasury bill|t-bill|tbill|^t bill/.test(t)) return "tbill";
+  if (/commercial paper|\bcp\b/.test(t)) return "cp";
+  if (/certificate of deposit|\bcd\b/.test(t)) return "cd";
+  if (/g-?sec|government (of india )?stock|govt|goi |sovereign|gilt|state development|\bsdl\b/.test(t)) return "gsec";
+  if (/arbitrage/.test(t)) return "arbitrage";
+  if (/reit|invit|infrastructure investment trust|real estate investment/.test(t)) return "reit";
+  if (/\betf\b|index fund|units? of |mutual fund units|liquid fund/.test(t)) return "fund";
+  if (/debenture|\bncd\b|bond|notes?\b|perpetual|\bzcb\b|pass through|securit/.test(t)) return "debt";
+  // foreign equity: non-Indian ISIN (Indian = INE/INF/IN0...) on an equity-looking row
+  if (isin && !/^IN[EFD0-9]/.test(isin) && ISIN_RE.test(isin)) return "foreign_equity";
+  if (/\b(adr|gdr)\b|overseas|foreign (equity|securit)/.test(t)) return "foreign_equity";
+  return "equity";
+}
+
+const CASH_TYPES = new Set<InstrumentType>(["treps", "cash"]);
+const MM_TYPES = new Set<InstrumentType>(["cp", "cd", "tbill"]);
+const DEBT_TYPES = new Set<InstrumentType>(["gsec", "debt"]);
+
+// ── raw row extraction ───────────────────────────────────────
+interface RawRow {
+  name: string;
+  isin: string;
+  industry: string;
+  quantity: number;
+  market_value_cr: number; // converted from lakhs
+  weight: number; // % to NAV
+}
+
+interface ColMap {
+  name: number;
+  isin: number;
+  industry: number;
+  quantity: number;
+  marketValue: number;
+  weight: number;
+}
+
+const norm = (s: unknown) => String(s ?? "").replace(/\s+/g, " ").trim().toLowerCase();
+const num = (v: unknown): number => {
+  if (v == null || v === "") return 0;
+  const s = String(v).trim();
+  const neg = /^\(.*\)$/.test(s); // accounting negatives
+  // strip everything except digits, dot, minus (handles "7.84%", "1,234.5", "₹...")
+  const cleaned = s.replace(/[^0-9.\-]/g, "");
+  const n = Number(cleaned);
+  if (!isFinite(n)) return 0;
+  return neg ? -Math.abs(n) : n;
+};
+
+function findHeader(rows: unknown[][]): { row: number; cols: ColMap } | null {
+  for (let i = 0; i < Math.min(rows.length, 40); i++) {
+    const cells = (rows[i] || []).map(norm);
+    const isinIdx = cells.findIndex((c) => c === "isin" || c.includes("isin"));
+    if (isinIdx === -1) continue;
+    const find = (pred: (c: string) => boolean) => cells.findIndex(pred);
+    const name = find((c) => c.includes("name of the instrument") || c.includes("name of instrument") || c.includes("instrument / issuer") || c.includes("instrument/issuer") || (c.includes("instrument") && !c.includes("type")) || c.includes("issuer") || c.includes("security"));
+    const industry = find((c) => c.includes("industry") || c.includes("rating"));
+    const quantity = find((c) => c.includes("quantity") || c === "qty");
+    const marketValue = find((c) => c.includes("market") && c.includes("value") || c.includes("market/fair") || c.includes("fair value") || c.includes("market value"));
+    const weight = find((c) => c.includes("% to net") || c.includes("% to nav") || c.includes("% to aum") || (c.includes("%") && (c.includes("net asset") || c.includes("nav") || c.includes("aum"))) || c.includes("percentage to net"));
+    if (name === -1 || weight === -1) continue;
+    return {
+      row: i,
+      cols: { name, isin: isinIdx, industry, quantity, marketValue, weight },
+    };
+  }
+  return null;
+}
+
+function extractRows(rows: unknown[][]): RawRow[] {
+  const hdr = findHeader(rows);
+  if (!hdr) return [];
+  const { cols } = hdr;
+  const out: RawRow[] = [];
+  for (let i = hdr.row + 1; i < rows.length; i++) {
+    const r = rows[i] || [];
+    const name = String(r[cols.name] ?? "").replace(/\s+/g, " ").trim();
+    const isin = String(r[cols.isin] ?? "").replace(/\s+/g, "").trim().toUpperCase();
+    const weight = num(r[cols.weight]);
+    if (!name) continue;
+    const low = name.toLowerCase();
+    // skip subtotal / total / section header rows
+    if (/^(grand total|total|sub ?total|net asset|net current|portfolio|notes|equity & equity|equity and equity|debt instrument|money market|other|hedg)/.test(low) && !ISIN_RE.test(isin)) {
+      // but keep explicit cash/treps lines
+      if (!/treps|tri[- ]?party|receivable|cash/.test(low)) continue;
+    }
+    const isCashish = /treps|tri[- ]?party|receivable|cash|net current/.test(low);
+    if (!ISIN_RE.test(isin) && !isCashish) continue;
+    if (weight === 0 && !isCashish && !ISIN_RE.test(isin)) continue;
+    const mvCell = cols.marketValue >= 0 ? num(r[cols.marketValue]) : 0;
+    out.push({
+      name,
+      isin: ISIN_RE.test(isin) ? isin : "",
+      industry: cols.industry >= 0 ? String(r[cols.industry] ?? "").replace(/\s+/g, " ").trim() : "",
+      quantity: cols.quantity >= 0 ? num(r[cols.quantity]) : 0,
+      market_value_cr: mvCell / 100, // lakhs -> crore
+      weight,
+    });
+  }
+  return out;
+}
+
+// ── sector labelling ─────────────────────────────────────────
+function sectorFor(row: RawRow, type: InstrumentType): string {
+  if (type === "foreign_equity") return "Foreign Equity";
+  if (CASH_TYPES.has(type)) return "Cash & Equivalent";
+  if (MM_TYPES.has(type)) return type === "tbill" ? "Treasury Bills" : type === "cp" ? "Commercial Paper" : "Certificate of Deposit";
+  if (type === "gsec") return "Government Securities";
+  if (type === "debt") return "Corporate Debt";
+  if (type === "arbitrage") return "Arbitrage";
+  if (type === "reit") return "REITs / InvITs";
+  if (type === "fund") return "Mutual Fund Units";
+  // equity → use industry column, cleaned
+  const ind = row.industry.replace(/[*^#~]/g, "").trim();
+  return ind || "Other";
+}
+
+const TYPE_LABEL: Record<InstrumentType, string> = {
+  equity: "Equity",
+  foreign_equity: "Foreign Equity",
+  gsec: "Government Security",
+  tbill: "Treasury Bill",
+  cp: "Commercial Paper",
+  cd: "Certificate of Deposit",
+  debt: "Corporate Debt",
+  arbitrage: "Arbitrage",
+  reit: "REIT / InvIT",
+  fund: "Fund Units",
+  treps: "TREPS",
+  cash: "Cash & Equivalent",
+};
+
+function agg(items: { name: string; weight: number }[]): WeightItem[] {
+  const m = new Map<string, number>();
+  for (const it of items) m.set(it.name, (m.get(it.name) ?? 0) + it.weight);
+  return [...m.entries()]
+    .map(([name, weight]) => ({ name, weight: round2(weight) }))
+    .filter((x) => x.weight > 0)
+    .sort((a, b) => b.weight - a.weight);
+}
+const round2 = (n: number) => Math.round(n * 100) / 100;
+
+// ── main build ───────────────────────────────────────────────
+export interface ParseResult {
+  data: Omit<AnalyseData, "scheme_name" | "amc_name" | "category" | "isin" | "asset_class" | "period" | "period_label" | "as_of_date" | "source_org" | "source_url" | "aum" | "nav" | "expense_ratio">;
+  asset_class: AssetClass; // derived from the holdings mix
+  ok: boolean;
+  reason?: string;
+}
+
+export function buildFromRows(rawRows: unknown[][]): ParseResult {
+  const rows = extractRows(rawRows);
+  if (rows.length === 0) return { data: emptyDerived(), asset_class: "other", ok: false, reason: "no holdings rows found" };
+
+  const holdings: Holding[] = rows.map((r) => {
+    const type = classify(r.name, r.isin, r.industry);
+    return {
+      name: r.name,
+      isin: r.isin || "—",
+      instrument_type: TYPE_LABEL[type],
+      sector: sectorFor(r, type),
+      weight: round2(r.weight),
+      market_value: round2(r.market_value_cr),
+      quantity: r.quantity,
+    };
+  });
+  const types = rows.map((r) => classify(r.name, r.isin, r.industry));
+
+  const totalWeight = round2(rows.reduce((s, r) => s + r.weight, 0));
+
+  // asset allocation buckets
+  const bucket = (pred: (t: InstrumentType) => boolean) =>
+    round2(rows.reduce((s, r, i) => (pred(types[i]) ? s + r.weight : s), 0));
+  const allocRaw: WeightItem[] = [
+    { name: "Equity", weight: bucket((t) => t === "equity") },
+    { name: "Foreign Equity", weight: bucket((t) => t === "foreign_equity") },
+    { name: "Government Securities", weight: bucket((t) => t === "gsec") },
+    { name: "Corporate Debt", weight: bucket((t) => t === "debt") },
+    { name: "Money Market", weight: bucket((t) => MM_TYPES.has(t)) },
+    { name: "Arbitrage", weight: bucket((t) => t === "arbitrage") },
+    { name: "REITs / InvITs", weight: bucket((t) => t === "reit") },
+    { name: "Cash & Equivalent", weight: bucket((t) => CASH_TYPES.has(t)) },
+  ];
+  const asset_allocation = allocRaw.filter((a) => a.weight > 0);
+
+  const equityWeight = bucket((t) => t === "equity" || t === "foreign_equity");
+  const debtWeight = bucket((t) => DEBT_TYPES.has(t) || MM_TYPES.has(t));
+  const asset_class: AssetClass =
+    equityWeight >= 65 ? "equity" : debtWeight >= 65 ? "debt" : equityWeight > 15 && debtWeight > 15 ? "hybrid" : equityWeight > debtWeight ? "equity" : "debt";
+
+  // category breakdown: equity-ish → by sector; debt → by instrument type
+  let category_breakdown: WeightItem[];
+  if (asset_class === "debt") {
+    category_breakdown = agg(holdings.map((h, i) => ({ name: TYPE_LABEL[types[i]], weight: h.weight })));
+  } else {
+    category_breakdown = agg(holdings.map((h) => ({ name: h.sector, weight: h.weight })));
+  }
+
+  // cash breakdown
+  const cashItems: CashItem[] = [];
+  rows.forEach((r, i) => {
+    const t = types[i];
+    if (CASH_TYPES.has(t)) {
+      const label = t === "treps" ? "TREPS" : /receivable|current asset/i.test(r.name) ? "Net Receivables" : "Cash";
+      cashItems.push({ section: label, weight: round2(r.weight) });
+    }
+  });
+  const cash_breakdown = aggCash(cashItems);
+
+  const deployable_cash = round2(
+    rows.reduce((s, r, i) => (CASH_TYPES.has(types[i]) || types[i] === "arbitrage" ? s + r.weight : s), 0),
+  );
+
+  const top_holdings = holdings
+    .filter((h) => h.isin !== "—")
+    .sort((a, b) => b.weight - a.weight)
+    .slice(0, 10)
+    .map((h) => ({ name: h.name, isin: h.isin, sector: h.sector, weight: h.weight }));
+
+  return {
+    ok: true,
+    asset_class,
+    data: {
+      holdings_count: holdings.length,
+      total_weight: totalWeight,
+      deployable_cash,
+      asset_allocation,
+      category_breakdown,
+      market_cap_breakdown: [], // requires AMFI large/mid/small list — deferred (frontend hides when [])
+      cash_breakdown,
+      top_holdings,
+      holdings,
+    },
+  };
+}
+
+function aggCash(items: CashItem[]): CashItem[] {
+  const m = new Map<string, number>();
+  for (const it of items) m.set(it.section, (m.get(it.section) ?? 0) + it.weight);
+  return [...m.entries()].map(([section, weight]) => ({ section, weight: round2(weight) })).sort((a, b) => b.weight - a.weight);
+}
+
+function emptyDerived(): ParseResult["data"] {
+  return {
+    holdings_count: 0,
+    total_weight: 0,
+    deployable_cash: 0,
+    asset_allocation: [],
+    category_breakdown: [],
+    market_cap_breakdown: [],
+    cash_breakdown: [],
+    top_holdings: [],
+    holdings: [],
+  };
+}
+
+// ── workbook helpers ─────────────────────────────────────────
+export function sheetRows(ws: XLSX.WorkSheet): unknown[][] {
+  return XLSX.utils.sheet_to_json(ws, { header: 1, raw: false, defval: "" }) as unknown[][];
+}
+
+// Pick the most likely sheet: the one whose extracted rows count is highest,
+// optionally biased toward a sheet matching the scheme hint tokens.
+export function pickSheet(wb: XLSX.WorkBook, schemeHint?: string): { name: string; rows: unknown[][] } | null {
+  const hintTokens = (schemeHint ?? "")
+    .toLowerCase()
+    .replace(/fund|plan|growth|direct|regular|the/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length > 3);
+  let best: { name: string; rows: unknown[][]; score: number } | null = null;
+  for (const name of wb.SheetNames) {
+    const rows = sheetRows(wb.Sheets[name]);
+    const extracted = extractRows(rows).length;
+    if (extracted === 0) continue;
+    let score = extracted;
+    if (hintTokens.length) {
+      const hay = (name + " " + rows.slice(0, 6).flat().join(" ")).toLowerCase();
+      const hits = hintTokens.filter((tk) => hay.includes(tk)).length;
+      score += hits * 1000; // strong bias toward the matching scheme tab
+    }
+    if (!best || score > best.score) best = { name, rows, score };
+  }
+  return best ? { name: best.name, rows: best.rows } : null;
+}
+
+export function validate(data: ParseResult["data"]): { ok: boolean; reason?: string } {
+  if (data.holdings_count <= 0) return { ok: false, reason: "no holdings" };
+  if (data.total_weight < 90 || data.total_weight > 110)
+    return { ok: false, reason: `total weight ${data.total_weight} out of range` };
+  return { ok: true };
+}
+
+// Merge parsed holdings with scheme identity + period meta into the full contract.
+export function assemble(
+  parsed: ParseResult,
+  id: SchemeIdentity,
+  period: string,
+  asOfDate: string,
+  sourceUrl: string,
+): AnalyseData {
+  return {
+    scheme_name: id.scheme_name,
+    amc_name: id.amc_name,
+    category: id.category,
+    isin: id.isin,
+    asset_class: id.asset_class && id.asset_class !== "other" ? id.asset_class : parsed.asset_class,
+    period,
+    period_label: periodLabel(period),
+    as_of_date: asOfDate,
+    source_org: id.fund_house || id.amc_name,
+    source_url: sourceUrl,
+    aum: null,
+    nav: id.latest_nav,
+    expense_ratio: null,
+    ...parsed.data,
+  };
+}
+
+export function periodLabel(period: string): string {
+  const [y, m] = period.split("-").map(Number);
+  const mon = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][m - 1] ?? "";
+  return `${mon} ${y}`;
+}

@@ -17,3 +17,7 @@ out/
 # tooling scratch
 .playwright-mcp/
 .firecrawl/
+
+# typescript build info
+*.tsbuildinfo
+next-env.d.ts
