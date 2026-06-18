@@ -28,23 +28,52 @@ export type InstrumentType =
   | "treps"
   | "cash";
 
-export function classify(name: string, isin: string, industry: string): InstrumentType {
-  const t = `${name} ${industry}`.toLowerCase();
-  const n = name.toLowerCase();
+// Classify from the row's own text. Returns null when nothing specific matches
+// (so the caller can fall back to the section context, then to equity default).
+function classifyText(t: string): InstrumentType | null {
   if (/treps|tri[- ]?party|triparty|reverse repo|^repo\b|collateral.*borrow/.test(t)) return "treps";
-  if (/net receivable|net current asset|cash margin|cash\s*&|cash and|cash at bank|other current|sub total.*cash/.test(t))
+  if (/net receivable|net current asset|cash margin|cash\s*&|cash and|cash at bank|other current|bank balance/.test(t))
     return "cash";
   if (/treasury bill|t-bill|tbill|^t bill/.test(t)) return "tbill";
-  if (/commercial paper|\bcp\b/.test(t)) return "cp";
   if (/certificate of deposit|\bcd\b/.test(t)) return "cd";
-  if (/g-?sec|government (of india )?stock|govt|goi |sovereign|gilt|state development|\bsdl\b/.test(t)) return "gsec";
+  if (/commercial paper|\bcp\b/.test(t)) return "cp";
+  if (/g-?sec|government (of india )?stock|govt |goi |sovereign|gilt|state development|\bsdl\b/.test(t)) return "gsec";
   if (/arbitrage/.test(t)) return "arbitrage";
   if (/reit|invit|infrastructure investment trust|real estate investment/.test(t)) return "reit";
   if (/\betf\b|index fund|units? of |mutual fund units|liquid fund/.test(t)) return "fund";
   if (/debenture|\bncd\b|bond|notes?\b|perpetual|\bzcb\b|pass through|securit/.test(t)) return "debt";
-  // foreign equity: non-Indian ISIN (Indian = INE/INF/IN0...) on an equity-looking row
-  if (isin && !/^IN[EFD0-9]/.test(isin) && ISIN_RE.test(isin)) return "foreign_equity";
   if (/\b(adr|gdr)\b|overseas|foreign (equity|securit)/.test(t)) return "foreign_equity";
+  return null;
+}
+
+// Map a section-header label (e.g. "Reverse Repo / TREPS", "Money Market") to a type.
+function classifySection(section: string): InstrumentType | null {
+  if (!section) return null;
+  const s = section.toLowerCase();
+  if (/treps|repo|tri[- ]?party/.test(s)) return "treps";
+  if (/certificate of deposit/.test(s)) return "cd";
+  if (/commercial paper/.test(s)) return "cp";
+  if (/treasury bill/.test(s)) return "tbill";
+  if (/money market/.test(s)) return "cp";
+  if (/receivable|net current|cash|margin/.test(s)) return "cash";
+  if (/government|g-?sec|gilt|sovereign|\bsdl\b/.test(s)) return "gsec";
+  if (/arbitrage/.test(s)) return "arbitrage";
+  if (/reit|invit/.test(s)) return "reit";
+  if (/mutual fund unit|units of/.test(s)) return "fund";
+  if (/debt|bond|debenture|\bncd\b/.test(s)) return "debt";
+  if (/equity/.test(s)) return "equity";
+  return null;
+}
+
+export function classify(name: string, isin: string, industry: string, section = ""): InstrumentType {
+  const t = `${name} ${industry}`.toLowerCase();
+  const own = classifyText(t);
+  if (own) return own;
+  // foreign equity: a valid non-Indian ISIN (Indian = INE/INF/IN0…)
+  if (isin && ISIN_RE.test(isin) && !/^IN[EFD0-9]/.test(isin)) return "foreign_equity";
+  const sec = classifySection(section);
+  if (sec) return sec;
+  // valid Indian ISIN with no other signal → equity
   return "equity";
 }
 
@@ -60,6 +89,7 @@ interface RawRow {
   quantity: number;
   market_value_cr: number; // converted from lakhs
   weight: number; // % to NAV
+  section: string; // section-header context (e.g. "Reverse Repo / TREPS")
 }
 
 interface ColMap {
@@ -103,11 +133,14 @@ function findHeader(rows: unknown[][]): { row: number; cols: ColMap } | null {
   return null;
 }
 
+const CASHISH = /treps|tri[- ]?party|reverse repo|receivable|net current|cash|margin/i;
+
 function extractRows(rows: unknown[][]): RawRow[] {
   const hdr = findHeader(rows);
   if (!hdr) return [];
   const { cols } = hdr;
   const out: RawRow[] = [];
+  let section = "";
   for (let i = hdr.row + 1; i < rows.length; i++) {
     const r = rows[i] || [];
     const name = String(r[cols.name] ?? "").replace(/\s+/g, " ").trim();
@@ -115,22 +148,34 @@ function extractRows(rows: unknown[][]): RawRow[] {
     const weight = num(r[cols.weight]);
     if (!name) continue;
     const low = name.toLowerCase();
-    // skip subtotal / total / section header rows
-    if (/^(grand total|total|sub ?total|net asset|net current|portfolio|notes|equity & equity|equity and equity|debt instrument|money market|other|hedg)/.test(low) && !ISIN_RE.test(isin)) {
-      // but keep explicit cash/treps lines
-      if (!/treps|tri[- ]?party|receivable|cash/.test(low)) continue;
+
+    // Stop at the grand total — everything after it is notes/derivatives schedules.
+    if (/grand total/.test(low)) break;
+    // Aggregate rows — skip (their weight is already in the constituent rows).
+    if (/^(sub ?total|total|net asset)/.test(low)) continue;
+
+    const hasISIN = ISIN_RE.test(isin);
+    const hasWeight = weight > 0;
+    const isCashish = CASHISH.test(low);
+
+    // A labelled row with no ISIN and no weight is a section header → set context.
+    if (!hasISIN && !hasWeight) {
+      section = low;
+      continue;
     }
-    const isCashish = /treps|tri[- ]?party|receivable|cash|net current/.test(low);
-    if (!ISIN_RE.test(isin) && !isCashish) continue;
-    if (weight === 0 && !isCashish && !ISIN_RE.test(isin)) continue;
+    // Keep instrument rows: any ISIN row, any cash-ish line, or a weighted row
+    // sitting under a recognised section (e.g. a TREPS line named by a code).
+    if (!hasISIN && !isCashish && !(hasWeight && classifySection(section))) continue;
+
     const mvCell = cols.marketValue >= 0 ? num(r[cols.marketValue]) : 0;
     out.push({
       name,
-      isin: ISIN_RE.test(isin) ? isin : "",
+      isin: hasISIN ? isin : "",
       industry: cols.industry >= 0 ? String(r[cols.industry] ?? "").replace(/\s+/g, " ").trim() : "",
       quantity: cols.quantity >= 0 ? num(r[cols.quantity]) : 0,
       market_value_cr: mvCell / 100, // lakhs -> crore
       weight,
+      section,
     });
   }
   return out;
@@ -189,7 +234,7 @@ export function buildFromRows(rawRows: unknown[][]): ParseResult {
   if (rows.length === 0) return { data: emptyDerived(), asset_class: "other", ok: false, reason: "no holdings rows found" };
 
   const holdings: Holding[] = rows.map((r) => {
-    const type = classify(r.name, r.isin, r.industry);
+    const type = classify(r.name, r.isin, r.industry, r.section);
     return {
       name: r.name,
       isin: r.isin || "—",
@@ -200,7 +245,7 @@ export function buildFromRows(rawRows: unknown[][]): ParseResult {
       quantity: r.quantity,
     };
   });
-  const types = rows.map((r) => classify(r.name, r.isin, r.industry));
+  const types = rows.map((r) => classify(r.name, r.isin, r.industry, r.section));
 
   const totalWeight = round2(rows.reduce((s, r) => s + r.weight, 0));
 
