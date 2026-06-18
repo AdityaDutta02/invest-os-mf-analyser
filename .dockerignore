@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+frontend-ref
+reference
+*.md
+.playwright-mcp
+.firecrawl
+.env*
+npm-debug.log*
+*.tsbuildinfo
