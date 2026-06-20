@@ -1,9 +1,14 @@
-// PDF factsheet extraction. We extract text locally (unpdf — serverless pdf.js,
-// no native deps) and let the Terminal AI gateway (Claude) turn that text into
-// structured holdings. Every number we surface is then derived deterministically
-// from those holdings (the model never computes our metrics).
+// PDF factsheet extraction. Primary path: the Terminal AI gateway's document
+// parser (/parse) — it OCRs image pages, so it recovers numbers that live inside
+// chart bitmaps (e.g. a factsheet's asset-class bar chart) which a pure text
+// extractor can't see. Fallback: local unpdf (serverless pdf.js, no native deps)
+// when the gateway parser is unavailable, so we never regress. Either way the
+// resulting text/markdown is handed to the gateway LLM for STRICT-JSON structuring,
+// and every number we surface is then derived deterministically (the model never
+// computes our metrics).
 import { extractText, getDocumentProxy } from "unpdf";
 import { callGateway } from "./terminal-ai";
+import { parseDocument, getParseResult } from "./parse-sdk";
 import type { HoldingInput } from "./parse";
 import type { WeightItem, PortfolioMetrics } from "./types";
 
@@ -42,28 +47,58 @@ const NUM = (v: unknown): number | null => {
   return isFinite(n) ? n : null;
 };
 
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+const dense = (s: string) => s.replace(/\s/g, "").length;
+
+// Gateway document parser → Markdown. OCRs image pages, so chart/bitmap numbers
+// survive. Returns "" if the parser is unavailable (caller falls back to unpdf).
+// Rethrows INSUFFICIENT_CREDITS so the route can surface a 402.
+async function gatewayParseText(buffer: ArrayBuffer, embedToken: string, filename: string): Promise<string> {
+  let r = await parseDocument(embedToken, { file: Buffer.from(buffer), filename }, { aiCleanup: true });
+  for (let i = 0; r.status === "processing" && i < 25; i++) {
+    await sleep(2000);
+    r = await getParseResult(embedToken, r.jobId);
+  }
+  return r.status === "done" ? r.markdown || "" : "";
+}
+
+// Local text extraction (no gateway, no OCR). Fallback only.
+async function localParseText(buffer: ArrayBuffer): Promise<string> {
+  const pdf = await getDocumentProxy(new Uint8Array(buffer));
+  const res = await extractText(pdf, { mergePages: true });
+  return (Array.isArray(res.text) ? res.text.join("\n") : res.text) || "";
+}
+
 export async function extractPdf(
   buffer: ArrayBuffer,
   embedToken: string,
   hint: string,
+  filename = "factsheet.pdf",
 ): Promise<{ ok: true; value: PdfExtraction } | { ok: false; reason: "scanned" | "ai_failed" }> {
-  // 1) local text extraction
+  // 1) text/markdown — gateway parser first (OCR-capable), local unpdf as fallback
   let text = "";
   try {
-    const pdf = await getDocumentProxy(new Uint8Array(buffer));
-    const res = await extractText(pdf, { mergePages: true });
-    text = (Array.isArray(res.text) ? res.text.join("\n") : res.text) || "";
-  } catch {
-    return { ok: false, reason: "scanned" };
+    text = await gatewayParseText(buffer, embedToken, filename);
+  } catch (e) {
+    if ((e as { code?: string }).code === "INSUFFICIENT_CREDITS") throw e;
+    // any other gateway-parse failure → fall through to local extraction
   }
-  if (text.replace(/\s/g, "").length < 200) return { ok: false, reason: "scanned" }; // image-only PDF
+  if (dense(text) < 200) {
+    try {
+      const local = await localParseText(buffer);
+      if (dense(local) > dense(text)) text = local;
+    } catch {
+      /* local extraction failed too */
+    }
+  }
+  if (dense(text) < 200) return { ok: false, reason: "scanned" }; // image-only / unreadable
 
   // 2) gateway structured extraction (string content — the reliable path)
   let content = "";
   try {
     const trimmed = text.slice(0, 60000); // keep well within context
     const r = await callGateway(
-      [{ role: "user", content: `Scheme hint: ${hint || "(none)"}\n\nFactsheet text:\n${trimmed}` }],
+      [{ role: "user", content: `Scheme hint: ${hint || "(none)"}\n\nFactsheet content (Markdown/OCR — values inside charts may appear as plain text, treat them as printed):\n${trimmed}` }],
       embedToken,
       { category: "coding", tier: "quality", system: SYSTEM },
     );

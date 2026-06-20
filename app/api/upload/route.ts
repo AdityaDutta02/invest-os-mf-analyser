@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
     source = "pdf";
     let ex;
     try {
-      ex = await extractPdf(buf, token, hintName);
+      ex = await extractPdf(buf, token, hintName, file.name);
     } catch (e) {
       const err = e as Error & { code?: string; redirect?: string };
       if (err.code === "INSUFFICIENT_CREDITS")
