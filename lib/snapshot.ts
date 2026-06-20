@@ -1,7 +1,7 @@
 // Server helper: fetch a normalized snapshot from the DB cache, or lazily
 // ingest it (Phase-1 direct AMCs) and cache it. Used by analyse/compare/ai.
 import { dbInsert, dbList } from "./db";
-import { lazyIngest } from "./ingest";
+import { lazyIngest, type IngestResult } from "./ingest";
 import type { AnalyseData } from "./types";
 
 interface SnapshotRow {
@@ -22,27 +22,32 @@ export async function cachedPeriods(schemeCode: string, token: string | null): P
   }
 }
 
+// DB cache → else lazy-fetch. Returns the discriminated IngestResult so the
+// route can map the reason to honest UI copy.
 export async function getSnapshot(
   schemeCode: string,
   period: string,
   token: string | null,
-): Promise<AnalyseData | null> {
+): Promise<IngestResult> {
   if (token) {
     try {
       const rows = await dbList<SnapshotRow>("snapshots", { scheme_code: schemeCode, period }, token);
       const hit = rows.find((r) => r.period === period);
-      if (hit?.data) return hit.data;
+      if (hit?.data) return { ok: true, data: hit.data };
     } catch {
       /* fall through to ingest */
     }
   }
-  const data = await lazyIngest(schemeCode, period);
-  if (data && token) {
+  // Uploaded snapshots live only in the DB — never try to lazy-fetch them.
+  if (schemeCode.startsWith("upload-")) return { ok: false, reason: "not_published" };
+
+  const res = await lazyIngest(schemeCode, period, token);
+  if (res.ok && token) {
     try {
-      await dbInsert("snapshots", { scheme_code: schemeCode, period, source: "fetch", data }, token);
+      await dbInsert("snapshots", { scheme_code: schemeCode, period, source: "fetch", data: res.data }, token);
     } catch {
       /* caching is best-effort */
     }
   }
-  return data;
+  return res;
 }

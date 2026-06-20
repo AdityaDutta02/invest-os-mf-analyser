@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useEmbedToken } from '@/hooks/use-embed-token';
 import { fetchPeriods } from '@/lib/client';
 import type { SchemeSummary } from '@/lib/types';
@@ -10,6 +10,8 @@ interface FundCtx {
   period: string | null;
   selectScheme: (s: SchemeSummary) => void;
   selectPeriod: (p: string) => void;
+  /** Set scheme + period together (e.g. after an upload) without the auto-period override. */
+  selectUploaded: (s: SchemeSummary, period: string) => void;
   token: string | null;
 }
 
@@ -25,35 +27,50 @@ export function FundProvider({ children }: { children: React.ReactNode }) {
   const token = useEmbedToken();
   const [scheme, setScheme] = useState<SchemeSummary | null>(null);
   const [period, setPeriod] = useState<string | null>(null);
+  // When set, the next scheme-change effect uses this period instead of auto-picking.
+  const lockedPeriod = useRef<string | null>(null);
 
-  // When scheme or token changes, (re)fetch periods and pick the latest with data
+  // On scheme (or token) change, choose a sensible default period — unless an
+  // explicit period was locked in by selectUploaded.
   useEffect(() => {
     if (!scheme) {
       setPeriod(null);
       return;
     }
+    if (lockedPeriod.current) {
+      setPeriod(lockedPeriod.current);
+      lockedPeriod.current = null;
+      return;
+    }
     let cancelled = false;
-    fetchPeriods(scheme.id, token).then((ps) => {
-      if (cancelled) return;
-      const latest = ps.find((p) => p.hasData) ?? ps[0] ?? null;
-      setPeriod(latest ? latest.period : null);
-    }).catch(() => {
-      // tolerate failure — period stays as-is
-    });
-    return () => { cancelled = true; };
+    fetchPeriods(scheme.id, token)
+      .then((ps) => {
+        if (cancelled) return;
+        const preferred = ps.find((p) => p.status === 'ready') ?? ps.find((p) => p.status === 'fetchable') ?? ps[0] ?? null;
+        setPeriod(preferred ? preferred.period : null);
+      })
+      .catch(() => {
+        /* leave period as-is */
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [scheme, token]);
 
   function selectScheme(s: SchemeSummary) {
     setScheme(s);
-    // period will be set by the effect above
   }
-
   function selectPeriod(p: string) {
+    setPeriod(p);
+  }
+  function selectUploaded(s: SchemeSummary, p: string) {
+    lockedPeriod.current = p;
+    setScheme(s);
     setPeriod(p);
   }
 
   return (
-    <FundContext.Provider value={{ scheme, period, selectScheme, selectPeriod, token }}>
+    <FundContext.Provider value={{ scheme, period, selectScheme, selectPeriod, selectUploaded, token }}>
       {children}
     </FundContext.Provider>
   );

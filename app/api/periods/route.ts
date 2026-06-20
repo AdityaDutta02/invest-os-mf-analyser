@@ -1,28 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { schemeIdentity } from "@/lib/mfapi";
+import { getIdentity } from "@/lib/identity";
 import { recipeFor } from "@/lib/registry";
 import { cachedPeriods } from "@/lib/snapshot";
 import { periodLabel } from "@/lib/parse";
-import type { PeriodOption } from "@/lib/types";
+import type { PeriodOption, PeriodStatus } from "@/lib/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Last N completed months as "YYYY-MM", latest first.
-function recentMonths(n: number): string[] {
+function monthKey(y: number, m: number): string {
+  return `${y}-${String(m).padStart(2, "0")}`;
+}
+
+// Months from `latest` going back `n`, newest first, as "YYYY-MM".
+function monthsBack(latestY: number, latestM: number, n: number): string[] {
   const out: string[] = [];
-  const now = new Date();
-  // start from previous month (current month's disclosure not yet published)
-  let y = now.getUTCFullYear();
-  let m = now.getUTCMonth(); // 0-based current; previous month = m-1 -> handle
   for (let i = 0; i < n; i++) {
-    let mm = m - i;
-    let yy = y;
-    while (mm <= 0) {
-      mm += 12;
-      yy -= 1;
-    }
-    out.push(`${yy}-${String(mm).padStart(2, "0")}`);
+    let m = latestM - i;
+    let y = latestY;
+    while (m <= 0) { m += 12; y -= 1; }
+    out.push(monthKey(y, m));
   }
   return out;
 }
@@ -32,20 +29,35 @@ export async function GET(req: NextRequest) {
   const token = req.headers.get("x-embed-token");
   if (!scheme) return NextResponse.json([]);
 
+  const now = new Date();
+  const y = now.getUTCFullYear();
+  const m = now.getUTCMonth() + 1; // 1-12
+  const day = now.getUTCDate();
+  // Disclosure for month X is published by ~10th of X+1. So the latest *published*
+  // month is the previous month once we're past the 10th, else two months back.
+  let ly = y, lm = m - (day >= 10 ? 1 : 2);
+  while (lm <= 0) { lm += 12; ly -= 1; }
+  const latestPublished = monthKey(ly, lm);
+
   let isDirect = false;
+  let inceptionMonth = "0000-00";
   try {
-    const id = await schemeIdentity(scheme);
+    const id = await getIdentity(scheme, token);
     isDirect = !!recipeFor(id.fund_house);
+    if (id.inception_date) inceptionMonth = id.inception_date.slice(0, 7);
   } catch {
-    /* ignore — treat as non-direct */
+    /* treat as non-direct, unknown inception */
   }
-  const cached = new Set(await cachedPeriods(scheme, token));
-  const months = recentMonths(12);
-  const options: PeriodOption[] = months.map((period) => ({
-    period,
-    label: periodLabel(period),
-    // hasData = already stored, OR fetchable now (direct AMC) so the user can try
-    hasData: cached.has(period) || isDirect,
-  }));
+
+  const cached = new Set(scheme.startsWith("upload-") ? [] : await cachedPeriods(scheme, token));
+  const months = monthsBack(ly, lm, 18).filter((p) => p >= inceptionMonth);
+
+  const options: PeriodOption[] = months.map((period) => {
+    let status: PeriodStatus;
+    if (cached.has(period)) status = "ready";
+    else if (isDirect && period <= latestPublished) status = "fetchable";
+    else status = "upload";
+    return { period, label: periodLabel(period), status, hasData: status !== "upload" };
+  });
   return NextResponse.json(options);
 }

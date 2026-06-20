@@ -135,11 +135,17 @@ function findHeader(rows: unknown[][]): { row: number; cols: ColMap } | null {
 
 const CASHISH = /treps|tri[- ]?party|reverse repo|receivable|net current|cash|margin/i;
 
-function extractRows(rows: unknown[][]): RawRow[] {
+interface ExtractResult {
+  rows: RawRow[];
+  aumCr: number | null; // from the GRAND TOTAL market value (Rs. in Lakhs → Cr)
+}
+
+function extractRows(rows: unknown[][]): ExtractResult {
   const hdr = findHeader(rows);
-  if (!hdr) return [];
+  if (!hdr) return { rows: [], aumCr: null };
   const { cols } = hdr;
   const out: RawRow[] = [];
+  let aumCr: number | null = null;
   let section = "";
   for (let i = hdr.row + 1; i < rows.length; i++) {
     const r = rows[i] || [];
@@ -150,7 +156,13 @@ function extractRows(rows: unknown[][]): RawRow[] {
     const low = name.toLowerCase();
 
     // Stop at the grand total — everything after it is notes/derivatives schedules.
-    if (/grand total/.test(low)) break;
+    if (/grand total/.test(low)) {
+      if (cols.marketValue >= 0) {
+        const mv = num(r[cols.marketValue]) / 100; // lakhs -> crore
+        if (mv > 0) aumCr = round2(mv);
+      }
+      break;
+    }
     // Aggregate rows — skip (their weight is already in the constituent rows).
     if (/^(sub ?total|total|net asset)/.test(low)) continue;
 
@@ -178,7 +190,7 @@ function extractRows(rows: unknown[][]): RawRow[] {
       section,
     });
   }
-  return out;
+  return { rows: out, aumCr };
 }
 
 // ── sector labelling ─────────────────────────────────────────
@@ -225,13 +237,43 @@ const round2 = (n: number) => Math.round(n * 100) / 100;
 export interface ParseResult {
   data: Omit<AnalyseData, "scheme_name" | "amc_name" | "category" | "isin" | "asset_class" | "period" | "period_label" | "as_of_date" | "source_org" | "source_url" | "aum" | "nav" | "expense_ratio">;
   asset_class: AssetClass; // derived from the holdings mix
+  aum: number | null; // ₹ cr, from the grand-total net assets
   ok: boolean;
   reason?: string;
 }
 
 export function buildFromRows(rawRows: unknown[][]): ParseResult {
-  const rows = extractRows(rawRows);
-  if (rows.length === 0) return { data: emptyDerived(), asset_class: "other", ok: false, reason: "no holdings rows found" };
+  const { rows, aumCr } = extractRows(rawRows);
+  return deriveRows(rows, aumCr);
+}
+
+// PDF / AI-extraction path: rows already structured → derive deterministically.
+export interface HoldingInput {
+  name: string;
+  isin?: string;
+  industry?: string;
+  weight: number;
+  market_value_cr?: number;
+  quantity?: number;
+  section?: string;
+}
+export function buildFromHoldings(items: HoldingInput[], aumCr: number | null = null): ParseResult {
+  const rows: RawRow[] = (items || [])
+    .filter((h) => h && h.name && typeof h.weight === "number")
+    .map((h) => ({
+      name: String(h.name).trim(),
+      isin: h.isin && ISIN_RE.test(String(h.isin).toUpperCase()) ? String(h.isin).toUpperCase() : "",
+      industry: h.industry ?? "",
+      quantity: h.quantity ?? 0,
+      market_value_cr: h.market_value_cr ?? 0,
+      weight: h.weight ?? 0,
+      section: h.section ?? "",
+    }));
+  return deriveRows(rows, aumCr);
+}
+
+function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
+  if (rows.length === 0) return { data: emptyDerived(), asset_class: "other", aum: null, ok: false, reason: "no holdings rows found" };
 
   const holdings: Holding[] = rows.map((r) => {
     const type = classify(r.name, r.isin, r.industry, r.section);
@@ -301,6 +343,7 @@ export function buildFromRows(rawRows: unknown[][]): ParseResult {
   return {
     ok: true,
     asset_class,
+    aum: aumCr,
     data: {
       holdings_count: holdings.length,
       total_weight: totalWeight,
@@ -351,7 +394,7 @@ export function pickSheet(wb: XLSX.WorkBook, schemeHint?: string): { name: strin
   let best: { name: string; rows: unknown[][]; score: number } | null = null;
   for (const name of wb.SheetNames) {
     const rows = sheetRows(wb.Sheets[name]);
-    const extracted = extractRows(rows).length;
+    const extracted = extractRows(rows).rows.length;
     if (extracted === 0) continue;
     let score = extracted;
     if (hintTokens.length) {
@@ -364,8 +407,10 @@ export function pickSheet(wb: XLSX.WorkBook, schemeHint?: string): { name: strin
   return best ? { name: best.name, rows: best.rows } : null;
 }
 
-export function validate(data: ParseResult["data"]): { ok: boolean; reason?: string } {
+export function validate(data: ParseResult["data"], opts?: { lenient?: boolean }): { ok: boolean; reason?: string } {
   if (data.holdings_count <= 0) return { ok: false, reason: "no holdings" };
+  // Lenient mode (PDF factsheets often disclose only top holdings → partial total).
+  if (opts?.lenient) return data.total_weight > 0 ? { ok: true } : { ok: false, reason: "zero weight" };
   if (data.total_weight < 90 || data.total_weight > 110)
     return { ok: false, reason: `total weight ${data.total_weight} out of range` };
   return { ok: true };
@@ -378,6 +423,7 @@ export function assemble(
   period: string,
   asOfDate: string,
   sourceUrl: string,
+  opts?: { nav?: number | null; aum?: number | null; expenseRatio?: number | null },
 ): AnalyseData {
   return {
     scheme_name: id.scheme_name,
@@ -390,9 +436,9 @@ export function assemble(
     as_of_date: asOfDate,
     source_org: id.fund_house || id.amc_name,
     source_url: sourceUrl,
-    aum: null,
-    nav: id.latest_nav,
-    expense_ratio: null,
+    aum: opts?.aum ?? parsed.aum,
+    nav: opts?.nav ?? id.latest_nav,
+    expense_ratio: opts?.expenseRatio ?? null,
     ...parsed.data,
   };
 }

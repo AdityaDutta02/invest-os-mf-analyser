@@ -106,10 +106,12 @@ export function PeriodPicker({
                         {p.label}
                       </span>
                     </span>
-                    {p.hasData ? (
-                      <span className="font-mono text-[9px] tracking-meta uppercase text-success">data</span>
+                    {p.status === 'ready' ? (
+                      <span className="font-mono text-[9px] tracking-meta uppercase text-success">saved</span>
+                    ) : p.status === 'fetchable' ? (
+                      <span className="font-mono text-[9px] tracking-meta uppercase text-fg-secondary">fetch</span>
                     ) : (
-                      <span className="font-mono text-[9px] tracking-meta uppercase text-fg-disabled">no data</span>
+                      <span className="font-mono text-[9px] tracking-meta uppercase text-fg-disabled">upload</span>
                     )}
                   </button>
                 </li>

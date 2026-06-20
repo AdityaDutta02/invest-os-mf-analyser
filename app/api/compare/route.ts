@@ -58,10 +58,12 @@ export async function GET(req: NextRequest) {
   if (!scheme || !aP || !bP) return NextResponse.json({ error: "scheme, a and b are required" }, { status: 400 });
 
   try {
-    const [a, b] = await Promise.all([getSnapshot(scheme, aP, token), getSnapshot(scheme, bP, token)]);
-    if (!a || !b) {
-      return NextResponse.json({ error: "One or both months have no stored portfolio." }, { status: 404 });
+    const [ra, rb] = await Promise.all([getSnapshot(scheme, aP, token), getSnapshot(scheme, bP, token)]);
+    if (!ra.ok || !rb.ok) {
+      return NextResponse.json({ error: "One or both months have no stored portfolio to compare." }, { status: 404 });
     }
+    const a = ra.data;
+    const b = rb.data;
     const payload: CompareData = {
       a,
       b,

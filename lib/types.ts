@@ -69,9 +69,15 @@ export interface SchemeSummary {
   errors?: boolean;
 }
 
+// ready  = already stored in DB (instant)
+// fetchable = an auto-fetch AMC + a published month (we'll fetch on demand)
+// upload = not auto-fetched / not published — user can upload the file
+export type PeriodStatus = "ready" | "fetchable" | "upload";
 export interface PeriodOption {
   period: string;
   label: string;
+  status: PeriodStatus;
+  /** convenience: true when status !== "upload" (a month we expect to resolve) */
   hasData: boolean;
 }
 

@@ -25,13 +25,29 @@ export interface MfApiDetail {
 }
 
 async function get<T>(path: string): Promise<T> {
-  const res = await fetch(`${BASE}${path}`, {
-    headers: { "User-Agent": UA, Accept: "application/json" },
-    // mfapi updates ~6x/day; cache aggressively at the edge.
-    next: { revalidate: 60 * 60 * 6 },
-  });
-  if (!res.ok) throw new Error(`mfapi ${path} -> ${res.status}`);
-  return res.json() as Promise<T>;
+  // Retry transient network/5xx failures — the runtime's outbound network to
+  // mfapi can blip, and an unhandled "fetch failed" must not become a 500.
+  let lastErr: unknown;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const ctrl = new AbortController();
+      const t = setTimeout(() => ctrl.abort(), 12000);
+      const res = await fetch(`${BASE}${path}`, {
+        headers: { "User-Agent": UA, Accept: "application/json" },
+        signal: ctrl.signal,
+        // mfapi updates ~6x/day; cache aggressively at the edge.
+        next: { revalidate: 60 * 60 * 6 },
+      });
+      clearTimeout(t);
+      if (res.status >= 500) throw new Error(`mfapi ${path} -> ${res.status}`);
+      if (!res.ok) throw new Error(`mfapi ${path} -> ${res.status}`);
+      return (await res.json()) as T;
+    } catch (e) {
+      lastErr = e;
+      await new Promise((r) => setTimeout(r, 300 * (attempt + 1)));
+    }
+  }
+  throw lastErr instanceof Error ? lastErr : new Error(`mfapi ${path} failed`);
 }
 
 export function inferAssetClass(text: string): AssetClass {
@@ -131,12 +147,20 @@ export interface SchemeIdentity {
   isin: string;
   latest_nav: number | null;
   latest_nav_date: string | null;
+  inception_date: string | null; // earliest NAV date, ISO "YYYY-MM-DD"
+}
+
+// mfapi NAV dates are "DD-MM-YYYY". Convert to ISO "YYYY-MM-DD".
+function isoFromMfDate(s: string): string {
+  const m = s.match(/^(\d{2})-(\d{2})-(\d{4})$/);
+  return m ? `${m[3]}-${m[2]}-${m[1]}` : s;
 }
 
 export async function schemeIdentity(code: string): Promise<SchemeIdentity> {
   const d = await schemeDetail(code);
   const m = d.meta;
   const latest = d.data?.[0];
+  const earliest = d.data?.[d.data.length - 1];
   return {
     scheme_code: code,
     scheme_name: cleanSchemeName(m.scheme_name),
@@ -147,5 +171,23 @@ export async function schemeIdentity(code: string): Promise<SchemeIdentity> {
     isin: m.isin_growth || m.isin_div_reinvestment || "",
     latest_nav: latest ? Number(latest.nav) : null,
     latest_nav_date: latest ? latest.date : null,
+    inception_date: earliest ? isoFromMfDate(earliest.date) : null,
   };
+}
+
+// Period-accurate NAV: the NAV on or immediately before an ISO date (month-end).
+export async function navOnOrBefore(code: string, isoDate: string): Promise<number | null> {
+  try {
+    const d = await schemeDetail(code);
+    // data is newest-first; find first entry whose ISO date <= target
+    for (const row of d.data) {
+      if (isoFromMfDate(row.date) <= isoDate) {
+        const n = Number(row.nav);
+        return isFinite(n) ? n : null;
+      }
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
 }

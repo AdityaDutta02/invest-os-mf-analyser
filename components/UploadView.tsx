@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { useFund } from '@/components/FundProvider';
 import { uploadFactsheet } from '@/lib/client';
+import type { UploadResult } from '@/lib/client';
 import { ProgressTerminal } from '@/components/ProgressTerminal';
 import { Toast } from '@/components/Toast';
 
@@ -26,13 +27,7 @@ interface SelectedFile {
   kind: 'pdf' | 'xls';
 }
 
-interface ParseResult {
-  scheme_id: string;
-  scheme_name: string;
-  period: string;
-  holdings?: number;
-  weight?: string;
-}
+type ParseResult = UploadResult;
 
 const UPLOAD_STEPS = [
   'reading file & checking format…',
@@ -65,7 +60,7 @@ function getKind(file: File): 'pdf' | 'xls' {
 }
 
 export function UploadView() {
-  const { selectScheme, selectPeriod, token } = useFund();
+  const { scheme, period, selectUploaded, token } = useFund();
   const router = useRouter();
 
   const [phase, setPhase] = useState<Phase>('idle');
@@ -116,11 +111,15 @@ export function UploadView() {
     }, 380);
 
     try {
-      const result = await uploadFactsheet(selectedFile.file, token);
+      const result = await uploadFactsheet(selectedFile.file, token, {
+        scheme: scheme?.id,
+        period,
+        schemeName: scheme?.scheme_name,
+      });
       clearInterval(iv);
       setParseResult(result);
       setPhase('done');
-      setToast(`Successfully ingested ${result.scheme_name} (${result.period}).`);
+      setToast(`Parsed ${result.holdings_count} holdings from ${result.scheme_name} (${result.period_label}).`);
     } catch (e: unknown) {
       clearInterval(iv);
       const msg = e instanceof Error ? e.message : 'Upload failed.';
@@ -131,15 +130,17 @@ export function UploadView() {
 
   function openAnalysis() {
     if (!parseResult) return;
-    selectScheme({
-      id: parseResult.scheme_id,
-      scheme_name: parseResult.scheme_name,
-      amc_name: '',
-      category: '',
-      nav: null,
-      asset_class: 'equity',
-    });
-    selectPeriod(parseResult.period);
+    selectUploaded(
+      {
+        id: parseResult.scheme_id,
+        scheme_name: parseResult.scheme_name,
+        amc_name: parseResult.amc_name,
+        category: parseResult.category,
+        nav: parseResult.nav,
+        asset_class: parseResult.asset_class,
+      },
+      parseResult.period,
+    );
     router.push('/');
   }
 
@@ -167,6 +168,27 @@ export function UploadView() {
               <CheckCircle2 className="h-5 w-5 text-success" strokeWidth={2} />
               <h1 className="font-sans text-[26px] font-semibold tracking-tight text-fg-primary">Portfolio extracted</h1>
             </div>
+
+            {parseResult.mismatch && (
+              <div className="mb-4 bg-tint-warning border border-line-subtle rounded-sm p-3.5 flex items-start gap-2.5" data-testid="upload-mismatch">
+                <FileWarning className="h-4 w-4 text-warning shrink-0 mt-0.5" strokeWidth={2} />
+                <p className="text-[12.5px] text-fg-default leading-relaxed">
+                  This file looks like{' '}
+                  <span className="text-fg-primary font-medium">{parseResult.mismatch.detected_name}</span>
+                  {parseResult.mismatch.detected_period ? ` (${parseResult.mismatch.detected_period})` : ''}
+                  {parseResult.mismatch.selected_name ? (
+                    <> — not the selected <span className="text-fg-primary font-medium">{parseResult.mismatch.selected_name}</span></>
+                  ) : null}
+                  . Showing the uploaded file&apos;s data.
+                </p>
+              </div>
+            )}
+            {parseResult.source === 'pdf' && (
+              <div className="mb-4 bg-tint-info border border-line-subtle rounded-sm p-3.5 text-[12.5px] text-fg-default leading-relaxed" data-testid="upload-pdf-note">
+                AI-extracted from the PDF{parseResult.partial ? ' (factsheet showed only top/summary holdings)' : ''} — verify against the official document.
+              </div>
+            )}
+
             <div className="bg-card border border-line-subtle rounded-sm overflow-hidden">
               <div className="flex items-center gap-3 px-4 py-3 bg-subtle border-b border-line-subtle">
                 <KindIcon kind={selectedFile.kind} className="h-4 w-4 text-fg-secondary" />
@@ -176,13 +198,8 @@ export function UploadView() {
               <dl className="divide-y divide-line-subtle">
                 {[
                   ['Scheme detected', parseResult.scheme_name],
-                  ['Disclosure period', parseResult.period],
-                  ...(parseResult.holdings != null
-                    ? [['Holdings parsed', `${parseResult.holdings} instruments`] as [string, string]]
-                    : []),
-                  ...(parseResult.weight != null
-                    ? [['Weight coverage', parseResult.weight] as [string, string]]
-                    : []),
+                  ['Disclosure period', parseResult.period_label],
+                  ['Holdings parsed', `${parseResult.holdings_count} instruments`] as [string, string],
                 ].map(([k, v]) => (
                   <div key={k} className="flex items-center justify-between px-4 py-2.5">
                     <dt className="font-mono text-[10px] tracking-meta uppercase text-fg-secondary">{k}</dt>

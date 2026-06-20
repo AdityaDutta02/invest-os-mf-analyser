@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Search, FileWarning, UploadCloud } from 'lucide-react';
 import { useFund } from '@/components/FundProvider';
 import { fetchAnalyse, fetchAIInsight } from '@/lib/client';
+import type { ApiError } from '@/lib/client';
 import type { AnalyseData, AIInsight } from '@/lib/types';
 import { ResultsHeader } from '@/components/ResultsHeader';
 import { KpiTile } from '@/components/KpiTile';
@@ -18,7 +19,7 @@ import { CollapsibleSection } from '@/components/CollapsibleSection';
 import { ProgressTerminal } from '@/components/ProgressTerminal';
 import { Toast } from '@/components/Toast';
 
-type Status = 'idle' | 'loading' | 'ready' | 'nodata' | 'error';
+type Status = 'idle' | 'loading' | 'ready' | 'nodata' | 'transient' | 'error';
 
 function makeSteps(name: string): string[] {
   return [
@@ -60,6 +61,8 @@ export function AnalyseView() {
   const [ai, setAi] = useState<AIInsight | null>(null);
   const [step, setStep] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [reloadKey, setReloadKey] = useState(0);
   const didMount = useRef(false);
 
   const steps = scheme ? makeSteps(scheme.scheme_name) : [];
@@ -107,20 +110,19 @@ export function AnalyseView() {
           if (ins) setAi(ins);
         });
       })
-      .catch((e: Error) => {
+      .catch((e: ApiError) => {
         clearInterval(iv);
-        if (/(404|no data|not found)/i.test(e.message)) {
-          setStatus('nodata');
-          setData(null);
-          setAi(null);
+        setData(null);
+        setAi(null);
+        const msg = e.message || `Couldn't analyse ${schemeName}.`;
+        setNotice(msg);
+        if (e.status === 404) {
+          setStatus('nodata'); // not_covered / not_published / parse_failed
+        } else if (e.status === 503) {
+          setStatus('transient'); // network blip — retryable
         } else {
           setStatus('error');
-          setData(null);
-          setAi(null);
-          setToast(
-            e.message ||
-              `Could not parse the latest ${schemeName} portfolio — the source factsheet failed validation. Upload it manually to analyse.`,
-          );
+          setToast(msg);
         }
       });
 
@@ -128,7 +130,7 @@ export function AnalyseView() {
       clearInterval(iv);
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scheme?.id, period, token]);
+  }, [scheme?.id, period, token, reloadKey]);
 
   // ── Idle ──────────────────────────────────────────────
   if (status === 'idle' || !scheme) {
@@ -179,19 +181,44 @@ export function AnalyseView() {
     );
   }
 
-  // ── No data ───────────────────────────────────────────
+  // ── Transient (network blip — retryable) ──────────────
+  if (status === 'transient') {
+    return (
+      <div className="max-w-xl mx-auto py-20 text-center">
+        <div className="inline-flex h-12 w-12 items-center justify-center bg-subtle border border-line-subtle rounded-sm mb-5">
+          <FileWarning className="h-6 w-6 text-fg-secondary" strokeWidth={1.75} />
+        </div>
+        <h2 className="font-sans text-[28px] font-semibold tracking-tight text-fg-primary">Couldn&apos;t reach the source</h2>
+        <p className="text-[14px] text-fg-secondary mt-3 leading-relaxed">
+          {notice ?? 'The data source didn’t respond just now.'}
+        </p>
+        <div className="flex items-center justify-center gap-2 mt-6">
+          <button onClick={() => setReloadKey((k) => k + 1)} className={inkBtn}>
+            Retry
+          </button>
+          <button onClick={() => router.push('/upload')} className="inline-flex items-center gap-2 h-9 px-3.5 bg-card border border-line-default text-fg-primary font-mono text-[12px] tracking-meta uppercase rounded-sm hover:bg-subtle transition-colors focus-ring">
+            <UploadCloud className="h-4 w-4" strokeWidth={2} /> Upload instead
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // ── No data (not covered / not published / parse failed) ──
   if (status === 'nodata' || !data) {
     return (
       <div className="max-w-xl mx-auto py-20 text-center">
         <div className="inline-flex h-12 w-12 items-center justify-center bg-subtle border border-line-subtle rounded-sm mb-5">
           <FileWarning className="h-6 w-6 text-fg-secondary" strokeWidth={1.75} />
         </div>
-        <h2 className="font-sans text-[28px] font-semibold tracking-tight text-fg-primary">No stored data for this month</h2>
+        <h2 className="font-sans text-[28px] font-semibold tracking-tight text-fg-primary">No portfolio for this month</h2>
         <p className="text-[14px] text-fg-secondary mt-3 leading-relaxed">
-          We don&apos;t have an ingested portfolio for{' '}
-          <span className="text-fg-primary">{scheme.scheme_name}</span> in{' '}
-          <span className="font-mono tabular-nums">{period}</span>. Pick another month, or upload the factsheet to
-          analyse it now.
+          {notice ?? (
+            <>
+              We don&apos;t have a portfolio for <span className="text-fg-primary">{scheme.scheme_name}</span> in{' '}
+              <span className="font-mono tabular-nums">{period}</span> yet.
+            </>
+          )}
         </p>
         <div className="flex items-center justify-center gap-2 mt-6">
           <button onClick={() => router.push('/upload')} className={inkBtn}>

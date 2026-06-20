@@ -80,8 +80,9 @@ export async function POST(req: NextRequest) {
     /* ignore */
   }
 
-  const data = await getSnapshot(scheme, period, token);
-  if (!data) return NextResponse.json({ error: "no snapshot" }, { status: 404 });
+  const snap = await getSnapshot(scheme, period, token);
+  if (!snap.ok) return NextResponse.json({ error: "no snapshot" }, { status: 404 });
+  const data = snap.data;
 
   try {
     const result = await callGateway(

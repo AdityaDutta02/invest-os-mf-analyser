@@ -21,3 +21,13 @@ CREATE TABLE IF NOT EXISTS ai_cache (
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (scheme_code, period)
 );
+
+-- Cached scheme identity (category, NAV, ISIN, inception) from mfapi.
+CREATE TABLE IF NOT EXISTS scheme_meta (
+  id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  scheme_code TEXT NOT NULL,
+  data        JSONB NOT NULL,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE (scheme_code)
+);
+CREATE INDEX IF NOT EXISTS scheme_meta_code_idx ON scheme_meta (scheme_code);
