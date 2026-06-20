@@ -1,7 +1,9 @@
 'use client';
 
 import { SchemeSearch } from './SchemeSearch';
+import { CuratedPicker } from './CuratedPicker';
 import { PeriodPicker } from './PeriodPicker';
+import { SEARCH_DEV } from '@/lib/curated';
 import type { SchemeSummary } from '@/lib/types';
 
 export function FundContextBar({
@@ -22,7 +24,11 @@ export function FundContextBar({
       <span className="hidden md:inline font-mono text-[10px] tracking-wide2 uppercase text-fg-secondary shrink-0">
         Context
       </span>
-      <SchemeSearch scheme={scheme} onSelect={onSelectScheme} />
+      {SEARCH_DEV ? (
+        <SchemeSearch scheme={scheme} onSelect={onSelectScheme} />
+      ) : (
+        <CuratedPicker scheme={scheme} onSelect={onSelectScheme} />
+      )}
       <PeriodPicker scheme={scheme} period={period} onSelect={onSelectPeriod} token={token} />
     </div>
   );

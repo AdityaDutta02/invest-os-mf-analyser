@@ -135,15 +135,22 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: err.message, code: "INSUFFICIENT_CREDITS", redirect: err.redirect }, { status: 402 });
       return NextResponse.json({ error: "Couldn't read this PDF. Try the SEBI portfolio spreadsheet instead." }, { status: 422 });
     }
-    if (!ex) return NextResponse.json({ error: "Couldn't extract holdings from this PDF (it may be scanned). Try the spreadsheet." }, { status: 422 });
-    parsed = buildFromHoldings(ex.holdings, ex.aum_cr);
+    if (!ex.ok) {
+      const msg =
+        ex.reason === "scanned"
+          ? "Couldn't read text from this PDF (it looks scanned/image-only). Try the spreadsheet."
+          : "Read the PDF but couldn't extract the holdings. Try the SEBI portfolio spreadsheet.";
+      return NextResponse.json({ error: msg }, { status: 422 });
+    }
+    const v = ex.value;
+    parsed = buildFromHoldings(v.holdings, v.aum_cr);
     if (!parsed.ok || !validate(parsed.data, { lenient: true }).ok)
       return NextResponse.json({ error: "Read the PDF but couldn't make sense of the holdings." }, { status: 422 });
-    detectedName = ex.scheme_name || file.name.replace(/\.pdf$/i, "");
-    detectedPeriod = ex.period;
-    asOf = ex.as_of_date || (detectedPeriod ? `${detectedPeriod}-28` : "");
-    expenseRatio = ex.expense_ratio;
-    partial = ex.partial;
+    detectedName = v.scheme_name || file.name.replace(/\.pdf$/i, "");
+    detectedPeriod = v.period;
+    asOf = v.as_of_date || (detectedPeriod ? `${detectedPeriod}-28` : "");
+    expenseRatio = v.expense_ratio;
+    partial = v.partial;
   } else if (/\.(xls|xlsx)$/.test(name)) {
     let wb: XLSX.WorkBook;
     try {

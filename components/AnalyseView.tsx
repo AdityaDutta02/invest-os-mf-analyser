@@ -139,10 +139,12 @@ export function AnalyseView() {
         <div className="inline-flex h-12 w-12 items-center justify-center bg-subtle border border-line-subtle rounded-sm mb-5">
           <Search className="h-6 w-6 text-fg-secondary" strokeWidth={1.75} />
         </div>
-        <h2 className="font-sans text-[28px] font-semibold tracking-tight text-fg-primary">Search a fund to begin</h2>
+        <h2 className="font-sans text-[28px] font-semibold tracking-tight text-fg-primary">Choose a fund to begin</h2>
         <p className="text-[14px] text-fg-secondary mt-3 leading-relaxed">
-          Pick any Indian mutual fund and a portfolio month. Get the holdings, category mix, deployable cash and
-          month-on-month deltas — without spreadsheets.
+          Pick a fund and a portfolio month from the bar above — or head to{' '}
+          <button onClick={() => router.push('/upload')} className="text-fg-link underline underline-offset-2">Upload</button>{' '}
+          to analyse any factsheet (PDF or spreadsheet). Holdings, category mix, deployable cash and month-on-month
+          deltas — without spreadsheets.
         </p>
       </div>
     );
