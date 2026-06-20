@@ -65,7 +65,45 @@ function classifySection(section: string): InstrumentType | null {
   return null;
 }
 
-export function classify(name: string, isin: string, industry: string, section = ""): InstrumentType {
+// Normalise an explicit instrument-type hint (e.g. from the PDF AI extraction).
+const TYPE_ALIASES: Record<string, InstrumentType> = {
+  equity: "equity",
+  foreign_equity: "foreign_equity",
+  foreign: "foreign_equity",
+  gsec: "gsec",
+  government: "gsec",
+  sovereign: "gsec",
+  tbill: "tbill",
+  treasury_bill: "tbill",
+  cp: "cp",
+  commercial_paper: "cp",
+  cd: "cd",
+  certificate_of_deposit: "cd",
+  debt: "debt",
+  corporate_debt: "debt",
+  bond: "debt",
+  ncd: "debt",
+  money_market: "cp",
+  treps: "treps",
+  repo: "treps",
+  cash: "cash",
+  reit: "reit",
+  invit: "reit",
+  fund: "fund",
+  arbitrage: "arbitrage",
+};
+function normaliseTypeHint(hint?: string): InstrumentType | null {
+  if (!hint) return null;
+  return TYPE_ALIASES[hint.trim().toLowerCase().replace(/[\s/-]+/g, "_")] ?? null;
+}
+
+// A credit rating in the industry column (and no equity ISIN) signals a debt /
+// money-market instrument — used as a fallback when there's no explicit type.
+const RATING_RE = /\b(a1\+?|aaa|aa[+-]?|a[+-]?|icra|crisil|care|ind ?-|fitch|brickwork|sovereign)\b/i;
+
+export function classify(name: string, isin: string, industry: string, section = "", typeHint?: string): InstrumentType {
+  const hinted = normaliseTypeHint(typeHint);
+  if (hinted) return hinted;
   const t = `${name} ${industry}`.toLowerCase();
   const own = classifyText(t);
   if (own) return own;
@@ -73,6 +111,8 @@ export function classify(name: string, isin: string, industry: string, section =
   if (isin && ISIN_RE.test(isin) && !/^IN[EFD0-9]/.test(isin)) return "foreign_equity";
   const sec = classifySection(section);
   if (sec) return sec;
+  // rating in the industry column with no equity ISIN → debt / money-market
+  if (industry && RATING_RE.test(industry) && !ISIN_RE.test(isin)) return "debt";
   // valid Indian ISIN with no other signal → equity
   return "equity";
 }
@@ -90,6 +130,7 @@ interface RawRow {
   market_value_cr: number; // converted from lakhs
   weight: number; // % to NAV
   section: string; // section-header context (e.g. "Reverse Repo / TREPS")
+  typeHint?: string; // explicit instrument type (e.g. from PDF AI extraction)
 }
 
 interface ColMap {
@@ -256,6 +297,7 @@ export interface HoldingInput {
   market_value_cr?: number;
   quantity?: number;
   section?: string;
+  type?: string; // explicit instrument type (PDF AI extraction)
 }
 export function buildFromHoldings(items: HoldingInput[], aumCr: number | null = null): ParseResult {
   const rows: RawRow[] = (items || [])
@@ -268,6 +310,7 @@ export function buildFromHoldings(items: HoldingInput[], aumCr: number | null = 
       market_value_cr: h.market_value_cr ?? 0,
       weight: h.weight ?? 0,
       section: h.section ?? "",
+      typeHint: h.type,
     }));
   return deriveRows(rows, aumCr);
 }
@@ -276,7 +319,7 @@ function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
   if (rows.length === 0) return { data: emptyDerived(), asset_class: "other", aum: null, ok: false, reason: "no holdings rows found" };
 
   const holdings: Holding[] = rows.map((r) => {
-    const type = classify(r.name, r.isin, r.industry, r.section);
+    const type = classify(r.name, r.isin, r.industry, r.section, r.typeHint);
     return {
       name: r.name,
       isin: r.isin || "—",
@@ -287,7 +330,7 @@ function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
       quantity: r.quantity,
     };
   });
-  const types = rows.map((r) => classify(r.name, r.isin, r.industry, r.section));
+  const types = rows.map((r) => classify(r.name, r.isin, r.industry, r.section, r.typeHint));
 
   const totalWeight = round2(rows.reduce((s, r) => s + r.weight, 0));
 
@@ -334,8 +377,10 @@ function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
     rows.reduce((s, r, i) => (CASH_TYPES.has(types[i]) || types[i] === "arbitrage" ? s + r.weight : s), 0),
   );
 
+  // Top holdings = highest-weight non-cash positions (ISIN optional — PDF
+  // factsheets often omit ISINs, so we must not require one here).
   const top_holdings = holdings
-    .filter((h) => h.isin !== "—")
+    .filter((_, i) => !CASH_TYPES.has(types[i]))
     .sort((a, b) => b.weight - a.weight)
     .slice(0, 10)
     .map((h) => ({ name: h.name, isin: h.isin, sector: h.sector, weight: h.weight }));

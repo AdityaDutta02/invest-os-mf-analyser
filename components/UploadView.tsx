@@ -218,7 +218,7 @@ export function UploadView() {
             </div>
           </div>
         </div>
-        {toast && <Toast message={toast} onClose={() => setToast(null)} />}
+        {toast && <Toast message={toast} variant="success" title="Parsed" onClose={() => setToast(null)} />}
       </>
     );
   }

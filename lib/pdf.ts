@@ -19,12 +19,13 @@ export interface PdfExtraction {
 
 const SYSTEM = `You extract structured data from Indian mutual fund factsheet / monthly portfolio text.
 Return STRICT JSON only (no markdown), matching exactly:
-{"scheme_name":string|null,"amc_name":string|null,"period":"YYYY-MM"|null,"as_of_date":"YYYY-MM-DD"|null,"aum_cr":number|null,"expense_ratio":number|null,"partial":boolean,"holdings":[{"name":string,"isin":string|null,"industry":string|null,"weight":number,"market_value_cr":number|null,"quantity":number|null}]}
+{"scheme_name":string|null,"amc_name":string|null,"period":"YYYY-MM"|null,"as_of_date":"YYYY-MM-DD"|null,"aum_cr":number|null,"expense_ratio":number|null,"partial":boolean,"holdings":[{"name":string,"isin":string|null,"industry":string|null,"weight":number,"market_value_cr":number|null,"quantity":number|null,"type":string|null}]}
 RULES:
 - Use ONLY values present in the text. Never invent numbers or ISINs. Missing field => null.
 - weight = the holding's % of portfolio/NAV as a number (7.84 means 7.84%).
+- "type" = the instrument type, classified from context (e.g. a Liquid/Debt fund's bank/NBFC papers are money-market). One of EXACTLY: equity, foreign_equity, gsec, tbill, cp, cd, corporate_debt, treps, cash, reit, fund, arbitrage. A bank/NBFC name with a credit rating in a liquid/debt fund is usually "cd" (Certificate of Deposit) or "cp" (Commercial Paper); treasury bills => "tbill"; TREPS/repo => "treps".
+- "industry" = the sector (for equities) or the credit rating (for debt) as printed.
 - Include EVERY holding row you can read. If only top/summary holdings are shown (a marketing factsheet), set "partial": true.
-- industry = sector/rating column if present.
 - If multiple schemes appear, extract the one best matching the hint. aum_cr in ₹ crore (convert lakhs ÷100).`;
 
 const NUM = (v: unknown): number | null => {
@@ -89,6 +90,7 @@ function parseExtraction(text: string): PdfExtraction | null {
         weight: NUM(h.weight) ?? 0,
         market_value_cr: NUM(h.market_value_cr) ?? 0,
         quantity: NUM(h.quantity) ?? 0,
+        type: h.type ? String(h.type) : undefined,
       }));
     if (holdings.length === 0) return null;
     return {
