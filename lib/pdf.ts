@@ -5,6 +5,7 @@
 import { extractText, getDocumentProxy } from "unpdf";
 import { callGateway } from "./terminal-ai";
 import type { HoldingInput } from "./parse";
+import type { WeightItem, PortfolioMetrics } from "./types";
 
 export interface PdfExtraction {
   scheme_name: string | null;
@@ -15,17 +16,24 @@ export interface PdfExtraction {
   expense_ratio: number | null;
   holdings: HoldingInput[];
   partial: boolean;
+  metrics: PortfolioMetrics;
+  // Portfolio-wide breakdown by credit-rating class (Sovereign / AAA-A1+ / …)
+  // — the one allocation table usually machine-readable in factsheet text.
+  rating_breakdown: WeightItem[];
 }
 
 const SYSTEM = `You extract structured data from Indian mutual fund factsheet / monthly portfolio text.
 Return STRICT JSON only (no markdown), matching exactly:
-{"scheme_name":string|null,"amc_name":string|null,"period":"YYYY-MM"|null,"as_of_date":"YYYY-MM-DD"|null,"aum_cr":number|null,"expense_ratio":number|null,"partial":boolean,"holdings":[{"name":string,"isin":string|null,"industry":string|null,"weight":number,"market_value_cr":number|null,"quantity":number|null,"type":string|null}]}
+{"scheme_name":string|null,"amc_name":string|null,"period":"YYYY-MM"|null,"as_of_date":"YYYY-MM-DD"|null,"aum_cr":number|null,"expense_ratio":number|null,"ytm":number|null,"macaulay_days":number|null,"residual_days":number|null,"benchmark":string|null,"inception":string|null,"fund_managers":string|null,"rating_breakdown":[{"name":string,"weight":number}],"partial":boolean,"holdings":[{"name":string,"isin":string|null,"industry":string|null,"weight":number,"market_value_cr":number|null,"quantity":number|null,"type":string|null}]}
 RULES:
-- Use ONLY values present in the text. Never invent numbers or ISINs. Missing field => null.
+- Use ONLY values present in the text. Never invent numbers or ISINs. Missing field => null (empty array [] for rating_breakdown).
 - weight = the holding's % of portfolio/NAV as a number (7.84 means 7.84%).
 - "type" = the instrument type, classified from context (e.g. a Liquid/Debt fund's bank/NBFC papers are money-market). One of EXACTLY: equity, foreign_equity, gsec, tbill, cp, cd, corporate_debt, treps, cash, reit, fund, arbitrage. A bank/NBFC name with a credit rating in a liquid/debt fund is usually "cd" (Certificate of Deposit) or "cp" (Commercial Paper); treasury bills => "tbill"; TREPS/repo => "treps".
 - "industry" = the sector (for equities) or the credit rating (for debt) as printed.
-- Include EVERY holding row you can read. If only top/summary holdings are shown (a marketing factsheet), set "partial": true.
+- "as_of_date" = the PORTFOLIO date (e.g. "as on April 30, 2026"), NOT the document/publication month. "period" = that same portfolio month as YYYY-MM (April 30 2026 => "2026-04"), even if the sheet header says a later month.
+- "ytm" = annualised portfolio YTM as a number (6.24 means 6.24%). "macaulay_days"/"residual_days" = duration / average residual maturity in DAYS (convert years×365 if printed in years). "benchmark", "inception", "fund_managers" = copy the printed text.
+- "rating_breakdown" = the "Portfolio Classification by Rating Class" (or asset-class) table as printed: each {name, weight}. Keep negative weights (e.g. Cash -6.65) as-is. [] if absent.
+- Include EVERY holding row you can read. If only top/summary holdings are shown (a marketing/"Top 10" factsheet), set "partial": true.
 - If multiple schemes appear, extract the one best matching the hint. aum_cr in ₹ crore (convert lakhs ÷100).`;
 
 const NUM = (v: unknown): number | null => {
@@ -93,15 +101,29 @@ function parseExtraction(text: string): PdfExtraction | null {
         type: h.type ? String(h.type) : undefined,
       }));
     if (holdings.length === 0) return null;
+    const str = (v: unknown): string | null => (typeof v === "string" && v.trim() ? v.trim() : null);
+    const rawR = Array.isArray(o.rating_breakdown) ? (o.rating_breakdown as Record<string, unknown>[]) : [];
+    const rating_breakdown: WeightItem[] = rawR
+      .filter((r) => r && typeof r.name === "string" && NUM(r.weight) != null)
+      .map((r) => ({ name: String(r.name).trim(), weight: NUM(r.weight) ?? 0 }));
     return {
-      scheme_name: typeof o.scheme_name === "string" ? o.scheme_name : null,
-      amc_name: typeof o.amc_name === "string" ? o.amc_name : null,
-      period: typeof o.period === "string" ? o.period : null,
-      as_of_date: typeof o.as_of_date === "string" ? o.as_of_date : null,
+      scheme_name: str(o.scheme_name),
+      amc_name: str(o.amc_name),
+      period: str(o.period),
+      as_of_date: str(o.as_of_date),
       aum_cr: NUM(o.aum_cr),
       expense_ratio: NUM(o.expense_ratio),
       holdings,
       partial: Boolean(o.partial),
+      metrics: {
+        ytm: NUM(o.ytm),
+        macaulay_days: NUM(o.macaulay_days),
+        residual_days: NUM(o.residual_days),
+        benchmark: str(o.benchmark),
+        inception: str(o.inception),
+        fund_managers: str(o.fund_managers),
+      },
+      rating_breakdown,
     };
   } catch {
     return null;

@@ -18,6 +18,7 @@ RULES:
 - Be descriptive and analytical, NEVER advisory. Do not recommend buying, selling, holding, or rate the fund.
 - Use ONLY the numbers provided in the input JSON. Never invent or estimate figures not present.
 - Interpret what the disclosed allocation, concentration, cash level and sector tilts imply about the portfolio's posture.
+- If "partial" is true, the holdings cover only "total_weight"% of NAV (top names only) — describe holdings as the disclosed slice, not the whole fund, and lean on "portfolio_metrics" / "rating_breakdown" for fund-wide context. Do NOT treat total_weight as a cash/under-investment signal when partial.
 - Output STRICT JSON only (no markdown, no prose outside JSON) matching exactly:
 {"headline": string, "sections": [{"title": string, "bullets": [string, ...]}], "flags": [string, ...]}
 - 1 headline sentence; 2-3 sections (e.g. "Portfolio posture", "Notable positioning", "Concentration & cash"); 2-4 bullets each; 1-3 flags noting risks visible in the data (e.g. elevated cash, single-name concentration). Keep it grounded and specific to the numbers.`;
@@ -38,6 +39,9 @@ function compact(d: AnalyseData) {
     market_cap_breakdown: d.market_cap_breakdown,
     cash_breakdown: d.cash_breakdown,
     top_holdings: d.top_holdings,
+    partial: d.partial ?? false,
+    rating_breakdown: d.rating_breakdown ?? [],
+    portfolio_metrics: d.metrics ?? null,
   };
 }
 

@@ -7,6 +7,7 @@ import type {
   AssetClass,
   CashItem,
   Holding,
+  PortfolioMetrics,
   WeightItem,
 } from "./types";
 import type { SchemeIdentity } from "./mfapi";
@@ -468,8 +469,25 @@ export function assemble(
   period: string,
   asOfDate: string,
   sourceUrl: string,
-  opts?: { nav?: number | null; aum?: number | null; expenseRatio?: number | null },
+  opts?: {
+    nav?: number | null;
+    aum?: number | null;
+    expenseRatio?: number | null;
+    partial?: boolean;
+    ratingBreakdown?: WeightItem[];
+    metrics?: PortfolioMetrics;
+  },
 ): AnalyseData {
+  const ratingBreakdown = opts?.ratingBreakdown?.filter((r) => r && r.name) ?? [];
+  const metrics = opts?.metrics;
+  const hasMetrics =
+    !!metrics &&
+    (metrics.ytm != null ||
+      metrics.macaulay_days != null ||
+      metrics.residual_days != null ||
+      !!metrics.benchmark ||
+      !!metrics.inception ||
+      !!metrics.fund_managers);
   return {
     scheme_name: id.scheme_name,
     amc_name: id.amc_name,
@@ -485,6 +503,9 @@ export function assemble(
     nav: opts?.nav ?? id.latest_nav,
     expense_ratio: opts?.expenseRatio ?? null,
     ...parsed.data,
+    ...(opts?.partial ? { partial: true } : {}),
+    ...(ratingBreakdown.length ? { rating_breakdown: ratingBreakdown } : {}),
+    ...(hasMetrics ? { metrics } : {}),
   };
 }
 

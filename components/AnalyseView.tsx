@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, FileWarning, UploadCloud } from 'lucide-react';
+import { Search, FileWarning, UploadCloud, Layers } from 'lucide-react';
 import { useFund } from '@/components/FundProvider';
 import { fetchAnalyse, fetchAIInsight } from '@/lib/client';
 import type { ApiError } from '@/lib/client';
-import type { AnalyseData, AIInsight } from '@/lib/types';
+import type { AnalyseData, AIInsight, PortfolioMetrics } from '@/lib/types';
 import { ResultsHeader } from '@/components/ResultsHeader';
 import { KpiTile } from '@/components/KpiTile';
 import { AIInsightPanel } from '@/components/AIInsightPanel';
@@ -46,6 +46,74 @@ function donutMeta(asset: string) {
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
     <div className="font-mono text-[10px] tracking-wide2 uppercase text-fg-secondary mb-4">{children}</div>
+  );
+}
+
+// Loud notice when a factsheet discloses only its top-N holdings.
+function PartialBanner({ count, coverage }: { count: number; coverage: number }) {
+  return (
+    <div className="mb-6 flex items-start gap-3 px-4 py-3 bg-tint-warning border border-warning rounded-sm" role="status">
+      <Layers className="h-4 w-4 shrink-0 mt-0.5 text-warning" strokeWidth={2} />
+      <div className="min-w-0">
+        <div className="font-mono text-[10px] tracking-meta uppercase text-warning mb-0.5">Partial disclosure</div>
+        <p className="text-[12.5px] text-fg-default leading-snug">
+          This factsheet lists only the top {count} holdings — about{' '}
+          <span className="font-mono tabular-nums text-fg-primary">{coverage.toFixed(1)}%</span> of NAV. The full portfolio
+          isn&apos;t published in this document; metrics below describe the whole fund, holdings describe the disclosed slice.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// Portfolio-wide characteristics a factsheet states as aggregates.
+function MetricsStrip({ metrics }: { metrics: PortfolioMetrics }) {
+  const items: { label: string; value: string }[] = [];
+  if (metrics.ytm != null) items.push({ label: 'YTM', value: metrics.ytm.toFixed(2) + '%' });
+  if (metrics.macaulay_days != null) items.push({ label: 'Macaulay Duration', value: `${metrics.macaulay_days} d` });
+  if (metrics.residual_days != null) items.push({ label: 'Avg Residual Maturity', value: `${metrics.residual_days} d` });
+  if (metrics.benchmark) items.push({ label: 'Benchmark', value: metrics.benchmark });
+  if (metrics.inception) items.push({ label: 'Inception', value: metrics.inception });
+  if (metrics.fund_managers) items.push({ label: 'Fund Manager', value: metrics.fund_managers });
+  if (items.length === 0) return null;
+  return (
+    <section className="pt-8 sm:pt-9 mt-8 sm:mt-9 border-t border-line-subtle">
+      <SectionLabel>Portfolio Characteristics</SectionLabel>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
+        {items.map((it) => (
+          <div key={it.label} className="flex items-baseline justify-between gap-3 border-b border-line-subtle pb-2">
+            <span className="font-mono text-[10px] tracking-meta uppercase text-fg-secondary shrink-0">{it.label}</span>
+            <span className="text-[12.5px] text-fg-primary text-right">{it.value}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// Portfolio-wide breakdown by credit-rating class (text-readable on most factsheets).
+function RatingBreakdown({ data }: { data: { name: string; weight: number }[] }) {
+  const max = Math.max(...data.map((d) => Math.abs(d.weight)), 1);
+  return (
+    <div className="bg-card border border-line-subtle rounded-sm p-4">
+      <h3 className="font-mono text-[11px] tracking-wide2 uppercase text-fg-secondary mb-3">By Rating Class</h3>
+      <div className="space-y-2.5">
+        {data.map((d) => (
+          <div key={d.name}>
+            <div className="flex items-center justify-between gap-2 mb-1">
+              <span className="text-[12px] text-fg-default leading-tight">{d.name}</span>
+              <span className="font-mono text-[12px] text-fg-primary tabular-nums shrink-0">{d.weight.toFixed(2)}%</span>
+            </div>
+            <span className="block h-1 w-full bg-muted rounded-sm overflow-hidden">
+              <span
+                className={['block h-full rounded-sm', d.weight < 0 ? 'bg-warning' : 'bg-primary'].join(' ')}
+                style={{ width: `${(Math.abs(d.weight) / max) * 100}%` }}
+              />
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -237,6 +305,8 @@ export function AnalyseView() {
 
   return (
     <div>
+      {data.partial && <PartialBanner count={data.holdings_count} coverage={data.total_weight} />}
+
       <ResultsHeader data={data} />
 
       {/* KPI grid */}
@@ -263,6 +333,9 @@ export function AnalyseView() {
         </div>
       </section>
 
+      {/* Portfolio characteristics (factsheet aggregates) */}
+      {data.metrics && <MetricsStrip metrics={data.metrics} />}
+
       {/* AI interpretation — distinct tinted commentary block */}
       {ai && (
         <section className="pt-8 sm:pt-9 mt-8 sm:mt-9 border-t border-line-subtle">
@@ -281,6 +354,9 @@ export function AnalyseView() {
           </div>
           <div className="space-y-4 md:col-span-2 lg:col-span-1">
             {isEquity && <MarketCapBar data={data.market_cap_breakdown} />}
+            {data.rating_breakdown && data.rating_breakdown.length > 0 && (
+              <RatingBreakdown data={data.rating_breakdown} />
+            )}
             <div className="bg-card border border-line-subtle rounded-sm p-4">
               <h3 className="font-mono text-[11px] tracking-wide2 uppercase text-fg-secondary mb-3">Cash Composition</h3>
               <div className="space-y-2">

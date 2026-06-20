@@ -27,6 +27,17 @@ export interface Holding {
   quantity: number;
 }
 
+// Portfolio-wide characteristics stated as aggregates on a factsheet
+// (not derivable from disclosed holdings). All optional — XLS snapshots omit them.
+export interface PortfolioMetrics {
+  ytm: number | null; // annualised portfolio YTM, %
+  macaulay_days: number | null; // Macaulay duration, days
+  residual_days: number | null; // average residual maturity, days
+  benchmark: string | null;
+  inception: string | null; // as printed
+  fund_managers: string | null; // as printed
+}
+
 export interface AnalyseData {
   scheme_name: string;
   amc_name: string;
@@ -50,6 +61,10 @@ export interface AnalyseData {
   cash_breakdown: CashItem[];
   top_holdings: TopHolding[];
   holdings: Holding[];
+  // ── factsheet extras (optional; present mainly for uploaded PDFs) ──
+  partial?: boolean; // only top-N holdings disclosed (coverage = total_weight)
+  rating_breakdown?: WeightItem[]; // portfolio-wide by credit-rating class
+  metrics?: PortfolioMetrics;
 }
 
 export interface AIInsight {

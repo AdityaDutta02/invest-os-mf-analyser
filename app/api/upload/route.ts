@@ -122,6 +122,8 @@ export async function POST(req: NextRequest) {
   let source: "upload" | "pdf" = "upload";
   let expenseRatio: number | null = null;
   let partial = false;
+  let metrics: import("@/lib/types").PortfolioMetrics | undefined;
+  let ratingBreakdown: import("@/lib/types").WeightItem[] = [];
 
   if (name.endsWith(".pdf")) {
     if (!token) return NextResponse.json({ error: "Sign-in required to read PDFs." }, { status: 401 });
@@ -147,10 +149,15 @@ export async function POST(req: NextRequest) {
     if (!parsed.ok || !validate(parsed.data, { lenient: true }).ok)
       return NextResponse.json({ error: "Read the PDF but couldn't make sense of the holdings." }, { status: 422 });
     detectedName = v.scheme_name || file.name.replace(/\.pdf$/i, "");
-    detectedPeriod = v.period;
-    asOf = v.as_of_date || (detectedPeriod ? `${detectedPeriod}-28` : "");
+    asOf = v.as_of_date || "";
+    // Period = the PORTFOLIO month. Prefer the as-on date (factsheets are titled a
+    // month later than the holdings they disclose), falling back to the AI's period.
+    detectedPeriod = (asOf && /^\d{4}-\d{2}/.test(asOf) ? asOf.slice(0, 7) : null) || v.period;
+    if (!asOf && detectedPeriod) asOf = `${detectedPeriod}-28`;
     expenseRatio = v.expense_ratio;
     partial = v.partial;
+    metrics = v.metrics;
+    ratingBreakdown = v.rating_breakdown ?? [];
   } else if (/\.(xls|xlsx)$/.test(name)) {
     let wb: XLSX.WorkBook;
     try {
@@ -195,6 +202,9 @@ export async function POST(req: NextRequest) {
     nav,
     aum: parsed.aum,
     expenseRatio,
+    partial,
+    ratingBreakdown,
+    metrics,
   });
 
   if (token) {
