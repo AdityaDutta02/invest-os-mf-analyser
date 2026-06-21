@@ -114,6 +114,66 @@ export async function extractPdf(
   return { ok: true, value };
 }
 
+// Dev-only diagnostic: run both text paths against a buffer and report what each
+// produced, so we can see (in the deployed env, with a real token) whether the
+// gateway document parser is actually working and whether OCR recovered the
+// chart-only numbers. Not used by the product flow.
+export interface PdfDiagnostics {
+  gateway: { ok: boolean; markdown_len: number; head: string; error?: string };
+  local: { len: number; head: string; error?: string };
+  chosen: "gateway" | "local" | "none";
+  chart_numbers_present: { "51.79": boolean; "32.46": boolean }; // asset-class chart (image-only) probe
+  structured: PdfExtraction | { error: string };
+}
+
+export async function diagnosePdf(buffer: ArrayBuffer, embedToken: string, filename = "factsheet.pdf"): Promise<PdfDiagnostics> {
+  let gw = "";
+  const gatewayInfo: PdfDiagnostics["gateway"] = { ok: false, markdown_len: 0, head: "" };
+  try {
+    gw = await gatewayParseText(buffer, embedToken, filename);
+    gatewayInfo.ok = dense(gw) > 0;
+    gatewayInfo.markdown_len = gw.length;
+    gatewayInfo.head = gw.slice(0, 1500);
+  } catch (e) {
+    gatewayInfo.error = (e as Error).message + ((e as { code?: string }).code ? ` [${(e as { code?: string }).code}]` : "");
+  }
+
+  let local = "";
+  const localInfo: PdfDiagnostics["local"] = { len: 0, head: "" };
+  try {
+    local = await localParseText(buffer);
+    localInfo.len = local.length;
+    localInfo.head = local.slice(0, 600);
+  } catch (e) {
+    localInfo.error = (e as Error).message;
+  }
+
+  const chosen: PdfDiagnostics["chosen"] = dense(gw) >= 200 ? "gateway" : dense(local) >= 200 ? "local" : "none";
+  const text = chosen === "gateway" ? gw : local;
+
+  let structured: PdfDiagnostics["structured"] = { error: "not run" };
+  if (dense(text) >= 200) {
+    try {
+      const r = await callGateway(
+        [{ role: "user", content: `Scheme hint: HDFC Liquid Fund\n\nFactsheet content (Markdown/OCR):\n${text.slice(0, 60000)}` }],
+        embedToken,
+        { category: "coding", tier: "quality", system: SYSTEM },
+      );
+      structured = parseExtraction(r.content) ?? { error: "structuring returned no parseable JSON" };
+    } catch (e) {
+      structured = { error: (e as Error).message };
+    }
+  }
+
+  return {
+    gateway: gatewayInfo,
+    local: localInfo,
+    chosen,
+    chart_numbers_present: { "51.79": text.includes("51.79"), "32.46": text.includes("32.46") },
+    structured,
+  };
+}
+
 function parseExtraction(text: string): PdfExtraction | null {
   let t = text.trim();
   const fence = t.match(/```(?:json)?\s*([\s\S]*?)```/i);
