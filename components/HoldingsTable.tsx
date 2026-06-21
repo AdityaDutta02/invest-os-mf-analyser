@@ -43,16 +43,23 @@ export function HoldingsTable({ data }: { data: Holding[] }) {
 
   const maxW = Math.max(...data.map((d) => d.weight), 1);
 
+  // Beyond ~12 rows the table grows past a screen; cap it and scroll internally
+  // so the page below (and the table's own footer) stays anchored.
+  const SCROLL_AFTER = 12;
+  const scrolls = data.length > SCROLL_AFTER;
+
   return (
     <div className="bg-card border border-line-subtle rounded-sm" data-testid="holdings-table">
       <div className="flex items-center justify-between px-4 py-3 border-b border-line-subtle">
         <h3 className="font-mono text-[11px] tracking-wide2 uppercase text-fg-secondary">All Holdings</h3>
-        <span className="font-mono text-[10px] text-fg-disabled">click a column to sort</span>
+        <span className="font-mono text-[10px] text-fg-disabled">
+          {scrolls ? `${data.length} rows · scroll · click a column to sort` : 'click a column to sort'}
+        </span>
       </div>
-      <div className="overflow-x-auto scroll-thin">
+      <div className={['overflow-x-auto overflow-y-auto scroll-thin', scrolls ? 'max-h-[520px]' : ''].join(' ')}>
         <table className="w-full border-collapse min-w-[680px]">
-          <thead>
-            <tr className="bg-subtle">
+          <thead className="sticky top-0 z-10">
+            <tr className="bg-subtle shadow-[inset_0_-1px_0_var(--border-subtle)]">
               <th className="w-9 px-3 py-2 text-left font-mono text-[10px] tracking-meta uppercase text-fg-disabled">#</th>
               {COLS.map((c) => {
                 const active = c.key === sortKey;
