@@ -66,24 +66,43 @@ function PartialBanner({ count, coverage }: { count: number; coverage: number })
   );
 }
 
-// Portfolio-wide characteristics a factsheet states as aggregates.
+// Portfolio-wide characteristics a factsheet states as aggregates. Palantir-style
+// dense table: meta labels, monospace values an operator can read/verify, hairline
+// rows. Numeric readouts sit in their own compact band; descriptive ones span wide.
 function MetricsStrip({ metrics }: { metrics: PortfolioMetrics }) {
-  const items: { label: string; value: string }[] = [];
-  if (metrics.ytm != null) items.push({ label: 'YTM', value: metrics.ytm.toFixed(2) + '%' });
-  if (metrics.macaulay_days != null) items.push({ label: 'Macaulay Duration', value: `${metrics.macaulay_days} d` });
-  if (metrics.residual_days != null) items.push({ label: 'Avg Residual Maturity', value: `${metrics.residual_days} d` });
-  if (metrics.benchmark) items.push({ label: 'Benchmark', value: metrics.benchmark });
-  if (metrics.inception) items.push({ label: 'Inception', value: metrics.inception });
-  if (metrics.fund_managers) items.push({ label: 'Fund Manager', value: metrics.fund_managers });
-  if (items.length === 0) return null;
+  const nums: { label: string; value: string }[] = [];
+  if (metrics.ytm != null) nums.push({ label: 'YTM', value: metrics.ytm.toFixed(2) + '%' });
+  if (metrics.macaulay_days != null) nums.push({ label: 'Macaulay Dur.', value: `${metrics.macaulay_days}d` });
+  if (metrics.residual_days != null) nums.push({ label: 'Avg Residual', value: `${metrics.residual_days}d` });
+
+  const text: { label: string; value: string }[] = [];
+  if (metrics.benchmark) text.push({ label: 'Benchmark', value: metrics.benchmark });
+  if (metrics.inception) text.push({ label: 'Inception', value: metrics.inception });
+  if (metrics.fund_managers) text.push({ label: 'Fund Manager', value: metrics.fund_managers });
+
+  if (nums.length === 0 && text.length === 0) return null;
+
   return (
     <section className="pt-8 sm:pt-9 mt-8 sm:mt-9 border-t border-line-subtle">
       <SectionLabel>Portfolio Characteristics</SectionLabel>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-3">
-        {items.map((it) => (
-          <div key={it.label} className="flex items-baseline justify-between gap-3 border-b border-line-subtle pb-2">
-            <span className="font-mono text-[10px] tracking-meta uppercase text-fg-secondary shrink-0">{it.label}</span>
-            <span className="text-[12.5px] text-fg-primary text-right">{it.value}</span>
+      <div className="bg-card border border-line-subtle rounded-sm overflow-hidden">
+        {nums.length > 0 && (
+          <div className="grid grid-cols-2 sm:grid-cols-3 divide-x divide-line-subtle border-b border-line-subtle">
+            {nums.map((it) => (
+              <div key={it.label} className="px-3 py-2.5">
+                <div className="font-mono text-[9px] tracking-meta uppercase text-fg-secondary">{it.label}</div>
+                <div className="font-mono text-[16px] text-fg-primary tabular-nums leading-tight mt-0.5">{it.value}</div>
+              </div>
+            ))}
+          </div>
+        )}
+        {text.map((it) => (
+          <div
+            key={it.label}
+            className="flex items-baseline gap-3 px-3 py-2 border-b border-line-subtle last:border-0"
+          >
+            <span className="font-mono text-[10px] tracking-meta uppercase text-fg-secondary w-28 shrink-0">{it.label}</span>
+            <span className="font-mono text-[12px] text-fg-primary">{it.value}</span>
           </div>
         ))}
       </div>
@@ -340,7 +359,7 @@ export function AnalyseView() {
       {ai && (
         <section className="pt-8 sm:pt-9 mt-8 sm:mt-9 border-t border-line-subtle">
           <SectionLabel>Interpretation</SectionLabel>
-          <AIInsightPanel insight={ai} />
+          <AIInsightPanel insight={ai} data={data} />
         </section>
       )}
 

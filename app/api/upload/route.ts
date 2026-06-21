@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as XLSX from "xlsx";
-import { dbInsert } from "@/lib/db";
+import { dbInsert, dbList, dbDelete } from "@/lib/db";
 import { assemble, buildFromHoldings, buildFromRows, pickSheet, validate, periodLabel } from "@/lib/parse";
 import { getIdentity } from "@/lib/identity";
 import { navOnOrBefore, type SchemeIdentity } from "@/lib/mfapi";
@@ -12,6 +12,17 @@ export const dynamic = "force-dynamic";
 
 const MAX_BYTES = 25 * 1024 * 1024;
 const MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
+
+// Delete all rows in `table` for a given fund+month (used to keep "latest upload
+// wins" — the gateway DB has no upsert, so we clear then insert). Best-effort.
+async function purge(table: string, schemeCode: string, period: string, token: string): Promise<void> {
+  try {
+    const rows = await dbList<{ id: string; period: string }>(table, { scheme_code: schemeCode, period }, token);
+    await Promise.all(rows.filter((r) => r.period === period).map((r) => dbDelete(table, r.id, token).catch(() => {})));
+  } catch {
+    /* best-effort */
+  }
+}
 
 function detectPeriod(rows: unknown[][]): { period: string; asOf: string } | null {
   const text = rows.slice(0, 14).flat().join(" ").toLowerCase();
@@ -208,6 +219,10 @@ export async function POST(req: NextRequest) {
   });
 
   if (token) {
+    // Latest upload wins: purge any prior snapshot + cached AI insight for this
+    // fund+month so a re-upload always refreshes (no stale derivation served).
+    await purge("snapshots", storeCode, period, token);
+    await purge("ai_cache", storeCode, period, token);
     try {
       await dbInsert("snapshots", { scheme_code: storeCode, period, source, data }, token);
     } catch {
