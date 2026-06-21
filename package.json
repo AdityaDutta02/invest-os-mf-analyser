@@ -15,8 +15,7 @@
     "recharts": "2.12.7",
     "lucide-react": "0.451.0",
     "xlsx": "0.18.5",
-    "jszip": "3.10.1",
-    "unpdf": "1.2.2"
+    "jszip": "3.10.1"
   },
   "devDependencies": {
     "@types/node": "20.16.11",

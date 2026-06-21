@@ -17,8 +17,6 @@ ENV NEXT_TELEMETRY_DISABLED=1
 # Next.js standalone output bundles its own minimal node_modules + server.js.
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
-# public/ holds the dev parse-test sample factsheet (standalone doesn't auto-copy it)
-COPY --from=builder /app/public ./public
 EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
