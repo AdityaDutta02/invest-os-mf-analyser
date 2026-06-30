@@ -13,7 +13,7 @@ export function Header({ scheme }: { scheme: SchemeSummary | null }) {
           </div>
           <div className="flex items-baseline gap-2 min-w-0">
             <span className="font-mono text-[13px] font-medium tracking-wide2 text-fg-primary uppercase whitespace-nowrap">
-              Factsheet Analyser
+              Lookr
             </span>
             {scheme && (
               <span className="font-mono text-[11px] text-fg-secondary truncate hidden md:inline">

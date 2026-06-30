@@ -12,7 +12,7 @@ export function Footer() {
               <BarChart3 className="h-3.5 w-3.5 text-fg-inverse" strokeWidth={2.25} />
             </div>
             <span className="font-mono text-[11px] tracking-wide2 uppercase text-fg-primary">
-              Factsheet Analyser
+              Lookr
             </span>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-center gap-x-6 gap-y-1.5">

@@ -1,5 +1,5 @@
 {
-  "app_name": "Mutual Fund Analyser",
+  "app_name": "Lookr",
   "framework": "nextjs",
   "gateway_version": "2",
   "health_check_path": "/api/health",
