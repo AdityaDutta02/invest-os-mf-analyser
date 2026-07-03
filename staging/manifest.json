@@ -7574,5 +7574,13 @@
     "staged_path": "angel-one-mutual-fund/1783076778561_112_Monthly-portfolio-May-2025-Angel-One-Nifty-Total-Market-Index-Fund-1.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Bajaj Finserv Mutual Fund",
+    "source_url": "https://media.bajajamc.com/wp-content/uploads/2026/06/IN_MF_CONSOLIDATED_HOLDING_REPORT_V5_SCRIPTLEVEL_Small-Cap.xls",
+    "link_text": "IN_MF_CONSOLIDATED_HOLDING_REPORT_V5_SCRIPTLEVEL_Small-Cap.xls",
+    "staged_path": "bajaj-finserv-mutual-fund/1783077424261_0_IN_MF_CONSOLIDATED_HOLDING_REPORT_V5_SCRIPTLEVEL_Small-Cap.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
   }
 ]
