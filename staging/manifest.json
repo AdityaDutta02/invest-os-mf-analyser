@@ -13470,5 +13470,29 @@
     "staged_path": "axis-mutual-fund/1783086006556_axis_2025-12.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Bandhan Mutual Fund",
+    "source_url": "https://bandhanmutual.com/downloads/portfolio-summary/monthly#2020-12-debt",
+    "link_text": "Debt-Fund-Portfolios-31-December-2020.xlsx",
+    "staged_path": "bandhan-mutual-fund/1783086183298_bandhan_2020-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Bandhan Mutual Fund",
+    "source_url": "https://bandhanmutual.com/downloads/portfolio-summary/monthly#2023-12-debt",
+    "link_text": "Bandhan-Debt-Fund-Portfolio-31-December-2023.xlsx",
+    "staged_path": "bandhan-mutual-fund/1783086183299_bandhan_2023-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Bandhan Mutual Fund",
+    "source_url": "https://bandhanmutual.com/downloads/portfolio-summary/monthly#2025-12-debt",
+    "link_text": "Bandhan-Debt-Fund-Portfolio-as-on-31-12-2025.xlsx",
+    "staged_path": "bandhan-mutual-fund/1783086183300_bandhan_2025-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
