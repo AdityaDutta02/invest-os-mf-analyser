@@ -18,6 +18,10 @@ out/
 .playwright-mcp/
 .firecrawl/
 
+# worker scrape output (lives on the data-staging branch only, never main)
+/staging/
+worker/dist/
+
 # typescript build info
 *.tsbuildinfo
 next-env.d.ts
