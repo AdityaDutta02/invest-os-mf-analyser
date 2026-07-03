@@ -13414,5 +13414,61 @@
     "staged_path": "quantum/1783084241424_0_quantum-multi-asset-active-fof_2026-07.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2020-07-consolidated",
+    "link_text": "MONTHLY_PORTFOLIO_AXISMF_July_2020",
+    "staged_path": "axis-mutual-fund/1783085840_axis_2020-07.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2020-12-consolidated",
+    "link_text": "in-mf-monthly-portfolio-axismf-20dec-202020-20-281-29.xls",
+    "staged_path": "axis-mutual-fund/1783086006550_axis_2020-12.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2021-12-consolidated",
+    "link_text": "in-mf-monthly-portfolio-axismf-31122021-v1.xlsx",
+    "staged_path": "axis-mutual-fund/1783086006552_axis_2021-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2023-12-consolidated",
+    "link_text": "monthly-20portfolio-20as-20on-20dec-2031-20-202023.xlsx",
+    "staged_path": "axis-mutual-fund/1783086006553_axis_2023-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2022-12-consolidated",
+    "link_text": "monthly-20portfolio-31-12-2022-2022.xls",
+    "staged_path": "axis-mutual-fund/1783086006554_axis_2022-12.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2024-12-consolidated",
+    "link_text": "monthly-20portfolio-31-2012-2024.xlsx",
+    "staged_path": "axis-mutual-fund/1783086006555_axis_2024-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Axis Mutual Fund",
+    "source_url": "https://www.axismf.com/statutory-disclosures#2025-12-consolidated",
+    "link_text": "monthly-20portfolio-31-2012-2025.xlsx",
+    "staged_path": "axis-mutual-fund/1783086006556_axis_2025-12.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
