@@ -294,5 +294,1085 @@
     "staged_path": "sbi-mutual-fund/1783075494402_36_all-schemes-monthly-portfolio---as-on-31st-january-2023.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/FORTNIGHTLY-MONTHLY-PORTFOLIO-31-AUG-22.xls",
+    "link_text": "FORTNIGHTLY-MONTHLY-PORTFOLIO-31-AUG-22.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075555238_0_FORTNIGHTLY-MONTHLY-PORTFOLIO-31-AUG-22.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Jan-13Monthly-portfolio.xls",
+    "link_text": "Jan-13Monthly-portfolio.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075556140_1_Jan-13Monthly-portfolio.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-31st-JULY-2022.xls",
+    "link_text": "MONTHLY-PORTFOLIO-31st-JULY-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075557208_2_MONTHLY-PORTFOLIO-31st-JULY-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-APR-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-APR-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075558340_3_MONTHLY-PORTFOLIO-APR-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Monthly-Portfolio-as-on-30-04-2021-with-Riskometer.xls",
+    "link_text": "Monthly-Portfolio-as-on-30-04-2021-with-Riskometer.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075559353_4_Monthly-Portfolio-as-on-30-04-2021-with-Riskometer.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Monthly-Portfolio-as-on-30-11-2021-with-Riskometer.xlsx",
+    "link_text": "Monthly-Portfolio-as-on-30-11-2021-with-Riskometer.xlsx",
+    "staged_path": "nippon-india-mutual-fund/1783075560509_5_Monthly-Portfolio-as-on-30-11-2021-with-Riskometer.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-AUGUST-2022.xls",
+    "link_text": "MONTHLY-PORTFOLIO-AUGUST-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075561577_6_MONTHLY-PORTFOLIO-AUGUST-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-AUGUST-2023.xls",
+    "link_text": "MONTHLY-PORTFOLIO-AUGUST-2023.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075562554_7_MONTHLY-PORTFOLIO-AUGUST-2023.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-DEC-22.xls",
+    "link_text": "MONTHLY-PORTFOLIO-DEC-22.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075563705_8_MONTHLY-PORTFOLIO-DEC-22.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-DEC-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-DEC-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075564682_9_MONTHLY-PORTFOLIO-DEC-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-FEB-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-FEB-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075565684_10_MONTHLY-PORTFOLIO-FEB-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-JAN-2024.xls",
+    "link_text": "MONTHLY-PORTFOLIO-JAN-2024.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075566605_11_MONTHLY-PORTFOLIO-JAN-2024.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-JAN-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-JAN-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075567693_12_MONTHLY-PORTFOLIO-JAN-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-JULY-2023.xls",
+    "link_text": "MONTHLY-PORTFOLIO-JULY-2023.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075568616_13_MONTHLY-PORTFOLIO-JULY-2023.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Monthly-Portfolio-Mar-2022.xls",
+    "link_text": "Monthly-Portfolio-Mar-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075569599_14_Monthly-Portfolio-Mar-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-MAR-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-MAR-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075570818_15_MONTHLY-PORTFOLIO-MAR-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Monthly-portfolio-May-2021-With-riskometer.xls",
+    "link_text": "Monthly-portfolio-May-2021-With-riskometer.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075571769_16_Monthly-portfolio-May-2021-With-riskometer.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-MAY-2023.xls",
+    "link_text": "MONTHLY-PORTFOLIO-MAY-2023.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075572858_17_MONTHLY-PORTFOLIO-MAY-2023.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-NOV-2022.xls",
+    "link_text": "MONTHLY-PORTFOLIO-NOV-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075573943_18_MONTHLY-PORTFOLIO-NOV-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-NOV-23.xls",
+    "link_text": "MONTHLY-PORTFOLIO-NOV-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075574873_19_MONTHLY-PORTFOLIO-NOV-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Monthly-portfolio-Oct-21.xls",
+    "link_text": "Monthly-portfolio-Oct-21.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075575811_20_Monthly-portfolio-Oct-21.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-Oct-22.xls",
+    "link_text": "MONTHLY-PORTFOLIO-Oct-22.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075577068_21_MONTHLY-PORTFOLIO-Oct-22.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-OCTOBER-2023.xls",
+    "link_text": "MONTHLY-PORTFOLIO-OCTOBER-2023.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075578030_22_MONTHLY-PORTFOLIO-OCTOBER-2023.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/MONTHLY-PORTFOLIO-REPORT-FEB-24.xls",
+    "link_text": "MONTHLY-PORTFOLIO-REPORT-FEB-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075578951_23_MONTHLY-PORTFOLIO-REPORT-FEB-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-PORTFOLIO_REPORT-Oct-20.xls",
+    "link_text": "NIMF-Monthly-PORTFOLIO_REPORT-Oct-20.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075579919_24_NIMF-Monthly-PORTFOLIO_REPORT-Oct-20.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-28-Feb-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-28-Feb-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075580881_25_NIMF-MONTHLY-PORTFOLIO-28-Feb-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-28-Feb-26.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-28-Feb-26.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075582025_26_NIMF-MONTHLY-PORTFOLIO-28-Feb-26.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-April-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-April-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075583118_27_NIMF-MONTHLY-PORTFOLIO-30-April-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-April-26.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-April-26.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075584309_28_NIMF-MONTHLY-PORTFOLIO-30-April-26.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-June-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-June-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075585366_29_NIMF-MONTHLY-PORTFOLIO-30-June-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-Nov-2024.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-Nov-2024.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075586328_30_NIMF-MONTHLY-PORTFOLIO-30-Nov-2024.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-Sep-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-Sep-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075587313_31_NIMF-MONTHLY-PORTFOLIO-30-Sep-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30-Sep-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30-Sep-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075588502_32_NIMF-MONTHLY-PORTFOLIO-30-Sep-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-30062022.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-30062022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075589464_33_NIMF-MONTHLY-PORTFOLIO-30062022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Aug-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Aug-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075590581_34_NIMF-MONTHLY-PORTFOLIO-31-Aug-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Dec-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Dec-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075591540_35_NIMF-MONTHLY-PORTFOLIO-31-Dec-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Dec-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Dec-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075592722_36_NIMF-MONTHLY-PORTFOLIO-31-Dec-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Jan-26.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Jan-26.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075593853_37_NIMF-MONTHLY-PORTFOLIO-31-Jan-26.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-July-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-July-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075594829_38_NIMF-MONTHLY-PORTFOLIO-31-July-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-July-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-July-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075596017_39_NIMF-MONTHLY-PORTFOLIO-31-July-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Mar-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Mar-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075596937_40_NIMF-MONTHLY-PORTFOLIO-31-Mar-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Mar-26.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Mar-26.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075597905_41_NIMF-MONTHLY-PORTFOLIO-31-Mar-26.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-May-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-May-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075599048_42_NIMF-MONTHLY-PORTFOLIO-31-May-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-May-26.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-May-26.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075600160_43_NIMF-MONTHLY-PORTFOLIO-31-May-26.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Oct-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Oct-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075601104_44_NIMF-MONTHLY-PORTFOLIO-31-Oct-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-31-Oct-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-31-Oct-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075602237_45_NIMF-MONTHLY-PORTFOLIO-31-Oct-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-APRIL-2024.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-APRIL-2024.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075603163_46_NIMF-MONTHLY-PORTFOLIO-APRIL-2024.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-Portfolio-Aug-2020.xls",
+    "link_text": "NIMF-Monthly-Portfolio-Aug-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075604142_47_NIMF-Monthly-Portfolio-Aug-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-Portfolio-Dec-21-With-Riskometer.xls",
+    "link_text": "NIMF-Monthly-Portfolio-Dec-21-With-Riskometer.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075605083_48_NIMF-Monthly-Portfolio-Dec-21-With-Riskometer.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-Portfolio-Jan-2021.xls",
+    "link_text": "NIMF-Monthly-Portfolio-Jan-2021.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075606065_49_NIMF-Monthly-Portfolio-Jan-2021.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-Portfolio-July-2020.xls",
+    "link_text": "NIMF-Monthly-Portfolio-July-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075607084_50_NIMF-Monthly-Portfolio-July-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-June-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-June-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075608082_51_NIMF-MONTHLY-PORTFOLIO-June-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-May-2022.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-May-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075609066_52_NIMF-MONTHLY-PORTFOLIO-May-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-Nov-25.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-Nov-25.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075610431_53_NIMF-MONTHLY-PORTFOLIO-Nov-25.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-REPORT-March-24.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-REPORT-March-24.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075611386_54_NIMF-MONTHLY-PORTFOLIO-REPORT-March-24.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-Monthly-Portfolio-Report-Sep-20.xls",
+    "link_text": "NIMF-Monthly-Portfolio-Report-Sep-20.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075612465_55_NIMF-Monthly-Portfolio-Report-Sep-20.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-SEP-2022.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-SEP-2022.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075613635_56_NIMF-MONTHLY-PORTFOLIO-SEP-2022.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NIMF-MONTHLY-PORTFOLIO-Sep-23.xls",
+    "link_text": "NIMF-MONTHLY-PORTFOLIO-Sep-23.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075614587_57_NIMF-MONTHLY-PORTFOLIO-Sep-23.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-29-02-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-29-02-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075615716_58_NipponIndia-Monthly-Portfolios-29-02-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-30-04-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-30-04-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075616768_59_NipponIndia-Monthly-Portfolios-30-04-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-30-11-2019.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-30-11-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075617909_60_NipponIndia-Monthly-Portfolios-30-11-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-31-01-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-31-01-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075618987_61_NipponIndia-Monthly-Portfolios-31-01-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-31-03-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-31-03-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075620118_62_NipponIndia-Monthly-Portfolios-31-03-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-31-12-2019.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-31-12-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075621400_63_NipponIndia-Monthly-Portfolios-31-12-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-June-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-June-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075622390_64_NipponIndia-Monthly-Portfolios-June-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/NipponIndia-Monthly-Portfolios-May-2020.xls",
+    "link_text": "NipponIndia-Monthly-Portfolios-May-2020.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075623414_65_NipponIndia-Monthly-Portfolios-May-2020.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios--30-06-2013.xls",
+    "link_text": "Reliance-Monthly-Portfolios--30-06-2013.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075624498_66_Reliance-Monthly-Portfolios--30-06-2013.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios--30-09-2013.xls",
+    "link_text": "Reliance-Monthly-Portfolios--30-09-2013.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075625472_67_Reliance-Monthly-Portfolios--30-09-2013.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios--31-05-2013.xls",
+    "link_text": "Reliance-Monthly-Portfolios--31-05-2013.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075626650_68_Reliance-Monthly-Portfolios--31-05-2013.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios--31-07-2013.xls",
+    "link_text": "Reliance-Monthly-Portfolios--31-07-2013.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075627605_69_Reliance-Monthly-Portfolios--31-07-2013.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-28-02-2013.xls",
+    "link_text": "Reliance-Monthly-Portfolios-28-02-2013.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075628610_70_Reliance-Monthly-Portfolios-28-02-2013.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-28-02-2017.xlsx",
+    "link_text": "Reliance-Monthly-Portfolios-28-02-2017.xlsx",
+    "staged_path": "nippon-india-mutual-fund/1783075629964_71_Reliance-Monthly-Portfolios-28-02-2017.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-28-02-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-28-02-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075631198_72_Reliance-Monthly-Portfolios-28-02-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-28.02.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-28.02.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075632340_73_Reliance-Monthly-Portfolios-28.02.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-28022015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-28022015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075633290_74_Reliance-Monthly-Portfolios-28022015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-29.02.2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-29.02.2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075634240_75_Reliance-Monthly-Portfolios-29.02.2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-04-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-04-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075635279_76_Reliance-Monthly-Portfolios-30-04-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-04-2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-04-2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075636358_77_Reliance-Monthly-Portfolios-30-04-2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-04-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-04-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075637374_78_Reliance-Monthly-Portfolios-30-04-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-06-2014.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-06-2014.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075638413_79_Reliance-Monthly-Portfolios-30-06-2014.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-06-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-06-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075639478_80_Reliance-Monthly-Portfolios-30-06-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-06-2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-06-2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075640567_81_Reliance-Monthly-Portfolios-30-06-2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-06-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-06-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075641660_82_Reliance-Monthly-Portfolios-30-06-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-09-2012.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-09-2012.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075642702_83_Reliance-Monthly-Portfolios-30-09-2012.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-09-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-09-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075643750_84_Reliance-Monthly-Portfolios-30-09-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-09-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-09-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075644806_85_Reliance-Monthly-Portfolios-30-09-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30-11-2012.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30-11-2012.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075645732_86_Reliance-Monthly-Portfolios-30-11-2012.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.04.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.04.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075646704_87_Reliance-Monthly-Portfolios-30.04.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.06.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.06.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075647828_88_Reliance-Monthly-Portfolios-30.06.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.09.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.09.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075648839_89_Reliance-Monthly-Portfolios-30.09.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.09.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.09.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075649928_90_Reliance-Monthly-Portfolios-30.09.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.11.2015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.11.2015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075650912_91_Reliance-Monthly-Portfolios-30.11.2015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.11.2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.11.2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075651891_92_Reliance-Monthly-Portfolios-30.11.2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.11.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.11.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075652922_93_Reliance-Monthly-Portfolios-30.11.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30.11.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30.11.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075653982_94_Reliance-Monthly-Portfolios-30.11.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30042015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30042015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075654900_95_Reliance-Monthly-Portfolios-30042015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30062015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30062015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075655840_96_Reliance-Monthly-Portfolios-30062015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-30092015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-30092015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075656821_97_Reliance-Monthly-Portfolios-30092015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-01-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-01-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075658057_98_Reliance-Monthly-Portfolios-31-01-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-03-2013-Final.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-03-2013-Final.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075658993_99_Reliance-Monthly-Portfolios-31-03-2013-Final.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-03-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-03-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075660117_100_Reliance-Monthly-Portfolios-31-03-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-03-2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-03-2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075661129_101_Reliance-Monthly-Portfolios-31-03-2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-03-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-03-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075662127_102_Reliance-Monthly-Portfolios-31-03-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-05-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-05-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075663061_103_Reliance-Monthly-Portfolios-31-05-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-05-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-05-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075664117_104_Reliance-Monthly-Portfolios-31-05-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-07-2014.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-07-2014.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075665049_105_Reliance-Monthly-Portfolios-31-07-2014.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-07-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-07-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075666153_106_Reliance-Monthly-Portfolios-31-07-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-07-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-07-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075667176_107_Reliance-Monthly-Portfolios-31-07-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-08-2014.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-08-2014.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075668105_108_Reliance-Monthly-Portfolios-31-08-2014.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-08-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-08-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075669049_109_Reliance-Monthly-Portfolios-31-08-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-08-2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-08-2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075670032_110_Reliance-Monthly-Portfolios-31-08-2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-08-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-08-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075671098_111_Reliance-Monthly-Portfolios-31-08-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-10-2012.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-10-2012.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075672006_112_Reliance-Monthly-Portfolios-31-10-2012.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-10-2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-10-2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075672947_113_Reliance-Monthly-Portfolios-31-10-2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-10-2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-10-2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075674196_114_Reliance-Monthly-Portfolios-31-10-2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-10-2019.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-10-2019.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075675274_115_Reliance-Monthly-Portfolios-31-10-2019.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-12-2012.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-12-2012.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075676190_116_Reliance-Monthly-Portfolios-31-12-2012.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31-12-2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31-12-2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075677205_117_Reliance-Monthly-Portfolios-31-12-2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.01.2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.01.2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075678146_118_Reliance-Monthly-Portfolios-31.01.2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.01.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.01.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075679290_119_Reliance-Monthly-Portfolios-31.01.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.01.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.01.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075680334_120_Reliance-Monthly-Portfolios-31.01.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.03.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.03.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075681409_121_Reliance-Monthly-Portfolios-31.03.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.05.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.05.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075682408_122_Reliance-Monthly-Portfolios-31.05.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.05.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.05.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075683477_123_Reliance-Monthly-Portfolios-31.05.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.07.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.07.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075684531_124_Reliance-Monthly-Portfolios-31.07.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.07.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.07.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075685631_125_Reliance-Monthly-Portfolios-31.07.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.08.2018.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.08.2018.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075686800_126_Reliance-Monthly-Portfolios-31.08.2018.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.10.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.10.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075687846_127_Reliance-Monthly-Portfolios-31.10.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.12.2016.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.12.2016.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075688809_128_Reliance-Monthly-Portfolios-31.12.2016.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31.12.2017.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31.12.2017.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075689900_129_Reliance-Monthly-Portfolios-31.12.2017.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31012015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31012015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075690837_130_Reliance-Monthly-Portfolios-31012015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31052015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31052015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075691794_131_Reliance-Monthly-Portfolios-31052015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31072015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31072015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075692745_132_Reliance-Monthly-Portfolios-31072015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31082015.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31082015.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075693706_133_Reliance-Monthly-Portfolios-31082015.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Nippon India Mutual Fund",
+    "source_url": "https://mf.nipponindiaim.com/InvestorServices/FactsheetsDocuments/Reliance-Monthly-Portfolios-31122014.xls",
+    "link_text": "Reliance-Monthly-Portfolios-31122014.xls",
+    "staged_path": "nippon-india-mutual-fund/1783075694655_134_Reliance-Monthly-Portfolios-31122014.xls",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
