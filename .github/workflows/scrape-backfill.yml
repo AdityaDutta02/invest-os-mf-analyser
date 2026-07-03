@@ -1,0 +1,84 @@
+name: Scrape JS-gated AMC disclosures
+
+# Off-platform worker (Terminal AI's app runtime disallows headless browsers).
+# Discovers + downloads portfolio-disclosure files for "needs_js" AMCs and
+# commits them to the data-staging branch (never main — that branch only
+# ever holds app code, so this can't affect what's deployed). A Terminal AI
+# scheduled task then pulls from data-staging over plain HTTPS and does the
+# actual parse+DB-write with a real task token — see app/api/cron/*.
+
+on:
+  workflow_dispatch:
+    inputs:
+      amc:
+        description: "Limit to one AMC (registry `amc` field, exact match). Leave blank for all needs_js AMCs."
+        required: false
+        type: string
+      limit:
+        description: "Max files to stage per AMC this run."
+        required: false
+        default: "25"
+        type: string
+  schedule:
+    # Monthly incremental run, a few days after typical month-end publication.
+    - cron: "0 6 3 * *"
+
+concurrency:
+  group: scrape-backfill
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout main (worker code + registry)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: repo
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install worker deps
+        working-directory: repo/worker
+        run: npm install
+
+      - name: Install Playwright browsers
+        working-directory: repo/worker
+        run: npx playwright install --with-deps chromium
+
+      - name: Run scraper
+        working-directory: repo/worker
+        env:
+          AMC_INPUT: ${{ github.event.inputs.amc }}
+          LIMIT_INPUT: ${{ github.event.inputs.limit }}
+        run: |
+          ARGS=(--limit "${LIMIT_INPUT:-25}")
+          if [ -n "$AMC_INPUT" ]; then ARGS+=(--amc "$AMC_INPUT"); fi
+          npm run run -- "${ARGS[@]}"
+
+      - name: Commit staged files to data-staging branch
+        working-directory: repo
+        run: |
+          git config user.name "mf-disclosure-worker[bot]"
+          git config user.email "actions@github.com"
+          if [ ! -d staging ] || [ -z "$(ls -A staging 2>/dev/null)" ]; then
+            echo "Nothing staged this run."
+            exit 0
+          fi
+          git fetch origin data-staging:data-staging 2>/dev/null || true
+          if git rev-parse --verify data-staging >/dev/null 2>&1; then
+            git checkout data-staging
+            git checkout main -- worker amc-registry.json 2>/dev/null || true
+          else
+            git checkout --orphan data-staging
+            git rm -rf . >/dev/null 2>&1 || true
+          fi
+          mkdir -p staging
+          git add staging
+          git commit -m "chore(staging): scrape run $(date -u +%Y-%m-%dT%H:%M:%SZ)" || echo "no changes to commit"
+          git push origin data-staging
