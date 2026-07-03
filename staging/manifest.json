@@ -13646,5 +13646,53 @@
     "staged_path": "360-one-mutual-fund/1783086357907_18_IN-MF-MONTHLY-PORTFOLIO-July-2025-4ad01dbe06.xls",
     "format": "xls",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#IN-MF-MONTHLY-PORTFOLIO-December-22-9c98b5cf82.xlsx",
+    "link_text": "IN-MF-MONTHLY-PORTFOLIO-December-22-9c98b5cf82.xlsx",
+    "staged_path": "360-one-mutual-fund/1783086465816_0_IN-MF-MONTHLY-PORTFOLIO-December-22-9c98b5cf82.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#IN-MF-Monthly-Potfolio-Dec-2020-08012021-78048e9d4a.xls",
+    "link_text": "IN-MF-Monthly-Potfolio-Dec-2020-08012021-78048e9d4a.xls",
+    "staged_path": "360-one-mutual-fund/1783086465817_1_IN-MF-Monthly-Potfolio-Dec-2020-08012021-78048e9d4a.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#360-ONE-MF-MONTHLY-PORTFOLIO-Nov2024-e300b9746e.xlsx",
+    "link_text": "360-ONE-MF-MONTHLY-PORTFOLIO-Nov2024-e300b9746e.xlsx",
+    "staged_path": "360-one-mutual-fund/1783086465817_2_360-ONE-MF-MONTHLY-PORTFOLIO-Nov2024-e300b9746e.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#360-ONE-MONTHLY-PORTFOLIO-Dec2023-e8b513643b.xlsx",
+    "link_text": "360-ONE-MONTHLY-PORTFOLIO-Dec2023-e8b513643b.xlsx",
+    "staged_path": "360-one-mutual-fund/1783086465817_3_360-ONE-MONTHLY-PORTFOLIO-Dec2023-e8b513643b.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#IN-MF-Monthly-Portfolio-December-2021-07012022-3d1b841aea.xlsx",
+    "link_text": "IN-MF-Monthly-Portfolio-December-2021-07012022-3d1b841aea.xlsx",
+    "staged_path": "360-one-mutual-fund/1783086465818_4_IN-MF-Monthly-Portfolio-December-2021-07012022-3d1b841aea.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "360 ONE Mutual Fund",
+    "source_url": "https://www.360.one/asset/mutual-funds/downloads/#IN-MF-MONTHLY-PORTFOLIO-Dec2024-6c855f34eb.xlsx",
+    "link_text": "IN-MF-MONTHLY-PORTFOLIO-Dec2024-6c855f34eb.xlsx",
+    "staged_path": "360-one-mutual-fund/1783086465818_5_IN-MF-MONTHLY-PORTFOLIO-Dec2024-6c855f34eb.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
