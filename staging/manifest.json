@@ -13382,5 +13382,37 @@
     "staged_path": "abakkus/1783084118028_5_Monthly_Portfolio_Notice_64ca2d8bda.pdf",
     "format": "pdf",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "ICICI Prudential Mutual Fund",
+    "source_url": "https://www.icicipruamc.com/blob/downloads/Files/Monthly%20Portfolio%20Disclosures/2026/May/Monthly-Portfolio-Disclosure-May-2026.zip",
+    "link_text": "icici-prudential-large-mid-cap-fund-institutional-option-i_2026-05.zip",
+    "staged_path": "icici-prudential/1783084156112_0_icici-prudential-large-mid-cap-fund-institutional-option-i_2026-05.zip",
+    "format": "zip",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Shriram Mutual Fund",
+    "source_url": "https://cdn.shriramamc.in/uploads/Statutory-disclosure/Monthly--Fortnightly--Weekly-Portfolio-of-Scheme(s)/Monthly-Portfolio-for-the-Financial-Year/2025-2026/Monthly-Portfolio-Shriram-Mutual-Fund-March-2026.xls",
+    "link_text": "shriram-aggressive-hybrid-fund_2026-03.xls",
+    "staged_path": "shriram/1783084206671_0_shriram-aggressive-hybrid-fund_2026-03.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Shriram Mutual Fund",
+    "source_url": "https://cdn.shriramamc.in/uploads/Statutory-disclosure/Monthly--Fortnightly--Weekly-Portfolio-of-Scheme(s)/Monthly-Portfolio-for-the-Financial-Year/2025-2026/Monthly-Portfolio-Shriram-Mutual-Fund-February-2026.xls",
+    "link_text": "shriram-aggressive-hybrid-fund_2026-02.xls",
+    "staged_path": "shriram/1783084207710_1_shriram-aggressive-hybrid-fund_2026-02.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Quantum Mutual Fund",
+    "source_url": "https://www.quantumamc.com/FileCDN/FactSheet/cb50090a-93af-4863-a4cb-18ef81c6b14c.xlsx",
+    "link_text": "quantum-multi-asset-active-fof_2026-07.xlsx",
+    "staged_path": "quantum/1783084241424_0_quantum-multi-asset-active-fof_2026-07.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
