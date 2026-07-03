@@ -24222,5 +24222,61 @@
     "staged_path": "whiteoak-capital-mutual-fund/1783088032574_1012_WOC_Ultra_Short_July_23_1c47d40fea.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Taurus Mutual Fund",
+    "source_url": "https://taurusmutualfund.com/sites/default/files/downloads/Taurus_Monthly_Portfolio_Dec_2020.xlsx",
+    "link_text": "Taurus_Monthly_Portfolio_Dec_2020.xlsx",
+    "staged_path": "taurus-mutual-fund/1783088230318_0_Taurus_Monthly_Portfolio_Dec_2020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#TRUSTMF-Monthly-Portfolio-as-on-31-12-2021.xls",
+    "link_text": "TRUSTMF-Monthly-Portfolio-as-on-31-12-2021.xls",
+    "staged_path": "trust-mutual-fund/1783088338783_0_TRUSTMF-Monthly-Portfolio-as-on-31-12-2021.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2022.xls",
+    "link_text": "TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2022.xls",
+    "staged_path": "trust-mutual-fund/1783088338783_1_TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2022.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2023.xls",
+    "link_text": "TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2023.xls",
+    "staged_path": "trust-mutual-fund/1783088338785_2_TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2023.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2024.xls",
+    "link_text": "TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2024.xls",
+    "staged_path": "trust-mutual-fund/1783088338788_3_TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2024.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2025.xls",
+    "link_text": "TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2025.xls",
+    "staged_path": "trust-mutual-fund/1783088338790_4_TRUSTMF-Monthly-Portfolio-Report-as-on-31-12-2025.xls",
+    "format": "xls",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Trust Mutual Fund",
+    "source_url": "https://www.trustmf.com/disclosures#Fortnightly-20260619131354.xlsx",
+    "link_text": "Fortnightly-20260619131354.xlsx",
+    "staged_path": "trust-mutual-fund/1783088338793_5_Fortnightly-20260619131354.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
