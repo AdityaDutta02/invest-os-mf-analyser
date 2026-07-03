@@ -5,18 +5,18 @@
 // ARCHITECTURE.md / plan for why /api/ingest with a static secret doesn't
 // work: the DB gateway only accepts embed/task tokens, never a static key).
 //
-// Scope of this first cut: an explicit scheme-code list in the payload
-// (curated + any known-good codes), not full per-AMC scheme discovery —
-// enumerating every scheme per AMC needs a bulk mfapi crawl, tracked as a
-// follow-up (see plan M2/M4). This proves the scrape -> parse -> write ->
-// existing UI loop end-to-end for the AMCs lib/registry.ts already covers.
+// Default mode discovers every scheme across the 13 direct-fetch AMCs
+// (lib/discover.ts) and processes as many as `limit` allows per invocation,
+// skipping tuples already 'success' in ingest_runs — the backlog drains
+// over repeat scheduled runs. Pass scheme_codes explicitly to target a
+// specific subset instead.
 import { NextRequest, NextResponse } from "next/server";
 import { getIdentity } from "@/lib/identity";
 import { recipeFor, DIRECT_AMCS } from "@/lib/registry";
 import { parseWorkbook } from "@/lib/ingest";
 import { navOnOrBefore } from "@/lib/mfapi";
 import { writeSnapshot, logIngestRun, alreadyIngested } from "@/lib/ingest-write";
-import { CURATED } from "@/lib/curated";
+import { discoverAllDirectSchemes } from "@/lib/discover";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -32,7 +32,10 @@ function currentPeriod(): string {
 interface CronPayload {
   period?: string;
   scheme_codes?: string[];
+  limit?: number; // cap schemes processed this invocation (route has a wall-clock budget)
 }
+
+const DEFAULT_LIMIT = 20;
 
 export async function POST(req: NextRequest) {
   const auth = req.headers.get("authorization") || "";
@@ -46,11 +49,28 @@ export async function POST(req: NextRequest) {
     /* no body is fine — use defaults */
   }
   const period = payload.period || currentPeriod();
-  const schemeCodes = payload.scheme_codes?.length ? payload.scheme_codes : CURATED.map((s) => s.id);
+  const limit = payload.limit ?? DEFAULT_LIMIT;
+
+  // Discover every scheme across the 13 direct-fetch AMCs (M2), then process
+  // only the not-yet-ingested ones, capped per invocation — the task fires
+  // hourly at minimum (Task SDK floor) so the backlog drains over repeat
+  // runs instead of one call trying to cover everything and timing out.
+  let candidates: string[];
+  if (payload.scheme_codes?.length) {
+    candidates = payload.scheme_codes;
+  } else {
+    const discovered = await discoverAllDirectSchemes();
+    candidates = discovered.map((d) => d.scheme_code);
+  }
 
   const results: { scheme_code: string; amc: string; status: string }[] = [];
+  let processed = 0;
 
-  for (const schemeCode of schemeCodes) {
+  for (const schemeCode of candidates) {
+    if (processed >= limit) {
+      results.push({ scheme_code: schemeCode, amc: "-", status: "deferred_limit" });
+      continue;
+    }
     let amcName = "unknown";
     try {
       const id = await getIdentity(schemeCode, token);
@@ -68,6 +88,7 @@ export async function POST(req: NextRequest) {
         continue;
       }
 
+      processed++; // counts against `limit` only once real fetch/parse work starts
       const resolved = await recipe.fetchPortfolio(period, id);
       if (!resolved) {
         await logIngestRun({ amc_name: amcName, scheme_code: schemeCode, period, status: "not_published" }, token);
