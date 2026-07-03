@@ -5670,5 +5670,1005 @@
     "staged_path": "dsp-mutual-fund/1783076086280_323_dsp-debt-isin-portfolio-15th-september-2021.xlsx",
     "format": "xlsx",
     "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/defence-may2026.xlsx",
+    "link_text": "defence-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076268265_0_defence-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/macbf-may2026.xlsx",
+    "link_text": "macbf-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076269335_1_macbf-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/mafcf-may2026.xlsx",
+    "link_text": "mafcf-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076270342_2_mafcf-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/mafgf-may2026.xlsx",
+    "link_text": "mafgf-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076271177_3_mafgf-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/mamfof-may2026.xlsx",
+    "link_text": "mamfof-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076271997_4_mamfof-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/man1dltf-may2026.xlsx",
+    "link_text": "man1dltf-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076272822_5_man1dltf-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/n50if-may2026.xlsx",
+    "link_text": "n50if-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076273796_6_n50if-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/silvrfof-may2026.xlsx",
+    "link_text": "silvrfof-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076274613_7_silvrfof-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/smqetf-may2026.xlsx",
+    "link_text": "smqetf-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076275440_8_smqetf-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Mirae Asset Mutual Fund",
+    "source_url": "https://www.miraeassetmf.co.in/docs/default-source/portfolios/smqfof-may2026.xlsx",
+    "link_text": "smqfof-may2026.xlsx",
+    "staged_path": "mirae-asset-mutual-fund/1783076276413_9_smqfof-may2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2015/apr/7a5e4-1124350088month_end_portfolio_report_mar_2015.xlsx",
+    "link_text": "7a5e4-1124350088month_end_portfolio_report_mar_2015.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076281364_0_7a5e4-1124350088month_end_portfolio_report_mar_2015.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2015/may/779c3-1228183407month_end_portfolio_report_apr_2015.xlsx",
+    "link_text": "779c3-1228183407month_end_portfolio_report_apr_2015.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076282342_1_779c3-1228183407month_end_portfolio_report_apr_2015.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2016/nov/66ddd-1721363647factsheet_motilal_new_novv-2-.xlsx",
+    "link_text": "66ddd-1721363647factsheet_motilal_new_novv-2-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076283514_2_66ddd-1721363647factsheet_motilal_new_novv-2-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2019/apr/7ab9d-1641897489fact_sheet_motilal_mar-2019.xlsx",
+    "link_text": "7ab9d-1641897489fact_sheet_motilal_mar-2019.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076284763_3_7ab9d-1641897489fact_sheet_motilal_mar-2019.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2019/jul/af41d-409656517monthendportfolio_june2019.xlsx",
+    "link_text": "af41d-409656517monthendportfolio_june2019.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076285978_4_af41d-409656517monthendportfolio_june2019.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/aug/56b14-1171142361100043634maf-portfolio_11082020.xlsx",
+    "link_text": "56b14-1171142361100043634maf-portfolio_11082020.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076287164_5_56b14-1171142361100043634maf-portfolio_11082020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/aug/e4ac5-17290996131184194905fact_sheet_motilal_july-2020.xlsx",
+    "link_text": "e4ac5-17290996131184194905fact_sheet_motilal_july-2020.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076288206_6_e4ac5-17290996131184194905fact_sheet_motilal_july-2020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/dec/0309b-1404895019in_mf_motilal_factsheet_30-11.xlsx",
+    "link_text": "0309b-1404895019in_mf_motilal_factsheet_30-11.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076289519_7_0309b-1404895019in_mf_motilal_factsheet_30-11.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/dec/5b925-377825899copy-of-motilal-oswal-mf_fortnightlydisclosure-30112020.xlsx",
+    "link_text": "5b925-377825899copy-of-motilal-oswal-mf_fortnightlydisclosure-30112020.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076290706_8_5b925-377825899copy-of-motilal-oswal-mf_fortnightlydisclosure-30112020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/jul/af278-15688165001238209493fact_sheet_motilal_june-2020-5-.xlsx",
+    "link_text": "af278-15688165001238209493fact_sheet_motilal_june-2020-5-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076292056_9_af278-15688165001238209493fact_sheet_motilal_june-2020-5-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/jun/37b60-1266839972fact_sheet_motilal_mayend-2020.xlsx",
+    "link_text": "37b60-1266839972fact_sheet_motilal_mayend-2020.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076293329_10_37b60-1266839972fact_sheet_motilal_mayend-2020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/nov/e143e-793816474fact_sheet_motilal_oct-2020_final.xlsx",
+    "link_text": "e143e-793816474fact_sheet_motilal_oct-2020_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076294490_11_e143e-793816474fact_sheet_motilal_oct-2020_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/oct/969c7-20517410568092308motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "link_text": "969c7-20517410568092308motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076295568_12_969c7-20517410568092308motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/oct/c8d17-388905989motilal-oswal-mf_fortnightlydisclosure-15102020.xlsx",
+    "link_text": "c8d17-388905989motilal-oswal-mf_fortnightlydisclosure-15102020.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076296679_13_c8d17-388905989motilal-oswal-mf_fortnightlydisclosure-15102020.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/oct/d7e9f-5184402991536906516fact_sheet_motilal_sep-2020_final-1-.xlsx",
+    "link_text": "d7e9f-5184402991536906516fact_sheet_motilal_sep-2020_final-1-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076298030_14_d7e9f-5184402991536906516fact_sheet_motilal_sep-2020_final-1-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2020/sep/90d6d-856707965656704340fact_sheet_motilal_aug-2020_final.xlsx",
+    "link_text": "90d6d-856707965656704340fact_sheet_motilal_aug-2020_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076299317_15_90d6d-856707965656704340fact_sheet_motilal_aug-2020_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/apr/1a1b2-1863206016copy-of-motilal-oswal-mf_fortnightlydisclosure-31032021.xlsx",
+    "link_text": "1a1b2-1863206016copy-of-motilal-oswal-mf_fortnightlydisclosure-31032021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076300445_16_1a1b2-1863206016copy-of-motilal-oswal-mf_fortnightlydisclosure-31032021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/apr/4b346-56688933in_mf_motilal_factsheet_31-03-21_final.xlsx",
+    "link_text": "4b346-56688933in_mf_motilal_factsheet_31-03-21_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076301533_17_4b346-56688933in_mf_motilal_factsheet_31-03-21_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/aug/1af6f-1293622760copy-of-motilal-oswal-mf_fortnightlydisclosure-15082021.xlsx",
+    "link_text": "1af6f-1293622760copy-of-motilal-oswal-mf_fortnightlydisclosure-15082021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076302580_18_1af6f-1293622760copy-of-motilal-oswal-mf_fortnightlydisclosure-15082021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/aug/60062-in_mf_motilal_factsheet_31-07-2021_final.xlsx",
+    "link_text": "60062-in_mf_motilal_factsheet_31-07-2021_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076303857_19_60062-in_mf_motilal_factsheet_31-07-2021_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/feb/49fd6-763809091copy-of-motilal-oswal-mf_fortnightlydisclosure-15022021.xlsx",
+    "link_text": "49fd6-763809091copy-of-motilal-oswal-mf_fortnightlydisclosure-15022021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076305098_20_49fd6-763809091copy-of-motilal-oswal-mf_fortnightlydisclosure-15022021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/feb/d1c65-1173649781copy-of-in_mf_motilal_factsheet_31-01-2021.xlsx",
+    "link_text": "d1c65-1173649781copy-of-in_mf_motilal_factsheet_31-01-2021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076306181_21_d1c65-1173649781copy-of-in_mf_motilal_factsheet_31-01-2021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jan/56109-1042009734copy-of-motilal-oswal-mf_fortnightlydisclosure-15012021.xlsx",
+    "link_text": "56109-1042009734copy-of-motilal-oswal-mf_fortnightlydisclosure-15012021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076307378_22_56109-1042009734copy-of-motilal-oswal-mf_fortnightlydisclosure-15012021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jan/8075a-1556424945in_mf_motilal_factsheet_31-12-2020_final.xlsx",
+    "link_text": "8075a-1556424945in_mf_motilal_factsheet_31-12-2020_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076308847_23_8075a-1556424945in_mf_motilal_factsheet_31-12-2020_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jul/002dc-1500358569copy-of-motilal-oswal-mf_fortnightlydisclosure-30062021.xlsx",
+    "link_text": "002dc-1500358569copy-of-motilal-oswal-mf_fortnightlydisclosure-30062021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076309807_24_002dc-1500358569copy-of-motilal-oswal-mf_fortnightlydisclosure-30062021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jul/0eade-1661361798in_mf_motilal_factsheet_30-06-2021_final.xlsx",
+    "link_text": "0eade-1661361798in_mf_motilal_factsheet_30-06-2021_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076310910_25_0eade-1661361798in_mf_motilal_factsheet_30-06-2021_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jul/4a139-1901333017motilal-oswal-mf_fortnightlydisclosure-15072021.xlsx",
+    "link_text": "4a139-1901333017motilal-oswal-mf_fortnightlydisclosure-15072021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076311867_26_4a139-1901333017motilal-oswal-mf_fortnightlydisclosure-15072021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/jun/09d91-1467719612copy-of-motilal-oswal-mf_fortnightlydisclosure-15062021.xlsx",
+    "link_text": "09d91-1467719612copy-of-motilal-oswal-mf_fortnightlydisclosure-15062021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076313056_27_09d91-1467719612copy-of-motilal-oswal-mf_fortnightlydisclosure-15062021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/mar/3d41e-1917504583copy-of-motilal-oswal-mf_fortnightlydisclosure-28022021.xlsx",
+    "link_text": "3d41e-1917504583copy-of-motilal-oswal-mf_fortnightlydisclosure-28022021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076314137_28_3d41e-1917504583copy-of-motilal-oswal-mf_fortnightlydisclosure-28022021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/mar/3e621-569533262copy-of-in_mf_motilal_factsheet-feb-2021.xlsx",
+    "link_text": "3e621-569533262copy-of-in_mf_motilal_factsheet-feb-2021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076315231_29_3e621-569533262copy-of-in_mf_motilal_factsheet-feb-2021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/mar/cfad5-993870386copy-of-motilal-oswal-mf_fortnightlydisclosure-15032021.xlsx",
+    "link_text": "cfad5-993870386copy-of-motilal-oswal-mf_fortnightlydisclosure-15032021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076316405_30_cfad5-993870386copy-of-motilal-oswal-mf_fortnightlydisclosure-15032021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/may/686c3-1708806503copy-of-motilal-oswal-mf_fortnightlydisclosure-15052021.xlsx",
+    "link_text": "686c3-1708806503copy-of-motilal-oswal-mf_fortnightlydisclosure-15052021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076317381_31_686c3-1708806503copy-of-motilal-oswal-mf_fortnightlydisclosure-15052021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/nov/17904-1015350826in_mf_motilal_factsheet_31-10-21_final.xlsx",
+    "link_text": "17904-1015350826in_mf_motilal_factsheet_31-10-21_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076318380_32_17904-1015350826in_mf_motilal_factsheet_31-10-21_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/nov/233c3-776985076copy-of-motilal-oswal-mf_fortnightlydisclosure_15112021.xlsx",
+    "link_text": "233c3-776985076copy-of-motilal-oswal-mf_fortnightlydisclosure_15112021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076319426_33_233c3-776985076copy-of-motilal-oswal-mf_fortnightlydisclosure_15112021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/oct/37683-384882114copy-of-motilal-oswal-mf_fortnightlydisclosure_30-sept-2021.xlsx",
+    "link_text": "37683-384882114copy-of-motilal-oswal-mf_fortnightlydisclosure_30-sept-2021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076320559_34_37683-384882114copy-of-motilal-oswal-mf_fortnightlydisclosure_30-sept-2021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/oct/4518c-in_mf_motilal_factsheet_30-09-21_final.xlsx",
+    "link_text": "4518c-in_mf_motilal_factsheet_30-09-21_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076321886_35_4518c-in_mf_motilal_factsheet_30-09-21_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/sep/4b9d2-2065142094copy-of-motilal-oswal-mf_fortnightlydisclosure_31082021.xlsx",
+    "link_text": "4b9d2-2065142094copy-of-motilal-oswal-mf_fortnightlydisclosure_31082021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076322931_36_4b9d2-2065142094copy-of-motilal-oswal-mf_fortnightlydisclosure_31082021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2021/sep/c2de5-in_mf_motilal_factsheet_31-08-2021_final.xlsx",
+    "link_text": "c2de5-in_mf_motilal_factsheet_31-08-2021_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076324246_37_c2de5-in_mf_motilal_factsheet_31-08-2021_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/apr/afe77-copy-of-in_mf_motilal_factsheet_final_31-03-22-2-.xlsx",
+    "link_text": "afe77-copy-of-in_mf_motilal_factsheet_final_31-03-22-2-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076325447_38_afe77-copy-of-in_mf_motilal_factsheet_final_31-03-22-2-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/aug/a65fd-copy-of-motilal-oswal-mf-fortnightly-disclosure-150822.xlsx",
+    "link_text": "a65fd-copy-of-motilal-oswal-mf-fortnightly-disclosure-150822.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076326449_39_a65fd-copy-of-motilal-oswal-mf-fortnightly-disclosure-150822.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/jan/071ba-copy-of-15012022_motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "link_text": "071ba-copy-of-15012022_motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076327561_40_071ba-copy-of-15012022_motilal-oswal-mf_fortnightlydisclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/jan/c0385-monthend-portfolio-december-2021.xlsx",
+    "link_text": "c0385-monthend-portfolio-december-2021.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076328771_41_c0385-monthend-portfolio-december-2021.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/jul/b4081-copy-of-motilal-oswal-mf-fortnightly-disclosure-150722.xlsx",
+    "link_text": "b4081-copy-of-motilal-oswal-mf-fortnightly-disclosure-150722.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076329737_42_b4081-copy-of-motilal-oswal-mf-fortnightly-disclosure-150722.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/jun/31339-copy-of-15062022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "31339-copy-of-15062022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076330882_43_31339-copy-of-15062022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/mar/f1a8f-copy-of-15032022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "f1a8f-copy-of-15032022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076331982_44_f1a8f-copy-of-15032022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/may/5c296-30042022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "5c296-30042022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076333094_45_5c296-30042022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/nov/4be75-copy-of-15112022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "4be75-copy-of-15112022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076334218_46_4be75-copy-of-15112022_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/oct/1acb5-motilal-oswal-mf-portfolio-sep-22.xlsx",
+    "link_text": "1acb5-motilal-oswal-mf-portfolio-sep-22.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076335460_47_1acb5-motilal-oswal-mf-portfolio-sep-22.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/oct/ad6fa-copy-of-motilal-oswal-mf_fortnightly-disclosure_15102022.xlsx",
+    "link_text": "ad6fa-copy-of-motilal-oswal-mf_fortnightly-disclosure_15102022.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076336433_48_ad6fa-copy-of-motilal-oswal-mf_fortnightly-disclosure_15102022.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/sep/7454f-copy-of-motilal-oswal-mf_fortnightly-disclosure_31082022.xlsx",
+    "link_text": "7454f-copy-of-motilal-oswal-mf_fortnightly-disclosure_31082022.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076337371_49_7454f-copy-of-motilal-oswal-mf_fortnightly-disclosure_31082022.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/sep/a7220-copy-of-motilal-oswal-mf_fortnightly-disclosure_15092022.xlsx",
+    "link_text": "a7220-copy-of-motilal-oswal-mf_fortnightly-disclosure_15092022.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076338309_50_a7220-copy-of-motilal-oswal-mf_fortnightly-disclosure_15092022.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2022/sep/d7009-copy-of-in_mf_motilal_factsheet_31-08-2022_final.xlsx",
+    "link_text": "d7009-copy-of-in_mf_motilal_factsheet_31-08-2022_final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076339311_51_d7009-copy-of-in_mf_motilal_factsheet_31-08-2022_final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/dec/457db-copy-of-30112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "457db-copy-of-30112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076340269_52_457db-copy-of-30112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/dec/a4174-1d69f-month-end-portfolio-november-2023-3-.xlsx",
+    "link_text": "a4174-1d69f-month-end-portfolio-november-2023-3-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076341307_53_a4174-1d69f-month-end-portfolio-november-2023-3-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/jan/a1c87-copy-of-motilal-oswal-mf_fortnightly-disclosure_31012023.xlsx",
+    "link_text": "a1c87-copy-of-motilal-oswal-mf_fortnightly-disclosure_31012023.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076342304_54_a1c87-copy-of-motilal-oswal-mf_fortnightly-disclosure_31012023.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/jan/a3113-copy-of-15012023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "a3113-copy-of-15012023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076343441_55_a3113-copy-of-15012023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/jun/b9940-motilal-oswal-mf_fortnightly-disclosure-30june-.xlsx",
+    "link_text": "b9940-motilal-oswal-mf_fortnightly-disclosure-30june-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076344392_56_b9940-motilal-oswal-mf_fortnightly-disclosure-30june-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/mar/cde09-copy-of-15032023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "cde09-copy-of-15032023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076345415_57_cde09-copy-of-15032023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/nov/df128-copy-of-15112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "df128-copy-of-15112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076346376_58_df128-copy-of-15112023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/oct/50ae3-copy-of-copy-of-15102023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "50ae3-copy-of-copy-of-15102023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076347500_59_50ae3-copy-of-copy-of-15102023_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2023/oct/94df4-month-end-portfolio-september-2023.xlsx",
+    "link_text": "94df4-month-end-portfolio-september-2023.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076348508_60_94df4-month-end-portfolio-september-2023.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2024/feb/e73a3-month-end-portfolio-january-2024.xlsx",
+    "link_text": "e73a3-month-end-portfolio-january-2024.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076349702_61_e73a3-month-end-portfolio-january-2024.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2024/jan/959d0-copy-of-15012024_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "959d0-copy-of-15012024_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076350649_62_959d0-copy-of-15012024_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/aug/09555-scheme-portfolio-details-july-2025.xlsx",
+    "link_text": "09555-scheme-portfolio-details-july-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076351612_63_09555-scheme-portfolio-details-july-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/aug/67f6e-copy-of-31072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "67f6e-copy-of-31072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076352603_64_67f6e-copy-of-31072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/aug/9cad5-copy-of-15082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "9cad5-copy-of-15082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076353555_65_9cad5-copy-of-15082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/dec/8ec2c-copy-of-15122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "8ec2c-copy-of-15122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076354505_66_8ec2c-copy-of-15122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/dec/966d5-scheme-portfolio-details-november-2025.xlsx",
+    "link_text": "966d5-scheme-portfolio-details-november-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076355595_67_966d5-scheme-portfolio-details-november-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/dec/e145d-copy-of-30112025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "e145d-copy-of-30112025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076356700_68_e145d-copy-of-30112025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/feb/b1185-month-end-portfolio-january-2025.xlsx",
+    "link_text": "b1185-month-end-portfolio-january-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076357828_69_b1185-month-end-portfolio-january-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jul/3e4c9-fortnightly-portfolio-report-30th-jun-2025.xlsx",
+    "link_text": "3e4c9-fortnightly-portfolio-report-30th-jun-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076358893_70_3e4c9-fortnightly-portfolio-report-30th-jun-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jul/73430-copy-of-15072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "73430-copy-of-15072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076359850_71_73430-copy-of-15072025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jul/bc9a7-month-end-portfolio-june-2025.xlsx",
+    "link_text": "bc9a7-month-end-portfolio-june-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076360893_72_bc9a7-month-end-portfolio-june-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jun/27945-month-end-portfolio-may-2025.xlsx",
+    "link_text": "27945-month-end-portfolio-may-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076361977_73_27945-month-end-portfolio-may-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jun/74ee5-copy-of-31052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "74ee5-copy-of-31052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076362936_74_74ee5-copy-of-31052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/jun/e00da-copy-of-15062025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "e00da-copy-of-15062025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076364006_75_e00da-copy-of-15062025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/mar/5a466-month-end-portfolio-february-2025.xlsx",
+    "link_text": "5a466-month-end-portfolio-february-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076365247_76_5a466-month-end-portfolio-february-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/may/0e309-copy-of-copy-of-15052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "0e309-copy-of-copy-of-15052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076366205_77_0e309-copy-of-copy-of-15052025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/may/32d91-month-end-portfolio-april-2025.xlsx",
+    "link_text": "32d91-month-end-portfolio-april-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076367389_78_32d91-month-end-portfolio-april-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/may/e0262-copy-of-portfolioholding_april-30-2025-002-.xlsx",
+    "link_text": "e0262-copy-of-portfolioholding_april-30-2025-002-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076368377_79_e0262-copy-of-portfolioholding_april-30-2025-002-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/nov/42a7b-fortnightly-portfolio-report-15th-nov-2025.xlsx",
+    "link_text": "42a7b-fortnightly-portfolio-report-15th-nov-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076369454_80_42a7b-fortnightly-portfolio-report-15th-nov-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/nov/8082a-motilal-oswal-performance-direct-plan-october-2025.xlsx",
+    "link_text": "8082a-motilal-oswal-performance-direct-plan-october-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076370400_81_8082a-motilal-oswal-performance-direct-plan-october-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/nov/9ec4e-scheme-portfolio-details-october-2025.xlsx",
+    "link_text": "9ec4e-scheme-portfolio-details-october-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076371516_82_9ec4e-scheme-portfolio-details-october-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/nov/d1786-copy-of-31102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "d1786-copy-of-31102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076372596_83_d1786-copy-of-31102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/nov/f1801-motilal-oswal-performance-regular-plan-october-2025.xlsx",
+    "link_text": "f1801-motilal-oswal-performance-regular-plan-october-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076373673_84_f1801-motilal-oswal-performance-regular-plan-october-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/oct/0002f-motilal-oswal-performance-direct-plan-september-2025.xlsx",
+    "link_text": "0002f-motilal-oswal-performance-direct-plan-september-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076374641_85_0002f-motilal-oswal-performance-direct-plan-september-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/oct/0cb06-copy-of-15102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "0cb06-copy-of-15102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076375769_86_0cb06-copy-of-15102025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/oct/6abd7-scheme-portfolio-details-october-2025.xlsx",
+    "link_text": "6abd7-scheme-portfolio-details-october-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076376906_87_6abd7-scheme-portfolio-details-october-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/oct/ade61-copy-of-30092025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "ade61-copy-of-30092025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076377855_88_ade61-copy-of-30092025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/oct/e2816-motilal-oswal-performance-regular-plan-september-2025.xlsx",
+    "link_text": "e2816-motilal-oswal-performance-regular-plan-september-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076378929_89_e2816-motilal-oswal-performance-regular-plan-september-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/sep/38dde-copy-of-motilal-performance-reg-plans-aug25.xlsx",
+    "link_text": "38dde-copy-of-motilal-performance-reg-plans-aug25.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076380002_90_38dde-copy-of-motilal-performance-reg-plans-aug25.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/sep/744d2-copy-of-motilal-performance-dir-plans-aug25.xlsx",
+    "link_text": "744d2-copy-of-motilal-performance-dir-plans-aug25.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076380955_91_744d2-copy-of-motilal-performance-dir-plans-aug25.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/sep/b4559-copy-of-31082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "b4559-copy-of-31082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076381936_92_b4559-copy-of-31082025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2025/sep/deebc-scheme-portfolio-details-aug-2025.xlsx",
+    "link_text": "deebc-scheme-portfolio-details-aug-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076382967_93_deebc-scheme-portfolio-details-aug-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/apr/15042026_Motilal%20Oswal%20MF_Fortnightly%20Disclosure.xlsx",
+    "link_text": "15042026_Motilal Oswal MF_Fortnightly Disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076384131_94_15042026_Motilal_Oswal_MF_Fortnightly_Disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/apr/Copy%20of%2031032026_Motilal%20Oswal%20MF_Fortnightly%20Disclosure.xlsx",
+    "link_text": "Copy of 31032026_Motilal Oswal MF_Fortnightly Disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076385099_95_Copy_of_31032026_Motilal_Oswal_MF_Fortnightly_Disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/apr/IN_MF_MOTILAL_FACTSHEET_31.03.2026_Final.xlsx",
+    "link_text": "IN_MF_MOTILAL_FACTSHEET_31.03.2026_Final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076386453_96_IN_MF_MOTILAL_FACTSHEET_31.03.2026_Final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/apr/Motilal%20HY%20Portfolio%20Mar%202026%20-%20Final-%20Client.xlsx",
+    "link_text": "Motilal HY Portfolio Mar 2026 - Final- Client.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076387506_97_Motilal_HY_Portfolio_Mar_2026_-_Final-_Client.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/apr/b3b74-copy-of-portfolioholding_march-31-2026-3-.xlsx",
+    "link_text": "b3b74-copy-of-portfolioholding_march-31-2026-3-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076388555_98_b3b74-copy-of-portfolioholding_march-31-2026-3-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/feb/1a197-copy-of-31012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "1a197-copy-of-31012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076389500_99_1a197-copy-of-31012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/feb/b5209-scheme-portfolio-details-january-2026-2-.xlsx",
+    "link_text": "b5209-scheme-portfolio-details-january-2026-2-.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076390554_100_b5209-scheme-portfolio-details-january-2026-2-.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/feb/e6237-copy-of-15022026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "e6237-copy-of-15022026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076391634_101_e6237-copy-of-15022026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/jan/6c795-copy-of-copy-of-15012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "6c795-copy-of-copy-of-15012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076392624_102_6c795-copy-of-copy-of-15012026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/jan/93bdc-copy-of-31122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "93bdc-copy-of-31122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076393692_103_93bdc-copy-of-31122025_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/jan/db566-scheme-portfolio-details-december-2025.xlsx",
+    "link_text": "db566-scheme-portfolio-details-december-2025.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076394819_104_db566-scheme-portfolio-details-december-2025.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/july/Scheme%20Portfolio%20Details%20June%202026.xlsx",
+    "link_text": "Scheme Portfolio Details June 2026.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076395835_105_Scheme_Portfolio_Details_June_2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/june/15062026_Motilal%20Oswal%20MF_Fortnightly%20Disclosure_New%20Format%20updated.xlsx",
+    "link_text": "15062026_Motilal Oswal MF_Fortnightly Disclosure_New Format updated.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076396870_106_15062026_Motilal_Oswal_MF_Fortnightly_Disclosure_New_Format_updated.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/june/Scheme%20Portfolio%20Details%2031-05-2026.xlsx",
+    "link_text": "Scheme Portfolio Details 31-05-2026.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076398221_107_Scheme_Portfolio_Details_31-05-2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/mar/28022026_Motilal%20Oswal%20MF_Fortnightly%20Disclosure.xlsx",
+    "link_text": "28022026_Motilal Oswal MF_Fortnightly Disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076399385_108_28022026_Motilal_Oswal_MF_Fortnightly_Disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/mar/8c1a9-scheme-portfolio-details-february-26.xlsx",
+    "link_text": "8c1a9-scheme-portfolio-details-february-26.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076400477_109_8c1a9-scheme-portfolio-details-february-26.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/mar/c6c3d-copy-of-15032026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "link_text": "c6c3d-copy-of-15032026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076401637_110_c6c3d-copy-of-15032026_motilal-oswal-mf_fortnightly-disclosure.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/may/Copy%20of%2030042026_Motilal%20Oswal%20MF_Fortnightly%20Disclosure_New%20Format%20updated.xlsx",
+    "link_text": "Copy of 30042026_Motilal Oswal MF_Fortnightly Disclosure_New Format updated.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076402639_111_Copy_of_30042026_Motilal_Oswal_MF_Fortnightly_Disclosure_New_Format_updated.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/may/ForthNightly%20report%20for%2015th%20May%202026.xlsx",
+    "link_text": "ForthNightly report for 15th May 2026.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076403622_112_ForthNightly_report_for_15th_May_2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/may/Fortnightly%20Portfolio%20Report%20-31st%20May%202026.xlsx",
+    "link_text": "Fortnightly Portfolio Report -31st May 2026.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076404605_113_Fortnightly_Portfolio_Report_-31st_May_2026.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
+  },
+  {
+    "amc": "Motilal Oswal Mutual Fund",
+    "source_url": "https://www.motilaloswalmf.com/content/dam/motilal-mf/downloads/mf/month-end-portfolio/2026/may/Motilal%20Portfolio%2030%20April%202026%20-%20Final.xlsx",
+    "link_text": "Motilal Portfolio 30 April 2026 - Final.xlsx",
+    "staged_path": "motilal-oswal-mutual-fund/1783076405668_114_Motilal_Portfolio_30_April_2026_-_Final.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook"
   }
 ]
