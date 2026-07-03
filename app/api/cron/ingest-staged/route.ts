@@ -8,6 +8,7 @@
 // present, only viewer/task tokens.
 import { NextRequest, NextResponse } from "next/server";
 import * as XLSX from "xlsx";
+import JSZip from "jszip";
 import { buildFromRows, pickSheet, validate } from "@/lib/parse";
 import { assemble } from "@/lib/parse";
 import { detectPeriod, detectName, hashCode, synthIdentity } from "@/lib/detect";
@@ -85,6 +86,55 @@ async function resolveIdentity(amcName: string, guessedName: string) {
   return synthIdentity(code, guessedName, amcName);
 }
 
+// Parses+writes one workbook buffer (a standalone file, or one member of a
+// multi-scheme zip archive). `dedupeKey` scopes the "already done" check —
+// for zip members it's the member's own path so re-ingesting the same
+// archive skips only the schemes already written, not the whole zip.
+async function processWorkbook(
+  amcName: string,
+  buf: ArrayBuffer,
+  sourceUrl: string,
+  hintName: string,
+  dedupeKey: string,
+  token: string,
+): Promise<string> {
+  let wb: XLSX.WorkBook;
+  try {
+    wb = XLSX.read(new Uint8Array(buf), { type: "array" });
+  } catch {
+    await logIngestRun({ amc_name: amcName, scheme_code: null, period: "unknown", status: "parse_failed", error: "unreadable workbook", source_url: sourceUrl }, token);
+    return "unreadable";
+  }
+  const sheet = pickSheet(wb, "");
+  if (!sheet) {
+    await logIngestRun({ amc_name: amcName, scheme_code: null, period: "unknown", status: "parse_failed", error: "no holdings table", source_url: sourceUrl }, token);
+    return "no_holdings_table";
+  }
+  const parsed = buildFromRows(sheet.rows);
+  if (!parsed.ok || !validate(parsed.data).ok) {
+    await logIngestRun({ amc_name: amcName, scheme_code: null, period: "unknown", status: "parse_failed", error: "validation failed", source_url: sourceUrl }, token);
+    return "validation_failed";
+  }
+  const det = detectPeriod(sheet.rows);
+  const period = det?.period ?? "unknown";
+  const asOf = det?.asOf ?? "";
+  const guessedName = detectName(sheet.rows, hintName);
+
+  if (await alreadyIngested(amcName, `staged:${dedupeKey}`, period, token)) return "skipped_already_done";
+
+  const identity = await resolveIdentity(amcName, guessedName);
+  const nav = identity.scheme_code.startsWith("upload-") ? null : (await navOnOrBefore(identity.scheme_code, asOf)) ?? identity.latest_nav;
+  const data = assemble(parsed, identity, period, asOf, `Scraped from ${amcName}`, { nav });
+
+  await writeSnapshot(amcName, identity.scheme_code, period, data, "worker", token);
+  // Logged under both the dedupe key (so a re-run always skips this exact
+  // file/member regardless of scheme-resolution drift) and the resolved
+  // scheme_code (so it participates in the normal ingest_runs ledger).
+  await logIngestRun({ amc_name: amcName, scheme_code: `staged:${dedupeKey}`, period, status: "success", source_url: sourceUrl }, token);
+  await logIngestRun({ amc_name: amcName, scheme_code: identity.scheme_code, period, status: "success", source_url: sourceUrl }, token);
+  return "success";
+}
+
 export async function POST(req: NextRequest) {
   const auth = req.headers.get("authorization") || "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
@@ -103,23 +153,10 @@ export async function POST(req: NextRequest) {
   let processed = 0;
 
   for (const entry of manifest) {
-    if (entry.packaging === "zip") {
-      // Multi-scheme zip archives aren't unpacked by this route yet (the
-      // worker stages the zip as-is) — tracked as a follow-up; skip for now
-      // rather than mis-parsing an archive as a single workbook.
-      results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "skipped_zip_unsupported" });
-      continue;
-    }
     if (processed >= limit) {
       results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "deferred_limit" });
       continue;
     }
-
-    // Provisional identity check (before we know the real period) just to
-    // avoid re-downloading files we've already fully processed under any
-    // period — cheap dbList against the ledger keyed by source_url would be
-    // ideal, but ingest_runs is keyed by (amc, scheme, period); we instead
-    // dedupe on staged_path via a synthetic "period" bucket below.
     processed++;
     try {
       const buf = await fetchStagedFile(entry.staged_path);
@@ -129,46 +166,35 @@ export async function POST(req: NextRequest) {
         continue;
       }
 
-      let wb: XLSX.WorkBook;
-      try {
-        wb = XLSX.read(new Uint8Array(buf), { type: "array" });
-      } catch {
-        await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "unreadable workbook", source_url: entry.source_url }, token);
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "unreadable" });
-        continue;
-      }
-      const sheet = pickSheet(wb, "");
-      if (!sheet) {
-        await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "no holdings table", source_url: entry.source_url }, token);
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "no_holdings_table" });
-        continue;
-      }
-      const parsed = buildFromRows(sheet.rows);
-      if (!parsed.ok || !validate(parsed.data).ok) {
-        await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "validation failed", source_url: entry.source_url }, token);
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "validation_failed" });
-        continue;
-      }
-      const det = detectPeriod(sheet.rows);
-      const period = det?.period ?? "unknown";
-      const asOf = det?.asOf ?? "";
-      const guessedName = detectName(sheet.rows, entry.link_text || entry.staged_path);
-
-      if (await alreadyIngested(entry.amc, `staged:${entry.staged_path}`, period, token)) {
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "skipped_already_done" });
+      if (entry.packaging === "zip") {
+        // Multi-scheme archive: unpack, parse+write each xls/xlsx member.
+        // Counts as one `limit` slot at the entry level — a large archive's
+        // member count doesn't blow the invocation's time budget unbounded,
+        // but does mean a single zip can itself take a while; that's fine,
+        // it still finishes within one request rather than needing to be
+        // resumed member-by-member (dedupe is per-member so a retry after a
+        // timeout just re-skips already-written members).
+        let zip: JSZip;
+        try {
+          zip = await JSZip.loadAsync(buf);
+        } catch {
+          await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "unreadable zip", source_url: entry.source_url }, token);
+          results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "unreadable_zip" });
+          continue;
+        }
+        const memberNames = Object.keys(zip.files).filter((n) => /\.(xls|xlsx)$/i.test(n) && !zip.files[n].dir);
+        const memberStatuses: string[] = [];
+        for (const name of memberNames) {
+          const memberBuf = await zip.files[name].async("arraybuffer");
+          const status = await processWorkbook(entry.amc, memberBuf, `${entry.source_url}#${name}`, name, `${entry.staged_path}#${name}`, token);
+          memberStatuses.push(status);
+        }
+        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: `zip(${memberNames.length} members: ${memberStatuses.join(",")})` });
         continue;
       }
 
-      const identity = await resolveIdentity(entry.amc, guessedName);
-      const nav = identity.scheme_code.startsWith("upload-") ? null : (await navOnOrBefore(identity.scheme_code, asOf)) ?? identity.latest_nav;
-      const data = assemble(parsed, identity, period, asOf, `Scraped from ${entry.amc}`, { nav });
-
-      await writeSnapshot(entry.amc, identity.scheme_code, period, data, "worker", token);
-      // Also log under the staged_path key so re-runs of this same file
-      // (even if scheme resolution differs run-to-run) don't reprocess it.
-      await logIngestRun({ amc_name: entry.amc, scheme_code: `staged:${entry.staged_path}`, period, status: "success", source_url: entry.source_url }, token);
-      await logIngestRun({ amc_name: entry.amc, scheme_code: identity.scheme_code, period, status: "success", source_url: entry.source_url }, token);
-      results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "success" });
+      const status = await processWorkbook(entry.amc, buf, entry.source_url, entry.link_text || entry.staged_path, entry.staged_path, token);
+      results.push({ staged_path: entry.staged_path, amc: entry.amc, status });
     } catch (e) {
       await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "transient", error: e instanceof Error ? e.message : String(e), source_url: entry.source_url }, token);
       results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "transient" });
