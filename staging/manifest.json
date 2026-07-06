@@ -49698,5 +49698,775 @@
     "packaging": "single_workbook",
     "period": "2026-06",
     "period_source": "pass_a"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/285eea2f-e9b1-43fc-9ebe-c63a813666cc.xlsx",
+    "link_text": "285eea2f-e9b1-43fc-9ebe-c63a813666cc.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334565573_0_285eea2f-e9b1-43fc-9ebe-c63a813666cc.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2026-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/b6705f83-74eb-4c85-870c-08d6a3bc6aab.xlsx",
+    "link_text": "b6705f83-74eb-4c85-870c-08d6a3bc6aab.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334565786_1_b6705f83-74eb-4c85-870c-08d6a3bc6aab.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2026-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/67c63514-fd42-4639-b3cd-959e0b852201.xlsx",
+    "link_text": "67c63514-fd42-4639-b3cd-959e0b852201.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334566020_2_67c63514-fd42-4639-b3cd-959e0b852201.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2026-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/34c703e7-86dd-49cd-bdd0-39ca243ae54b.xlsx",
+    "link_text": "34c703e7-86dd-49cd-bdd0-39ca243ae54b.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334566241_3_34c703e7-86dd-49cd-bdd0-39ca243ae54b.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2026-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/bb2a30fd-c931-45fc-8a38-0381d0afa530.xlsx",
+    "link_text": "bb2a30fd-c931-45fc-8a38-0381d0afa530.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334566459_4_bb2a30fd-c931-45fc-8a38-0381d0afa530.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2026-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/fb1ed02d-4868-4321-8565-9ca430728ff8.xlsx",
+    "link_text": "fb1ed02d-4868-4321-8565-9ca430728ff8.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334566669_5_fb1ed02d-4868-4321-8565-9ca430728ff8.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/10191a1a-1c87-4899-8696-59ccee6d9c7a.xlsx",
+    "link_text": "10191a1a-1c87-4899-8696-59ccee6d9c7a.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334566872_6_10191a1a-1c87-4899-8696-59ccee6d9c7a.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/61a842e2-ae44-4295-a4b2-c7c281b64271.xlsx",
+    "link_text": "61a842e2-ae44-4295-a4b2-c7c281b64271.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567064_7_61a842e2-ae44-4295-a4b2-c7c281b64271.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/9ef2c9ec-ef63-4740-8f9d-1855b9695a32.xlsx",
+    "link_text": "9ef2c9ec-ef63-4740-8f9d-1855b9695a32.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567264_8_9ef2c9ec-ef63-4740-8f9d-1855b9695a32.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d1dc29b5-b6e2-4aa3-b0be-c2c4c1d09461.xlsx",
+    "link_text": "d1dc29b5-b6e2-4aa3-b0be-c2c4c1d09461.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567447_9_d1dc29b5-b6e2-4aa3-b0be-c2c4c1d09461.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/cca8ef5e-6631-44d1-9342-d40058a540da.xlsx",
+    "link_text": "cca8ef5e-6631-44d1-9342-d40058a540da.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567638_10_cca8ef5e-6631-44d1-9342-d40058a540da.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/cd1c5b14-146a-4463-acd7-f730f1e0d362.xlsx",
+    "link_text": "cd1c5b14-146a-4463-acd7-f730f1e0d362.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567767_11_cd1c5b14-146a-4463-acd7-f730f1e0d362.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/148b8e20-8432-4057-848c-d1790e1a880c.xlsx",
+    "link_text": "148b8e20-8432-4057-848c-d1790e1a880c.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567881_12_148b8e20-8432-4057-848c-d1790e1a880c.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d3ff7c59-b359-40c0-a61b-4653969515d8.xlsx",
+    "link_text": "d3ff7c59-b359-40c0-a61b-4653969515d8.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334567980_13_d3ff7c59-b359-40c0-a61b-4653969515d8.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/f5bcd17c-5594-4f06-af1f-16a4e9480f3c.xlsx",
+    "link_text": "f5bcd17c-5594-4f06-af1f-16a4e9480f3c.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568085_14_f5bcd17c-5594-4f06-af1f-16a4e9480f3c.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d72ed332-01f1-4360-a645-41c2f7494bf7.xlsx",
+    "link_text": "d72ed332-01f1-4360-a645-41c2f7494bf7.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568207_15_d72ed332-01f1-4360-a645-41c2f7494bf7.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/e6c582bb-5e05-46b6-8a22-b68dff6d88bc.xlsx",
+    "link_text": "e6c582bb-5e05-46b6-8a22-b68dff6d88bc.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568305_16_e6c582bb-5e05-46b6-8a22-b68dff6d88bc.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2025-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/98a69c19-a28e-44c4-83b2-accabb259f56.xlsx",
+    "link_text": "98a69c19-a28e-44c4-83b2-accabb259f56.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568500_17_98a69c19-a28e-44c4-83b2-accabb259f56.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/503e50c8-eb34-4fbf-8ed8-c1141e8ddf48.xlsx",
+    "link_text": "503e50c8-eb34-4fbf-8ed8-c1141e8ddf48.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568683_18_503e50c8-eb34-4fbf-8ed8-c1141e8ddf48.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/582cae7b-18e3-485c-93bf-856cee54fb10.xlsx",
+    "link_text": "582cae7b-18e3-485c-93bf-856cee54fb10.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568772_19_582cae7b-18e3-485c-93bf-856cee54fb10.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/14f94b88-b742-4b1c-8873-3fc23f465e7a.xlsx",
+    "link_text": "14f94b88-b742-4b1c-8873-3fc23f465e7a.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568861_20_14f94b88-b742-4b1c-8873-3fc23f465e7a.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/5c4902b8-fb01-4602-8e5e-eb384b2f8548.xlsx",
+    "link_text": "5c4902b8-fb01-4602-8e5e-eb384b2f8548.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334568962_21_5c4902b8-fb01-4602-8e5e-eb384b2f8548.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/ae3a761a-d9ee-487e-acf6-fe10857f71c9.xlsx",
+    "link_text": "ae3a761a-d9ee-487e-acf6-fe10857f71c9.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569049_22_ae3a761a-d9ee-487e-acf6-fe10857f71c9.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/3d018dcc-b2ed-4d16-8a88-a17a751d06e8.xlsx",
+    "link_text": "3d018dcc-b2ed-4d16-8a88-a17a751d06e8.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569134_23_3d018dcc-b2ed-4d16-8a88-a17a751d06e8.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/2d41de8c-ffc4-4006-a308-600d39749880.xlsx",
+    "link_text": "2d41de8c-ffc4-4006-a308-600d39749880.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569226_24_2d41de8c-ffc4-4006-a308-600d39749880.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/ddd67adc-88a0-4e3f-993c-8d2082df33db.xlsx",
+    "link_text": "ddd67adc-88a0-4e3f-993c-8d2082df33db.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569315_25_ddd67adc-88a0-4e3f-993c-8d2082df33db.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/2021798d-4d28-4d01-8eea-13a87c3f4fc6.xlsx",
+    "link_text": "2021798d-4d28-4d01-8eea-13a87c3f4fc6.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569397_26_2021798d-4d28-4d01-8eea-13a87c3f4fc6.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/5b4f55b9-6dec-48cb-8471-3aa20a5e4843.xlsx",
+    "link_text": "5b4f55b9-6dec-48cb-8471-3aa20a5e4843.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569485_27_5b4f55b9-6dec-48cb-8471-3aa20a5e4843.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2024-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/0ca2b8e5-b5a3-429f-84eb-8d981337335b.xls",
+    "link_text": "0ca2b8e5-b5a3-429f-84eb-8d981337335b.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569574_28_0ca2b8e5-b5a3-429f-84eb-8d981337335b.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2024-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/3cd44a86-672f-4ec1-8f07-551f0e068baf.xls",
+    "link_text": "3cd44a86-672f-4ec1-8f07-551f0e068baf.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569659_29_3cd44a86-672f-4ec1-8f07-551f0e068baf.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2023-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/e57065e6-9031-4f4b-a1f4-f10b608fab31.xls",
+    "link_text": "e57065e6-9031-4f4b-a1f4-f10b608fab31.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569759_30_e57065e6-9031-4f4b-a1f4-f10b608fab31.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2023-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/f8543a8d-6e6f-4a17-b01e-2ee6b90e00b3.xls",
+    "link_text": "f8543a8d-6e6f-4a17-b01e-2ee6b90e00b3.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569846_31_f8543a8d-6e6f-4a17-b01e-2ee6b90e00b3.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2023-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/23cb7464-bac8-4a1d-b582-81383767b197.xlsx",
+    "link_text": "23cb7464-bac8-4a1d-b582-81383767b197.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334569937_32_23cb7464-bac8-4a1d-b582-81383767b197.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/1a8ec867-fa33-4c39-9e28-f6a46b0ae79d.xlsx",
+    "link_text": "1a8ec867-fa33-4c39-9e28-f6a46b0ae79d.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334570157_33_1a8ec867-fa33-4c39-9e28-f6a46b0ae79d.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/062a23a1-8fbf-4b3f-b7d1-d3a380707b42.xlsx",
+    "link_text": "062a23a1-8fbf-4b3f-b7d1-d3a380707b42.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334570375_34_062a23a1-8fbf-4b3f-b7d1-d3a380707b42.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/83458b14-2946-42ec-878c-7c329d083e9a.xlsx",
+    "link_text": "83458b14-2946-42ec-878c-7c329d083e9a.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334570598_35_83458b14-2946-42ec-878c-7c329d083e9a.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/77a08fd2-c3b1-425b-b30e-eeaaa66982f9.xlsx",
+    "link_text": "77a08fd2-c3b1-425b-b30e-eeaaa66982f9.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334570836_36_77a08fd2-c3b1-425b-b30e-eeaaa66982f9.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/5191d60a-ebd2-465a-9b18-fae619cdcf3f.xlsx",
+    "link_text": "5191d60a-ebd2-465a-9b18-fae619cdcf3f.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334571064_37_5191d60a-ebd2-465a-9b18-fae619cdcf3f.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/43b3353d-1dc7-41f1-9036-674214518307.xlsx",
+    "link_text": "43b3353d-1dc7-41f1-9036-674214518307.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334571281_38_43b3353d-1dc7-41f1-9036-674214518307.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/3f6592f1-6eb8-4679-b36e-e1f26e7f797e.xlsx",
+    "link_text": "3f6592f1-6eb8-4679-b36e-e1f26e7f797e.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334571517_39_3f6592f1-6eb8-4679-b36e-e1f26e7f797e.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/4fafd780-4758-4000-8eb9-13bc8f3de9cb.xlsx",
+    "link_text": "4fafd780-4758-4000-8eb9-13bc8f3de9cb.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334571737_40_4fafd780-4758-4000-8eb9-13bc8f3de9cb.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2023-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/3d4fb01a-9170-4f3e-94ba-5d65159d9e27.xlsx",
+    "link_text": "3d4fb01a-9170-4f3e-94ba-5d65159d9e27.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334571929_41_3d4fb01a-9170-4f3e-94ba-5d65159d9e27.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/ff12fadd-cc64-47fc-acf7-9bf513ed1d16.xlsx",
+    "link_text": "ff12fadd-cc64-47fc-acf7-9bf513ed1d16.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572030_42_ff12fadd-cc64-47fc-acf7-9bf513ed1d16.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/64bd4407-806b-4acf-8b3d-2d281ed73050.xlsx",
+    "link_text": "64bd4407-806b-4acf-8b3d-2d281ed73050.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572123_43_64bd4407-806b-4acf-8b3d-2d281ed73050.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/701f574a-8410-46ce-9b22-8e70ddd82d44.xlsx",
+    "link_text": "701f574a-8410-46ce-9b22-8e70ddd82d44.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572217_44_701f574a-8410-46ce-9b22-8e70ddd82d44.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/ae35cf58-2acd-4d18-aece-c0354dd24ac6.xlsx",
+    "link_text": "ae35cf58-2acd-4d18-aece-c0354dd24ac6.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572315_45_ae35cf58-2acd-4d18-aece-c0354dd24ac6.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/dfef7f83-2ab6-4400-a3d5-d0d6339cd63f.xlsx",
+    "link_text": "dfef7f83-2ab6-4400-a3d5-d0d6339cd63f.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572402_46_dfef7f83-2ab6-4400-a3d5-d0d6339cd63f.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/33d80dd7-23e4-45c5-9d18-6b81f4624a77.xlsx",
+    "link_text": "33d80dd7-23e4-45c5-9d18-6b81f4624a77.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572510_47_33d80dd7-23e4-45c5-9d18-6b81f4624a77.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/b59ea6b0-317f-4908-aca4-b72b3178c6d8.xlsx",
+    "link_text": "b59ea6b0-317f-4908-aca4-b72b3178c6d8.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572605_48_b59ea6b0-317f-4908-aca4-b72b3178c6d8.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/24bee135-02cc-4b28-a0e9-b8d9dcc2cc1c.xlsx",
+    "link_text": "24bee135-02cc-4b28-a0e9-b8d9dcc2cc1c.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572696_49_24bee135-02cc-4b28-a0e9-b8d9dcc2cc1c.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/192352a6-a2ec-4d13-a314-a29a06386bde.xlsx",
+    "link_text": "192352a6-a2ec-4d13-a314-a29a06386bde.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572858_50_192352a6-a2ec-4d13-a314-a29a06386bde.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/2b8256b0-814e-475c-8696-0850cc2efead.xlsx",
+    "link_text": "2b8256b0-814e-475c-8696-0850cc2efead.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334572948_51_2b8256b0-814e-475c-8696-0850cc2efead.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2022-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/ff554b30-5019-4ff8-8d53-99e481c81c9b.xls",
+    "link_text": "ff554b30-5019-4ff8-8d53-99e481c81c9b.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573071_52_ff554b30-5019-4ff8-8d53-99e481c81c9b.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2022-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/3cd90e9a-fd66-4d69-b151-06c62dc9fe29.xls",
+    "link_text": "3cd90e9a-fd66-4d69-b151-06c62dc9fe29.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573208_53_3cd90e9a-fd66-4d69-b151-06c62dc9fe29.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/501ea3e5-32ba-48ef-aca4-3d72ae94153c.xlsx",
+    "link_text": "501ea3e5-32ba-48ef-aca4-3d72ae94153c.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573299_54_501ea3e5-32ba-48ef-aca4-3d72ae94153c.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/23906e84-5c9d-4295-9baf-e5680d2c4689.xls",
+    "link_text": "23906e84-5c9d-4295-9baf-e5680d2c4689.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573454_55_23906e84-5c9d-4295-9baf-e5680d2c4689.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/51adfe9c-bbe8-4b8e-9cde-80b5f86133ef.xls",
+    "link_text": "51adfe9c-bbe8-4b8e-9cde-80b5f86133ef.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573554_56_51adfe9c-bbe8-4b8e-9cde-80b5f86133ef.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/065b59ff-0f51-4383-b395-fc78bfd688b8.xlsx",
+    "link_text": "065b59ff-0f51-4383-b395-fc78bfd688b8.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573639_57_065b59ff-0f51-4383-b395-fc78bfd688b8.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/1d0e93a9-26b4-41fa-a02b-b5e3f2caa168.xlsx",
+    "link_text": "1d0e93a9-26b4-41fa-a02b-b5e3f2caa168.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573722_58_1d0e93a9-26b4-41fa-a02b-b5e3f2caa168.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/2e178824-434a-4642-8992-b0bb5b95609a.xlsx",
+    "link_text": "2e178824-434a-4642-8992-b0bb5b95609a.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573819_59_2e178824-434a-4642-8992-b0bb5b95609a.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/f0c3363a-0ed7-456a-9906-ff121bd4b44e.xlsx",
+    "link_text": "f0c3363a-0ed7-456a-9906-ff121bd4b44e.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573895_60_f0c3363a-0ed7-456a-9906-ff121bd4b44e.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/cdc04fa3-be60-426f-a5f8-926db1db2e74.xlsx",
+    "link_text": "cdc04fa3-be60-426f-a5f8-926db1db2e74.xlsx",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334573977_61_cdc04fa3-be60-426f-a5f8-926db1db2e74.xlsx",
+    "format": "xlsx",
+    "packaging": "single_workbook",
+    "period": "2021-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d306513b-a6b3-412f-ba36-02e6a6d42220.xls",
+    "link_text": "d306513b-a6b3-412f-ba36-02e6a6d42220.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574093_62_d306513b-a6b3-412f-ba36-02e6a6d42220.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d1b0b3a9-761b-40d1-aac2-8725d74e3432.xls",
+    "link_text": "d1b0b3a9-761b-40d1-aac2-8725d74e3432.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574195_63_d1b0b3a9-761b-40d1-aac2-8725d74e3432.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/7f5b5172-cfd3-468e-b9b6-c1c5fff0ffcc.xls",
+    "link_text": "7f5b5172-cfd3-468e-b9b6-c1c5fff0ffcc.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574298_64_7f5b5172-cfd3-468e-b9b6-c1c5fff0ffcc.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2021-01",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/dc930b45-82f1-4f1c-b413-4798502f6b08.xls",
+    "link_text": "dc930b45-82f1-4f1c-b413-4798502f6b08.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574402_65_dc930b45-82f1-4f1c-b413-4798502f6b08.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-12",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/d97f1b2f-ff3f-4717-b771-5aad836d7f05.xls",
+    "link_text": "d97f1b2f-ff3f-4717-b771-5aad836d7f05.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574465_66_d97f1b2f-ff3f-4717-b771-5aad836d7f05.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-11",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/e5f253b2-1b82-4718-98b1-7b67fa800489.xls",
+    "link_text": "e5f253b2-1b82-4718-98b1-7b67fa800489.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574536_67_e5f253b2-1b82-4718-98b1-7b67fa800489.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-10",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/be628990-ec7f-4ebe-821e-13e3eb1cb428.xls",
+    "link_text": "be628990-ec7f-4ebe-821e-13e3eb1cb428.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574637_68_be628990-ec7f-4ebe-821e-13e3eb1cb428.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-09",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/63e859bd-ed54-4eba-8ef4-d46893131ee3.xls",
+    "link_text": "63e859bd-ed54-4eba-8ef4-d46893131ee3.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574702_69_63e859bd-ed54-4eba-8ef4-d46893131ee3.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-08",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/57c379ac-635d-482c-9a54-61fa94ad996a.xls",
+    "link_text": "57c379ac-635d-482c-9a54-61fa94ad996a.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574802_70_57c379ac-635d-482c-9a54-61fa94ad996a.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-07",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/6c53b2f7-a21d-4953-ac0b-f0542694a8f4.xls",
+    "link_text": "6c53b2f7-a21d-4953-ac0b-f0542694a8f4.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574865_71_6c53b2f7-a21d-4953-ac0b-f0542694a8f4.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-06",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/c44506aa-fe65-4ce5-8349-bfd2afb223cb.xls",
+    "link_text": "c44506aa-fe65-4ce5-8349-bfd2afb223cb.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574925_72_c44506aa-fe65-4ce5-8349-bfd2afb223cb.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-05",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/385ea447-10e7-420f-aafb-9339854f5b6c.xls",
+    "link_text": "385ea447-10e7-420f-aafb-9339854f5b6c.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334574987_73_385ea447-10e7-420f-aafb-9339854f5b6c.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-04",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/e7060733-8034-4205-85d8-452f3ddd62bc.xls",
+    "link_text": "e7060733-8034-4205-85d8-452f3ddd62bc.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334575046_74_e7060733-8034-4205-85d8-452f3ddd62bc.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-03",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/67fbbed6-463f-4470-8350-ae8c72c36e3b.xls",
+    "link_text": "67fbbed6-463f-4470-8350-ae8c72c36e3b.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334575128_75_67fbbed6-463f-4470-8350-ae8c72c36e3b.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-02",
+    "period_source": "pass_b_content"
+  },
+  {
+    "amc": "Mahindra Manulife Mutual Fund",
+    "source_url": "https://www.mahindramanulife.com/uploads/download/6653ff46-12cd-4dc7-81b9-3fdcd7cb5239.xls",
+    "link_text": "6653ff46-12cd-4dc7-81b9-3fdcd7cb5239.xls",
+    "staged_path": "mahindra-manulife-mutual-fund/1783334575207_76_6653ff46-12cd-4dc7-81b9-3fdcd7cb5239.xls",
+    "format": "xls",
+    "packaging": "single_workbook",
+    "period": "2020-01",
+    "period_source": "pass_b_content"
   }
 ]
