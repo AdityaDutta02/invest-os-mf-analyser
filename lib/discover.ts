@@ -71,9 +71,13 @@ export const DIRECT_AMC_SEARCH_TERMS: Record<string, string> = {
 };
 
 export async function discoverAllDirectSchemes(): Promise<DiscoveredScheme[]> {
-  const out: DiscoveredScheme[] = [];
-  for (const [amc, term] of Object.entries(DIRECT_AMC_SEARCH_TERMS)) {
-    out.push(...(await discoverSchemes(amc, term)));
-  }
-  return out;
+  // Was sequential (13 AMCs x up to 15s timeout each = up to ~195s worst
+  // case, run fresh on *every* hourly invocation before any ingest work
+  // even started) — a likely contributor to the cron timeouts observed in
+  // production. mfapi's search endpoint has no shared rate limit concern
+  // here (13 independent GETs), so fan them out concurrently instead.
+  const perAmc = await Promise.all(
+    Object.entries(DIRECT_AMC_SEARCH_TERMS).map(([amc, term]) => discoverSchemes(amc, term)),
+  );
+  return perAmc.flat();
 }
