@@ -208,7 +208,9 @@
       "packaging": "single_workbook",
       "link_match": "Monthly%20Portfolio-%20{Mon DD, YYYY}.xlsx",
       "example": "https://assets-netstorage.growwmf.in/compliance_docs/Statutory%20Disclosure/Portfolio/2026%20-2027/Monthly%20Portfolio-%20May%2031,%202026.xlsx",
-      "archive": "FY-tabbed"
+      "archive": "FY-tabbed",
+      "inception": "2011-03",
+      "inception_source": "Groww Mutual Fund is a rebrand of Indiabulls Mutual Fund, NOT a new AMC - verified via SEBI's own registry page (sebi.gov.in/.../doGetFundDetails?...mfId=29, titled 'Groww Mutual Fund (Formerly known as Indiabulls Mutual Fund)') and multiple news sources (Value Research, PersonalFN, Cafemutual). Indiabulls Mutual Fund received SEBI registration MF/068/11/3 dated 2011-03-24 (sponsor Indiabulls Housing Finance, trustee Indiabulls Trustee Company Ltd). The Groww/NextBillion Technologies acquisition + scheme renaming to 'Groww Mutual Fund' took effect 2023-05-30 per SEBI's approved name-change circular; growwmf.in's own hosted archive only goes back to Mar2023 (does not include pre-rebrand Indiabulls-branded files). Since 2011-03 predates our Jan2020 grid start, this doesn't create any N_A cells - it just documents that ALL 78 months in the grid are legitimately post-inception, so every missing month here is a real scrape/sourcing gap, not a pre-inception non-applicable cell. Attempted to source the pre-Mar2023 Indiabulls-branded files: live domain indiabullsamc.com is now DNS-squatted (redirects to an unrelated site, 404 on all paths); Wayback Machine (web.archive.org) has 9 archived snapshots of the old /portfolio-disclosure/ listing page spanning Sep2020-Jan2023 with visible xlsx href links covering most of Jan2020-Dec2022 (~41 unique monthly-portfolio links extracted), but the underlying xlsx files themselves were NOT independently crawled/archived by Wayback (direct fetch of any linked file returns the Wayback 'not in archive' calendar page, not file content) - so the file LIST is recoverable but the file CONTENT is not, via this route. BLOCKED for now; would need a different mirror (AMFI does not host monthly portfolio disclosures, only NAVs) or a manual outreach to the AMC for pre-2023 history."
     },
     {
       "amc": "Samco Mutual Fund",
@@ -327,7 +329,9 @@
       "link_match": "API POST beta.choicemf.com/api/monthly-portfolio-report/portfolio-website-list → file_path",
       "example": "{epoch}-{Scheme}_Monthly_Portfolio_{Month}_{Year}.xlsx",
       "archive": "~4 months retained",
-      "notes": "also operates rebranded quant/Choice schemes"
+      "notes": "also operates rebranded quant/Choice schemes",
+      "inception": "2025-08",
+      "inception_source": "verified via web search: Choice International's subsidiary Choice AMC received SEBI's FINAL approval to commence mutual fund operations on 2025-08-01 (in-principle approval was 2024-12-26). Confirmed via Business Standard, BusinessToday, Angel One, Outlook Business coverage of the announcement. Corroborated by our own staged data: earliest Choice Mutual Fund file in the corpus is dated 2026-02 (first schemes were passive index/ETF products rolled out a few months after final approval) - consistent with a true launch in Aug/Sep 2025, not an older fund with a short rolling retention window as originally suspected. All months before 2025-08 in the ledger grid should be treated as pre-inception (N_A), not scrape gaps."
     },
     {
       "amc": "Abakkus Mutual Fund",
