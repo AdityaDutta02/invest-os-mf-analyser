@@ -430,7 +430,8 @@
     {
       "amc": "Trust Mutual Fund",
       "page": "https://www.trustmf.com/disclosures",
-      "reason": "JS SPA"
+      "reason": "JS SPA",
+      "inception": "2021-02"
     },
     {
       "amc": "PGIM India Mutual Fund",
