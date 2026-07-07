@@ -414,8 +414,8 @@
       "amc": "WhiteOak Capital Mutual Fund",
       "page": "https://mf.whiteoakamc.com/regulatory-disclosures/scheme-portfolios",
       "reason": "JS per-scheme filter",
-      "inception": "2020-02",
-      "inception_source": "estimated_public_launch_date_unverified"
+      "inception": "2021-09",
+      "inception_source": "corroborated_by_earliest_staged_disclosure (YES Liquid/Overnight/Ultra-Short Fund half-yearly + monthly portfolios dated Sep 2021 - WhiteOak Capital took over YES Mutual Fund schemes; no earlier scheme portfolios exist for this AMC entity across 1013 staged files, none pre-2021-09)"
     },
     {
       "amc": "Navi Mutual Fund",
