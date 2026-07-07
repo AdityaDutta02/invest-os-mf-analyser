@@ -400,7 +400,33 @@
     {
       "amc": "Quant Mutual Fund",
       "page": "https://quantmutual.com/Statement-of-Scheme-Portfolios.aspx",
-      "reason": "React, client-side URL build; now operated by Choice AMC"
+      "reason": "React, client-side URL build; now operated by Choice AMC",
+      "blocked": [
+        "2020-01",
+        "2020-02",
+        "2020-03",
+        "2020-04",
+        "2020-05",
+        "2020-06",
+        "2020-07",
+        "2020-08",
+        "2020-09",
+        "2020-10",
+        "2020-11",
+        "2020-12",
+        "2021-01",
+        "2021-02",
+        "2021-03",
+        "2021-04",
+        "2021-05",
+        "2021-06",
+        "2021-07",
+        "2021-08",
+        "2021-09",
+        "2021-10",
+        "2021-11"
+      ],
+      "blocked_reason": "AJAX endpoint (quantmutual.com/statutorydisclosures.aspx) silently returns current-month files for any pre-Dec2021 query instead of erroring. Wayback CDX confirmed no genuine capture of monthly-portfolio files before Dec 2021 - site used the same AJAX-only delivery even in Jan-2020 snapshots, so no crawler ever captured real files. AMFI links back to the AMC site only. AdvisorKhoj mirror 404s."
     },
     {
       "amc": "Bajaj Finserv Mutual Fund",
