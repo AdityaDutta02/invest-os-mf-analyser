@@ -35,9 +35,24 @@ interface CronPayload {
   limit?: number; // cap schemes processed this invocation (route has a wall-clock budget)
 }
 
-const DEFAULT_LIMIT = 20;
+// Lowered from 20 — writeSnapshot fans out to 4 tables (snapshots, ai_cache,
+// schemes, holdings_index, securities), and each equity holding costs its
+// own dbInsert on top of that. A ~50-holding fund can be 100+ gateway round
+// trips; 20 schemes/invocation was almost certainly what was timing out the
+// hourly task (both cron tasks were reporting last_run_status: "failed").
+// The BUDGET_MS wall-clock guard below is the real backstop — this is just
+// a sane starting cap.
+const DEFAULT_LIMIT = 5;
+// Terminal AI task callbacks have an unconfirmed but presumably bounded
+// serverless execution ceiling. Bail out of the processing loop with time
+// to spare so the route always returns a response instead of getting
+// killed mid-request (which is indistinguishable from a real failure to
+// the scheduler and, worse, can leave a scheme half-written). Whatever
+// doesn't fit this invocation just gets picked up next hour.
+const BUDGET_MS = 40_000;
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
   const auth = req.headers.get("authorization") || "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
   if (!token) return NextResponse.json({ error: "missing task token" }, { status: 401 });
@@ -67,6 +82,10 @@ export async function POST(req: NextRequest) {
   let processed = 0;
 
   for (const schemeCode of candidates) {
+    if (Date.now() - startedAt > BUDGET_MS) {
+      results.push({ scheme_code: schemeCode, amc: "-", status: "deferred_budget" });
+      continue;
+    }
     if (processed >= limit) {
       results.push({ scheme_code: schemeCode, amc: "-", status: "deferred_limit" });
       continue;

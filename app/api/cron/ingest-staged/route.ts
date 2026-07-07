@@ -36,7 +36,14 @@ interface CronPayload {
   limit?: number;
 }
 
-const DEFAULT_LIMIT = 15;
+// Lowered from 15 for the same reason as /api/cron/ingest — writeSnapshot's
+// per-holding fan-out to holdings_index/securities makes each scheme cost
+// far more than one gateway round trip. See lib/ingest-write.ts. The
+// BUDGET_MS wall-clock guard below is the real backstop.
+const DEFAULT_LIMIT = 5;
+// Same rationale as /api/cron/ingest's BUDGET_MS — bail out with time to
+// spare so the route always returns instead of risking a mid-request kill.
+const BUDGET_MS = 40_000;
 
 async function fetchManifest(): Promise<ManifestEntry[]> {
   try {
@@ -136,6 +143,7 @@ async function processWorkbook(
 }
 
 export async function POST(req: NextRequest) {
+  const startedAt = Date.now();
   const auth = req.headers.get("authorization") || "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
   if (!token) return NextResponse.json({ error: "missing task token" }, { status: 401 });
@@ -153,6 +161,10 @@ export async function POST(req: NextRequest) {
   let processed = 0;
 
   for (const entry of manifest) {
+    if (Date.now() - startedAt > BUDGET_MS) {
+      results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "deferred_budget" });
+      continue;
+    }
     if (processed >= limit) {
       results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "deferred_limit" });
       continue;
