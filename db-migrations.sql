@@ -97,3 +97,15 @@ CREATE TABLE IF NOT EXISTS securities (
   name        TEXT NOT NULL,
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Single-row-per-key cursor so /api/cron/ingest-staged's manifest scan
+-- advances across invocations instead of always restarting at index 0 (with
+-- a fixed per-run `limit`, that meant it could never reach any entry past
+-- the first `limit` in the 28k+-entry manifest — confirmed as the reason
+-- e.g. PPFAS's 315 staged historical files never made it into the corpus).
+CREATE TABLE IF NOT EXISTS ingest_cursor (
+  id            UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  cursor_key    TEXT NOT NULL UNIQUE,
+  offset_value  INTEGER NOT NULL,
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);

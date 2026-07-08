@@ -12,13 +12,14 @@ import JSZip from "jszip";
 import { buildFromRows, pickSheet, validate } from "@/lib/parse";
 import { assemble } from "@/lib/parse";
 import { detectPeriod, detectName, hashCode, synthIdentity } from "@/lib/detect";
-import { writeSnapshot, logIngestRun, alreadyIngested } from "@/lib/ingest-write";
+import { writeSnapshot, logIngestRun, alreadyIngested, getIngestCursor, setIngestCursor } from "@/lib/ingest-write";
 import { navOnOrBefore } from "@/lib/mfapi";
 import { searchSchemes } from "@/lib/mfapi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const CURSOR_KEY = "staged_manifest";
 const GITHUB_REPO = "AdityaDutta02/invest-os-mf-analyser";
 const STAGING_BRANCH = "data-staging";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_REPO}/${STAGING_BRANCH}`;
@@ -250,7 +251,17 @@ export async function POST(req: NextRequest) {
   const results: { staged_path: string; amc: string; status: string }[] = [];
   let processed = 0;
 
-  for (const entry of manifest) {
+  // Rotate the manifest so this invocation starts where the last one left
+  // off, instead of always re-scanning from index 0. With a fixed per-run
+  // `limit` and dedup happening only after a full download+parse (inside
+  // processWorkbook), always starting at 0 meant anything past the first
+  // `limit` entries could never be reached — confirmed against production:
+  // PPFAS alone has 315 staged historical files sitting untouched in the
+  // manifest because they sort well past the first few entries.
+  const startOffset = manifest.length > 0 ? (await getIngestCursor(CURSOR_KEY, token)) % manifest.length : 0;
+  const ordered = manifest.length > 0 ? [...manifest.slice(startOffset), ...manifest.slice(0, startOffset)] : manifest;
+
+  for (const entry of ordered) {
     if (Date.now() - startedAt > BUDGET_MS) {
       results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "deferred_budget" });
       continue;
@@ -270,5 +281,12 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ manifest_size: manifest.length, results });
+  // Advance the cursor only past entries actually attempted this run
+  // (`processed`) — entries marked deferred_budget/deferred_limit must be
+  // retried first next time, not skipped over.
+  if (manifest.length > 0) {
+    await setIngestCursor(CURSOR_KEY, (startOffset + processed) % manifest.length, token);
+  }
+
+  return NextResponse.json({ manifest_size: manifest.length, start_offset: startOffset, processed, results });
 }

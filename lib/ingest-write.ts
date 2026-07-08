@@ -47,6 +47,29 @@ export async function alreadyIngested(amcName: string, schemeCode: string, perio
   }
 }
 
+// A round-robin scan position for /api/cron/ingest-staged's manifest walk,
+// keyed by an arbitrary caller-chosen string (one key per manifest the
+// route might scan). Without this the route always started scanning at
+// index 0 with a fixed per-invocation limit — meaning anything past the
+// first `limit` entries in a large manifest could never be reached, ever.
+export async function getIngestCursor(cursorKey: string, token: string): Promise<number> {
+  try {
+    const rows = await dbList<{ offset_value: number }>("ingest_cursor", { cursor_key: cursorKey }, token);
+    return rows[0]?.offset_value ?? 0;
+  } catch {
+    return 0;
+  }
+}
+
+export async function setIngestCursor(cursorKey: string, offset: number, token: string): Promise<void> {
+  await purge("ingest_cursor", { cursor_key: cursorKey }, token);
+  try {
+    await dbInsert("ingest_cursor", { cursor_key: cursorKey, offset_value: offset }, token);
+  } catch {
+    /* best-effort — worst case next run rescans from 0 */
+  }
+}
+
 // Writes a parsed+normalized snapshot into the full corpus: snapshots
 // (source of truth), schemes (identity dimension), holdings_index (sparse
 // ISIN search), securities (name->ISIN dimension). Mirrors the upload
