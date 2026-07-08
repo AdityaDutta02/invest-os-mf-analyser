@@ -47,7 +47,14 @@ function fyLabel(year: number, month: number, sep = "-"): string {
 const pad = (n: number) => String(n).padStart(2, "0");
 const ordinal = (d: number) => `${d}${["th", "st", "nd", "rd"][d % 10 > 3 || (d >= 11 && d <= 13) ? 0 : d % 10]}`;
 
-async function fetchBuf(url: string, timeoutMs = 20000): Promise<ArrayBuffer | null> {
+// Lowered from 20s — "template" recipes probe several candidate URLs
+// (month-end day variants) sequentially in tryCandidates below; a hung
+// (not just 404ing) endpoint at 20s/candidate could push a single scheme's
+// resolution past a minute, well beyond the route's BUDGET_MS check between
+// scheme, and past whatever the Terminal AI task callback's own execution
+// ceiling is — a likely contributor to both cron tasks' last_run_status:
+// "failed". These endpoints normally respond in low single-digit seconds.
+async function fetchBuf(url: string, timeoutMs = 8000): Promise<ArrayBuffer | null> {
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), timeoutMs);
@@ -68,7 +75,7 @@ async function fetchBuf(url: string, timeoutMs = 20000): Promise<ArrayBuffer | n
   }
 }
 
-async function fetchText(url: string, timeoutMs = 20000): Promise<string | null> {
+async function fetchText(url: string, timeoutMs = 8000): Promise<string | null> {
   try {
     const ctrl = new AbortController();
     const t = setTimeout(() => ctrl.abort(), timeoutMs);

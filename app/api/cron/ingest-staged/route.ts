@@ -40,10 +40,12 @@ interface CronPayload {
 // per-holding fan-out to holdings_index/securities makes each scheme cost
 // far more than one gateway round trip. See lib/ingest-write.ts. The
 // BUDGET_MS wall-clock guard below is the real backstop.
-const DEFAULT_LIMIT = 5;
+// Lowered from 5, same rationale as /api/cron/ingest.
+const DEFAULT_LIMIT = 3;
 // Same rationale as /api/cron/ingest's BUDGET_MS — bail out with time to
 // spare so the route always returns instead of risking a mid-request kill.
-const BUDGET_MS = 40_000;
+// Lowered from 40s to leave more headroom below the callback's real ceiling.
+const BUDGET_MS = 25_000;
 
 async function fetchManifest(): Promise<ManifestEntry[]> {
   try {
@@ -197,6 +199,16 @@ export async function POST(req: NextRequest) {
         const memberNames = Object.keys(zip.files).filter((n) => /\.(xls|xlsx)$/i.test(n) && !zip.files[n].dir);
         const memberStatuses: string[] = [];
         for (const name of memberNames) {
+          // A multi-scheme archive (e.g. ICICI's monthly ZIP) can have
+          // dozens of members — the outer budget check only runs once per
+          // manifest entry, so without this a single large zip could still
+          // run past the callback's real execution ceiling. Dedupe (above,
+          // per-member) means whatever's deferred here just resumes as
+          // "not yet done" on the zip's next pass.
+          if (Date.now() - startedAt > BUDGET_MS) {
+            memberStatuses.push("deferred_budget");
+            continue;
+          }
           const memberBuf = await zip.files[name].async("arraybuffer");
           const status = await processWorkbook(entry.amc, memberBuf, `${entry.source_url}#${name}`, name, `${entry.staged_path}#${name}`, token);
           memberStatuses.push(status);

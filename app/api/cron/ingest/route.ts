@@ -42,14 +42,20 @@ interface CronPayload {
 // hourly task (both cron tasks were reporting last_run_status: "failed").
 // The BUDGET_MS wall-clock guard below is the real backstop — this is just
 // a sane starting cap.
-const DEFAULT_LIMIT = 5;
+// Lowered from 5 — a single scheme's fetchPortfolio can itself take up to
+// ~8-16s (registry.ts's per-candidate fetch timeout) before the loop even
+// re-checks BUDGET_MS, so a handful of slow/hung candidates in one item can
+// still blow past the callback's real execution ceiling. 3 keeps worst-case
+// per-invocation wall clock lower even if BUDGET_MS is never hit exactly.
+const DEFAULT_LIMIT = 3;
 // Terminal AI task callbacks have an unconfirmed but presumably bounded
 // serverless execution ceiling. Bail out of the processing loop with time
 // to spare so the route always returns a response instead of getting
 // killed mid-request (which is indistinguishable from a real failure to
 // the scheduler and, worse, can leave a scheme half-written). Whatever
-// doesn't fit this invocation just gets picked up next hour.
-const BUDGET_MS = 40_000;
+// doesn't fit this invocation just gets picked up next hour. Lowered from
+// 40s to leave more headroom below that ceiling.
+const BUDGET_MS = 25_000;
 
 export async function POST(req: NextRequest) {
   const startedAt = Date.now();
