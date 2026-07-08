@@ -139,7 +139,9 @@ export function SearchView() {
           </div>
           {result.holdings.length === 0 ? (
             <div className="py-16 text-center font-mono text-[12px] text-fg-secondary">
-              No ingested scheme currently holds this ISIN.
+              {result.index_building
+                ? 'Holdings index is still building for the backfilled archive — check back soon.'
+                : 'No ingested scheme currently holds this ISIN.'}
             </div>
           ) : (
             <div className="bg-card border border-line-subtle rounded-sm overflow-hidden">

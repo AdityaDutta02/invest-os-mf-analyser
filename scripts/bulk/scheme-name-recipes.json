@@ -1,0 +1,791 @@
+{
+  "generated_from": "scripts/bulk/parse.ts + scripts/bulk/map-schemes.ts, final run 2026-07-08",
+  "overall_record_coverage_pct": 76.41,
+  "threshold_for_locked_in": 50.0,
+  "note": "locked_in AMCs should NOT need re-derivation of their extraction method in future runs \u2014 the hint_method breakdown here documents exactly what worked. open AMCs list a specific diagnosis + suggested fix where known; apply and re-run scripts/bulk/parse.ts + map-schemes.ts to pick up the fix.",
+  "locked_in": {
+    "Abakkus Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 94.4,
+      "method_breakdown": {
+        "early_text": 1,
+        "index_sheet_lookup": 17
+      },
+      "mapped_record_pct": 100.0,
+      "total_records": 18,
+      "sample_scheme_names": [
+        "Abakkus Liquid Fund",
+        "Abakkus Liquid Fund",
+        "Abakkus Flexi Cap Fund"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Aditya Birla Sun Life Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 55.5,
+      "method_breakdown": {
+        "index_sheet_lookup": 11750,
+        "label_in_sheet": 57,
+        "early_text": 9358
+      },
+      "mapped_record_pct": 79.3,
+      "total_records": 21165,
+      "sample_scheme_names": [
+        "ADITYA BIRLA SUN LIFE BSE INDIA INFRASTRUCTURE INDEX FUND",
+        "ADITYA BIRLA SUN LIFE BUSINESS CYCLE FUND",
+        "ADITYA BIRLA SUN LIFE CONGLOMERATE FUND"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Angel One Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 108
+      },
+      "mapped_record_pct": 86.1,
+      "total_records": 108,
+      "sample_scheme_names": [
+        "Angel One Gold ETF FOF",
+        "Angel One Gold ETF",
+        "AngelOne Nifty 1D Rate Liquid ETF GROWTH"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Axis Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "index_sheet_lookup": 5087
+      },
+      "mapped_record_pct": 92.6,
+      "total_records": 5087,
+      "sample_scheme_names": [
+        "Axis Fixed Term Plan - Series 112",
+        "Axis Fixed Term Plan - Series 113",
+        "Axis Nifty 500 Index Fund"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Bajaj Finserv Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 99.8,
+      "method_breakdown": {
+        "label_in_sheet": 1,
+        "early_text": 476
+      },
+      "mapped_record_pct": 99.8,
+      "total_records": 477,
+      "sample_scheme_names": [
+        "Security Code",
+        "Bajaj Finserv Balanced Advantage Fund",
+        "Bajaj Finserv Banking and Financial Services Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Bandhan Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 469
+      },
+      "mapped_record_pct": 89.3,
+      "total_records": 469,
+      "sample_scheme_names": [
+        "Bandhan Overnight Fund",
+        "Bandhan Low Duration Fund",
+        "Bandhan Ultra Short Duration Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Bank of India Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 51.9,
+      "method_breakdown": {
+        "early_text": 1100,
+        "index_sheet_lookup": 1187
+      },
+      "mapped_record_pct": 57.7,
+      "total_records": 2287,
+      "sample_scheme_names": [
+        "BOI AXA Liquid Fund",
+        "BOI AXA Treasury Advantage Fund",
+        "BOI AXA Equity Fund"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Baroda BNP Paribas Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 40.1,
+      "method_breakdown": {
+        "index_sheet_lookup": 947,
+        "early_text": 1381,
+        "label_in_sheet": 1556
+      },
+      "mapped_record_pct": 91.9,
+      "total_records": 3884,
+      "sample_scheme_names": [
+        "Baroda BNP Paribas Low Duration Fund",
+        "Baroda BNP Paribas Dynamic Bond Fund",
+        "Baroda BNP Paribas Corporate Bond Fund"
+      ],
+      "method_description": "In-sheet 'SCHEME NAME:' label \u2014 regex /scheme\\s*name/i, take next non-empty cell (same row, else next row).",
+      "status": "locked_in"
+    },
+    "Canara Robeco Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 1018
+      },
+      "mapped_record_pct": 96.7,
+      "total_records": 1018,
+      "sample_scheme_names": [
+        "CANARA ROBECO INCOME FUND",
+        "CANARA ROBECO MID CAP FUND",
+        "CANARA ROBECO MULTI CAP FUND"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Choice Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "label_in_sheet": 8
+      },
+      "mapped_record_pct": 100.0,
+      "total_records": 8,
+      "sample_scheme_names": [
+        "Choice Gold ETF",
+        "Choice Nifty 50 Index Fund",
+        "Choice Nifty Next 50 Index Fund"
+      ],
+      "method_description": "In-sheet 'SCHEME NAME:' label \u2014 regex /scheme\\s*name/i, take next non-empty cell (same row, else next row).",
+      "status": "locked_in"
+    },
+    "DSP Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 14304
+      },
+      "mapped_record_pct": 88.7,
+      "total_records": 14304,
+      "sample_scheme_names": [
+        "DSP Liquidity Fund",
+        "DSP Ultra Short Fund",
+        "DSP Credit Risk Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Franklin Templeton Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 5977
+      },
+      "mapped_record_pct": 81.1,
+      "total_records": 5977,
+      "sample_scheme_names": [
+        "FRANKLIN INDIA INCOME OPPORTUNITIES FUND",
+        "FRANKLIN INDIA ULTRA SHORT BOND FUND",
+        "FRANKLIN INDIA SHORT TERM INCOME PLAN"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "HSBC Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 2881
+      },
+      "mapped_record_pct": 54.6,
+      "total_records": 2881,
+      "sample_scheme_names": [
+        "HSBC CRISIL IBX Gilt June 2027 IndexFund",
+        "HSBC CRISIL IBX Gilt June 2027 IndexFund",
+        "HSBC CRISIL IBX Gilt June 2027 IndexFund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "ICICI Prudential Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 8753
+      },
+      "mapped_record_pct": 93.8,
+      "total_records": 8753,
+      "sample_scheme_names": [
+        "ICICI Prudential Banking & Financial Services Fund",
+        "ICICI Prudential BHARAT 22 FOF",
+        "ICICI Prudential Bharat Consumption Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "ITI Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 96.7,
+      "method_breakdown": {
+        "index_sheet_lookup": 1128,
+        "label_in_sheet": 38
+      },
+      "mapped_record_pct": 95.9,
+      "total_records": 1166,
+      "sample_scheme_names": [
+        "ITI Arbitrage Fund",
+        "ITI Balanced Advantage Fund",
+        "ITI Bharat Consumption Fund"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Jio BlackRock Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 50.9,
+      "method_breakdown": {
+        "early_text": 111,
+        "index_sheet_lookup": 107
+      },
+      "mapped_record_pct": 100.0,
+      "total_records": 218,
+      "sample_scheme_names": [
+        "JioBlackRock Short Duration Fund",
+        "JioBlackRock Low Duration Fund",
+        "JioBlackRock Low Duration Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "LIC Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 2478
+      },
+      "mapped_record_pct": 80.6,
+      "total_records": 2478,
+      "sample_scheme_names": [
+        "LIC MF MEDIUM TO LONG DURATION FUND",
+        "LIC MF NIFTY 8-13 YR G-SEC ETF",
+        "LIC MF GILT FUND"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Mahindra Manulife Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 99.2,
+      "method_breakdown": {
+        "early_text": 1354,
+        "label_in_sheet": 11
+      },
+      "mapped_record_pct": 52.7,
+      "total_records": 1365,
+      "sample_scheme_names": [
+        "Mahindra Manulife Liquid Fund",
+        "Mahindra Manulife ELSS Tax Saver Fund",
+        "Mahindra Manulife Low Duration Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Mirae Asset Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 99.8,
+      "method_breakdown": {
+        "early_text": 4340,
+        "label_in_sheet": 7
+      },
+      "mapped_record_pct": 95.5,
+      "total_records": 4347,
+      "sample_scheme_names": [
+        "Mirae Asset BSE India Defence ETF",
+        "Mirae Asset Corporate Bond Fund",
+        "Mirae Asset Flexi Cap Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Motilal Oswal Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 63.9,
+      "method_breakdown": {
+        "index_sheet_lookup": 2090,
+        "early_text": 1181
+      },
+      "mapped_record_pct": 87.8,
+      "total_records": 3271,
+      "sample_scheme_names": [
+        "Motilal Oswal Nifty 50 ETF",
+        "Motilal Oswal Nifty Midcap 100 ETF",
+        "Motilal Oswal Nasdaq 100 ETF"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Navi Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 1043
+      },
+      "mapped_record_pct": 73.7,
+      "total_records": 1043,
+      "sample_scheme_names": [
+        "Navi Aggressive Hybrid Fund",
+        "Navi BSE Sensex Index Fund",
+        "Navi ELSS Tax Saver Nifty 50 Index Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Nippon India Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 98.2,
+      "method_breakdown": {
+        "index_sheet_lookup": 20704,
+        "early_text": 389
+      },
+      "mapped_record_pct": 87.2,
+      "total_records": 21093,
+      "sample_scheme_names": [
+        "Nippon India Growth Mid Cap Fund",
+        "Nippon India Vision Large & Mid Cap Fund",
+        "Nippon India Corporate Bond Fund"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Old Bridge Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 32
+      },
+      "mapped_record_pct": 90.6,
+      "total_records": 32,
+      "sample_scheme_names": [
+        "Old Bridge Focused Fund",
+        "Old Bridge Flexi Cap Fund",
+        "Old Bridge Focused Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Quant Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 1185
+      },
+      "mapped_record_pct": 90.6,
+      "total_records": 1185,
+      "sample_scheme_names": [
+        "quant Aggressive Hybrid Fund",
+        "quant Multi Cap Fund",
+        "quant Large & Mid Cap Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Quantum Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 99.9,
+      "method_breakdown": {
+        "index_sheet_lookup": 822,
+        "early_text": 1
+      },
+      "mapped_record_pct": 69.0,
+      "total_records": 823,
+      "sample_scheme_names": [
+        "Quantum Value Fund",
+        "Quantum Liquid Fund",
+        "Quantum Nifty 50 ETF"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "SBI Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "label_in_sheet": 10089
+      },
+      "mapped_record_pct": 93.0,
+      "total_records": 10089,
+      "sample_scheme_names": [
+        "SBI ESG Exclusionary Strategy Fund",
+        "SBI Large and Midcap Fund",
+        "SBI ELSS Tax Saver Fund"
+      ],
+      "method_description": "In-sheet 'SCHEME NAME:' label \u2014 regex /scheme\\s*name/i, take next non-empty cell (same row, else next row).",
+      "status": "locked_in"
+    },
+    "Samco Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 80.1,
+      "method_breakdown": {
+        "early_text": 301,
+        "index_sheet_lookup": 75
+      },
+      "mapped_record_pct": 65.4,
+      "total_records": 376,
+      "sample_scheme_names": [
+        "Market/Fair Value\r\n (Rs. in Lakhs)",
+        "Market/Fair Value\r\n (Rs. in Lakhs)",
+        "Market/Fair Value\r\n (Rs. in Lakhs)"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Shriram Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 99.9,
+      "method_breakdown": {
+        "early_text": 1131,
+        "label_in_sheet": 1
+      },
+      "mapped_record_pct": 89.9,
+      "total_records": 1132,
+      "sample_scheme_names": [
+        "Shriram Aggressive Hybrid Fund",
+        "Shriram Flexi Cap Fund",
+        "Shriram ELSS Tax Saver Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Sundaram Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 58.7,
+      "method_breakdown": {
+        "early_text": 5033,
+        "index_sheet_lookup": 3544
+      },
+      "mapped_record_pct": 81.7,
+      "total_records": 8577,
+      "sample_scheme_names": [
+        "Sundaram Capital Protection Oriented Fund 5 Years (Series 7)",
+        "Sundaram Capital Protection Oriented Fund 5 Years (Series 8)",
+        "Sundaram Select Debt Short-Term Asset Plan"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    },
+    "Tata Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 87.1,
+      "method_breakdown": {
+        "index_sheet_lookup": 2753,
+        "early_text": 408
+      },
+      "mapped_record_pct": 99.2,
+      "total_records": 3161,
+      "sample_scheme_names": [
+        "TATA SILVER ETF FUND OF FUND",
+        "TATA GOLD ETF FUND OF FUND",
+        "TATA VALUE FUND"
+      ],
+      "method_description": "Workbook has an 'Index'-named tab mapping short tab-codes to full scheme names (2-3 col table); data sheets are named by that code. Build code->name map, strip trailing parenthetical description.",
+      "status": "locked_in"
+    },
+    "Taurus Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "label_in_sheet": 626
+      },
+      "mapped_record_pct": 75.4,
+      "total_records": 626,
+      "sample_scheme_names": [
+        "Taurus Banking & Financial Services Fund",
+        "Taurus Elss Tax Saver Fund",
+        "Taurus Ethical Fund"
+      ],
+      "method_description": "In-sheet 'SCHEME NAME:' label \u2014 regex /scheme\\s*name/i, take next non-empty cell (same row, else next row).",
+      "status": "locked_in"
+    },
+    "WhiteOak Capital Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 90.7,
+      "method_breakdown": {
+        "early_text": 929,
+        "index_sheet_lookup": 12,
+        "label_in_sheet": 83
+      },
+      "mapped_record_pct": 91.6,
+      "total_records": 1024,
+      "sample_scheme_names": [
+        "WhiteOak Capital Liquid Fund",
+        "WhiteOak Capital Liquid Fund",
+        "WhiteOak Capital Ultra Short Duration Fund"
+      ],
+      "method_description": "No label/index found \u2014 first multi-word (8-100 char) text cell in rows 0-9 that isn't known boilerplate (portfolio-statement headers, NSE/BSE codes, AMC-name-as-header, regulatory text) and doesn't start with '('.",
+      "status": "locked_in"
+    }
+  },
+  "open_issues": {
+    "360 ONE Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 87.0,
+      "method_breakdown": {
+        "early_text": 703,
+        "label_in_sheet": 8,
+        "index_sheet_lookup": 97
+      },
+      "mapped_record_pct": 1.0,
+      "total_records": 808,
+      "sample_scheme_names": [
+        "Industry / Rating",
+        "Market/Fair Value(Rs. in Lacs)",
+        "Market/Fair Value(Rs. in Lacs)"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing 'Industry / Rating' / 'Market/Fair Value(Rs. in Lacs)' column headers \u2014 same boilerplate-regex gap as Invesco/HDFC."
+    },
+    "Capitalmind Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "label_in_sheet": 40
+      },
+      "mapped_record_pct": 0.0,
+      "total_records": 40,
+      "sample_scheme_names": [
+        "Capitalmind Liquid Fund\r\n(An open-ended Liquid scheme. A relatively low-interest rate risk and relatively low credit risk fund)",
+        "Capitalmind Flexi Cap Fund\r\n(An open-ended dynamic equity scheme investing across large cap, mid cap & small cap stocks)",
+        "Capitalmind Multi Asset Allocation Fund\r\n(An open-ended scheme investing in equity and equity related instruments, debt and money market instruments, Commodities including Exchange Traded Commodity Derivatives)"
+      ],
+      "status": "open",
+      "diagnosis": "Same root cause as Helios \u2014 label_in_sheet needs parenthetical-description stripping."
+    },
+    "Groww Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 1445
+      },
+      "mapped_record_pct": 29.3,
+      "total_records": 1445,
+      "sample_scheme_names": [
+        "IB02-Groww Liquid Fund",
+        "IB05-Groww Dynamic Term Fund",
+        "IB10-Groww Short Term Fund"
+      ],
+      "status": "open",
+      "diagnosis": "Hint has a glued short-code prefix ('IB02-Groww Liquid Fund') from early_text \u2014 likely same prefix-stripping fix as The Wealth Company."
+    },
+    "HDFC Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 5122
+      },
+      "mapped_record_pct": 7.6,
+      "total_records": 5122,
+      "sample_scheme_names": [
+        "Coupon (%)",
+        "Coupon (%)",
+        "Coupon (%)"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing a column-header cell ('Coupon (%)') instead of the scheme name \u2014 sheet's actual name is elsewhere (not in first multi-word cell). Needs EARLY_TEXT_BOILERPLATE_RE extended with 'coupon' and a look further into the row/sheet for the real title, likely via a still-unrecognized label variant."
+    },
+    "Helios Mutual Fund": {
+      "dominant_hint_method": "label_in_sheet",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "label_in_sheet": 152
+      },
+      "mapped_record_pct": 0.7,
+      "total_records": 152,
+      "sample_scheme_names": [
+        "Helios Small Cap Fund (Small Cap Fund - An open-ended equity scheme predominantly investing in small cap stocks)",
+        "Helios Overnight Fund  (An open ended debt scheme investing in overnight securities. Relatively low interest rate risk and relatively low credit risk)",
+        "Helios Flexi Cap Fund (An open-ended dynamic equity scheme investing across large cap, \r\nmid cap & small cap stocks)"
+      ],
+      "status": "open",
+      "diagnosis": "label_in_sheet finds the label correctly but doesn't strip the trailing parenthetical scheme-type description ('Helios Small Cap Fund (Small Cap Fund - An open-ended...)'), polluting the mfapi query. Needs the same split('(')[0] cleanup buildIndexMap already applies."
+    },
+    "Invesco Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 1945
+      },
+      "mapped_record_pct": 2.1,
+      "total_records": 1945,
+      "sample_scheme_names": [
+        "Market/Fair Value (Rs. in Lakhs)",
+        "Market/Fair Value (Rs. in Lakhs)",
+        "Market/Fair Value (Rs. in Lakhs)"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing 'Market/Fair Value (Rs. in Lakhs)' column header. Needs EARLY_TEXT_BOILERPLATE_RE extended with 'market/fair value' \u2014 currently only catches 'exchange traded'/'name of the instrument' phrasing, not this column-header wording."
+    },
+    "JM Financial Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 95.3,
+      "method_breakdown": {
+        "early_text": 2379,
+        "index_sheet_lookup": 117
+      },
+      "mapped_record_pct": 2.1,
+      "total_records": 2496,
+      "sample_scheme_names": [
+        "Quantity/Face Value",
+        "Quantity/Face Value",
+        "Quantity/Face Value"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing 'Quantity/Face Value' column header \u2014 same boilerplate-regex gap."
+    },
+    "NJ Mutual Fund": {
+      "dominant_hint_method": "index_sheet_lookup",
+      "dominant_method_pct": 68.4,
+      "method_breakdown": {
+        "early_text": 33,
+        "index_sheet_lookup": 108,
+        "label_in_sheet": 17
+      },
+      "mapped_record_pct": 0.0,
+      "total_records": 158,
+      "sample_scheme_names": [
+        "NJ Flexi Cap Fund",
+        "NJ Arbitrage Fund",
+        "NJ Overnight Fund"
+      ],
+      "status": "open",
+      "diagnosis": "Hints look clean ('NJ Flexi Cap Fund') but coverage is 0% \u2014 not a hint-extraction problem. Needs live investigation of the mfapi AMC-name match path (possible NJ isn't well-indexed on mfapi, or inferAmcName's fallback mismatches on some variant)."
+    },
+    "PGIM India Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 3911
+      },
+      "mapped_record_pct": 43.2,
+      "total_records": 3911,
+      "sample_scheme_names": [
+        "PGIM INDIA BALANCED ADVANTAGE FUND",
+        "PGIM INDIA AGGRESSIVE HYBRID EQUITY FUND",
+        "PGIM INDIA FLEXI CAP FUND"
+      ],
+      "status": "open",
+      "diagnosis": "Hints look clean (100% early_text, e.g. 'PGIM INDIA BALANCED ADVANTAGE FUND') but only 43.2% map \u2014 genuinely needs live investigation (not an obvious hint-quality bug); may be partial mfapi coverage of PGIM schemes or a scoring-threshold edge case."
+    },
+    "PPFAS Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 50.9,
+      "method_breakdown": {
+        "early_text": 301,
+        "index_sheet_lookup": 168,
+        "label_in_sheet": 122
+      },
+      "mapped_record_pct": 33.0,
+      "total_records": 591,
+      "sample_scheme_names": [
+        "Industry / Rating",
+        "Market/Fair Value\r\n (Rs. in Lakhs)",
+        "Industry / Rating"
+      ],
+      "status": "open",
+      "diagnosis": "Mixed: ~50% of sheets get early_text column-header noise ('Industry / Rating', 'Market/Fair Value...') same as the Invesco/360-ONE gap; the other half (index_sheet_lookup/label_in_sheet) map fine (see Baroda-BNP-style entries for those methods' quality elsewhere)."
+    },
+    "The Wealth Company Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 50
+      },
+      "mapped_record_pct": 0.0,
+      "total_records": 50,
+      "sample_scheme_names": [
+        "WCSC-THE WEALTH COMPANY SMALL CAP FUND",
+        "WCFL-THE WEALTH COMPANY FLEXI CAP FUND",
+        "WCAR-THE WEALTH COMPANY ARBITRAGE FUND"
+      ],
+      "status": "open",
+      "diagnosis": "Hint includes an ungled short-code prefix ('WCSC-THE WEALTH COMPANY SMALL CAP FUND') that survives cleanup and may be diluting the mfapi query token match \u2014 needs a prefix-code stripper (pattern: 2-6 uppercase letters + '-' at the very start)."
+    },
+    "Trust Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 98.7,
+      "method_breakdown": {
+        "index_sheet_lookup": 6,
+        "early_text": 442
+      },
+      "mapped_record_pct": 5.8,
+      "total_records": 448,
+      "sample_scheme_names": [
+        "TRUSTMF Liquid Fund",
+        "TRUSTMF Short Duration Fund",
+        "TRUSTMF Overnight Fund"
+      ],
+      "status": "open",
+      "diagnosis": "Hints look clean ('TRUSTMF Liquid Fund') but coverage is 5.8% \u2014 likely an AMC-name-match issue: inferAmcName's fallback needs a 'TRUSTMF' -> 'Trust Mutual Fund' regex added to AMC_HINTS in lib/mfapi.ts, since 'TRUSTMF' as a prefix won't fuzzy-match 'Trust' without it."
+    },
+    "Unifi Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 47
+      },
+      "mapped_record_pct": 2.1,
+      "total_records": 47,
+      "sample_scheme_names": [
+        "Name of Instrument",
+        "Name of Instrument",
+        "Name of Instrument"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing 'Name of Instrument' column header \u2014 same boilerplate-regex gap (needs 'name of instrument' variant without 'the')."
+    },
+    "Union Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 84.7,
+      "method_breakdown": {
+        "early_text": 2173,
+        "index_sheet_lookup": 392
+      },
+      "mapped_record_pct": 31.0,
+      "total_records": 2565,
+      "sample_scheme_names": [
+        "Union Mutual Fund - Registration No. MF/066/11/01",
+        "Union Mutual Fund - Registration No. MF/066/11/01",
+        "Union Mutual Fund - Registration No. MF/066/11/01"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing AMC registration boilerplate ('Union Mutual Fund - Registration No. MF/066/11/01') \u2014 the bare-AMC-name guard only rejects an exact match, not AMC-name-plus-registration-text. Needs a broader 'starts with AMC name' check or a 'registration no' boilerplate pattern."
+    },
+    "Zerodha Mutual Fund": {
+      "dominant_hint_method": "early_text",
+      "dominant_method_pct": 100.0,
+      "method_breakdown": {
+        "early_text": 234
+      },
+      "mapped_record_pct": 0.0,
+      "total_records": 234,
+      "sample_scheme_names": [
+        "Rating / Industry",
+        "Rating / Industry^",
+        "Rating / Industry^"
+      ],
+      "status": "open",
+      "diagnosis": "early_text grabbing 'Rating / Industry' column header \u2014 same boilerplate-regex gap."
+    }
+  }
+}

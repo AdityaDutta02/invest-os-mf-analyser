@@ -50,7 +50,13 @@ export async function GET(req: NextRequest) {
   }
 
   const cached = new Set(scheme.startsWith("upload-") ? [] : await cachedPeriods(scheme, token));
-  const months = monthsBack(ly, lm, 18).filter((p) => p >= inceptionMonth);
+  // Union the rolling 18-month window with every period actually in the DB —
+  // a bulk-loaded archive can reach back years further than 18 months, and
+  // without this union that history is invisible in the period picker even
+  // though the data is sitting right there in `snapshots`.
+  const months = [...new Set([...monthsBack(ly, lm, 18), ...cached])]
+    .filter((p) => p >= inceptionMonth)
+    .sort((a, b) => (a < b ? 1 : a > b ? -1 : 0)); // newest-first
 
   const options: PeriodOption[] = months.map((period) => {
     let status: PeriodStatus;

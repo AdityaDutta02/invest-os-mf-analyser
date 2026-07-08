@@ -116,6 +116,8 @@ export async function writeSnapshot(
     ),
   );
 
+  await upsertSchemeLatest(schemeCode, amcName, period, data, token);
+
   // `securities` is keyed by ISIN (PRIMARY KEY) — previously this did a
   // dbList existence check *per holding* before inserting (2 round trips x
   // every holding, on top of the holdings_index write above). That's the
@@ -128,5 +130,45 @@ export async function writeSnapshot(
   // holding, and no serialization on the dbList response before the insert.
   await Promise.all(
     equityHoldings.map((h) => dbInsert("securities", { isin: h.isin, name: h.name }, token).catch(() => {})),
+  );
+}
+
+// Keeps scheme_latest (F1's pre-computed ScreenerRow dimension) in sync so
+// /api/screen never has to full-table-scan snapshots. Skips the write if a
+// newer period is already recorded (writes aren't guaranteed to arrive in
+// period order — a backfill can land an older month after a newer one).
+async function upsertSchemeLatest(
+  schemeCode: string,
+  amcName: string,
+  period: string,
+  data: AnalyseData,
+  token: string,
+): Promise<void> {
+  const existing = await dbList<{ id: string; latest_period: string }>(
+    "scheme_latest",
+    { scheme_code: schemeCode },
+    token,
+  ).catch(() => []);
+  if (existing.some((r) => r.latest_period > period)) return;
+
+  const top10 = data.top_holdings.slice(0, 10).reduce((s, h) => s + h.weight, 0);
+  await purge("scheme_latest", { scheme_code: schemeCode }, token);
+  await dbInsert(
+    "scheme_latest",
+    {
+      scheme_code: schemeCode,
+      scheme_name: data.scheme_name,
+      amc_name: amcName,
+      category: data.category,
+      asset_class: data.asset_class,
+      latest_period: period,
+      aum: data.aum,
+      nav: data.nav,
+      expense_ratio: data.expense_ratio,
+      holdings_count: data.holdings_count,
+      deployable_cash: data.deployable_cash,
+      top10_concentration: Math.round(top10 * 100) / 100,
+    },
+    token,
   );
 }

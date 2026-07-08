@@ -98,6 +98,27 @@ CREATE TABLE IF NOT EXISTS securities (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 
+-- One row per scheme (latest period only) — pre-computed ScreenerRow so
+-- /api/screen reads this wholesale instead of a full-table dbList("snapshots")
+-- scan of every historical JSONB row (dies at corpus scale: 100k+ rows,
+-- multi-GB / silent truncation). writeSnapshot() upserts this on every write.
+CREATE TABLE IF NOT EXISTS scheme_latest (
+  id                   UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  scheme_code          TEXT NOT NULL UNIQUE,
+  scheme_name          TEXT NOT NULL,
+  amc_name             TEXT NOT NULL,
+  category             TEXT,
+  asset_class          TEXT,
+  latest_period        TEXT NOT NULL,
+  aum                  NUMERIC,
+  nav                  NUMERIC,
+  expense_ratio        NUMERIC,
+  holdings_count       INTEGER,
+  deployable_cash      NUMERIC,
+  top10_concentration  NUMERIC,
+  updated_at           TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 -- Single-row-per-key cursor so /api/cron/ingest-staged's manifest scan
 -- advances across invocations instead of always restarting at index 0 (with
 -- a fixed per-run `limit`, that meant it could never reach any entry past

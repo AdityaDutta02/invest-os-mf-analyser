@@ -49,3 +49,34 @@ export async function dbUpdate<T = Record<string, unknown>>(table: string, id: s
 export async function dbDelete(table: string, id: string, embedToken: string): Promise<void> {
   await dbRequest('DELETE', `${table}/${id}`, undefined, embedToken)
 }
+
+export interface BulkInsertResult<T> {
+  inserted: T[]
+  errors: { index: number; error: string }[]
+}
+
+// POST /db/<table>/bulk — 1 call inserts up to 1000 rows, counts as 1 call
+// against the 600/min limit regardless of row count (granted by platform dev
+// for the corpus backfill, see ama_bulk_direct_db_load memory). Always 200;
+// partial success is reported per-row in `errors`, not via HTTP status —
+// `unique_violation` there means "already written," safe to treat as done.
+const BULK_MAX_ROWS = 1000
+
+export async function dbBulkInsert<T = Record<string, unknown>>(
+  table: string,
+  rows: Record<string, unknown>[],
+  embedToken: string,
+): Promise<BulkInsertResult<T>> {
+  if (rows.length > BULK_MAX_ROWS) throw new Error(`dbBulkInsert: ${rows.length} rows exceeds the ${BULK_MAX_ROWS}-row cap per call`)
+  if (rows.length === 0) return { inserted: [], errors: [] }
+  const res = await fetchWithRetry(`${GATEWAY_URL}/db/${table}/bulk`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${embedToken}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ rows }),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({ error: 'Unknown error' }))
+    throw new Error((err as { error: string }).error ?? `Bulk insert error ${res.status}`)
+  }
+  return res.json() as Promise<BulkInsertResult<T>>
+}

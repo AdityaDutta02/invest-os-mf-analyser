@@ -142,6 +142,9 @@ export interface IsinSearchResult {
   security_name: string | null;
   holder_count: number;
   holdings: SearchHolding[];
+  /** true when holdings_index has no rows at all yet (bulk backfill deferred
+   * this table) — distinguishes "index still building" from "genuinely no holders." */
+  index_building?: boolean;
 }
 
 export interface SecurityMatch {

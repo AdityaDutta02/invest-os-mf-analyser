@@ -72,6 +72,11 @@ async function searchByIsin(isin: string, token: string) {
     security_name: nameRows[0]?.name ?? null,
     holder_count: latestByScheme.size,
     holdings,
+    // holdings_index is deferred for the bulk-backfilled corpus (see
+    // ama_bulk_direct_db_load) — a zero-holder result can't be distinguished
+    // from "not indexed yet" without this flag, so surface it honestly
+    // instead of the UI reading it as a confirmed "nobody holds this."
+    ...(latestByScheme.size === 0 ? { index_building: true } : {}),
   };
 }
 
