@@ -29,7 +29,21 @@ const GITHUB_REPO = "AdityaDutta02/invest-os-mf-analyser";
 const STAGING_BRANCH = "data-staging";
 const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_REPO}/${STAGING_BRANCH}/staging/bulk-ready`;
 
-const BUDGET_MS = 25_000;
+// Lowered from 25s: the main snapshot-write loop respects this, but the
+// schemes dedup-write tail + cursor write + createDelayedTask call ran
+// AFTER it with no time check at all — on a cycle with more distinct
+// schemes or slower network, that unaccounted tail work could push total
+// wall-clock past the platform's real (undocumented) invocation ceiling,
+// getting the whole request killed before createDelayedTask ever fires.
+// That produced exactly the intermittent pattern observed live: cycle 1
+// (kickoff) made it through, cycle 2 didn't and the self-rescheduling
+// chain silently died. Same class of bug ingest-staged's route already
+// hit once (see its BUDGET_MS/ENTRY_DEADLINE_MS comments) — leave real
+// headroom below budget for the tail, and make the tail skip low-priority
+// work (schemes) rather than skip the cursor/reschedule that keeps the
+// chain alive.
+const BUDGET_MS = 15_000;
+const TAIL_DEADLINE_MS = 20_000; // hard ceiling incl. schemes tail — never skip cursor/reschedule
 const FETCH_TIMEOUT_MS = 15_000;
 const BULK_MAX_ROWS = 1000;
 const BULK_MAX_BYTES = 5_000_000; // stay well under the endpoint's ~10MB cap
@@ -143,6 +157,11 @@ export async function POST(req: NextRequest) {
     }
   }
 
+  // Lower priority than keeping the chain alive — skip remaining batches
+  // once close to the deadline rather than risk the whole invocation (and
+  // the cursor-write/reschedule below) getting killed mid-tail. Schemes
+  // for skipped codes get picked up naturally when that scheme_code
+  // reappears in a later period's chunk.
   const schemeRows = [...seenSchemeCodes.entries()].map(([scheme_code, d]) => ({
     scheme_code,
     amc_name: d.amc_name,
@@ -152,6 +171,7 @@ export async function POST(req: NextRequest) {
     asset_class: d.asset_class,
   }));
   for (const batch of batchRows(schemeRows)) {
+    if (Date.now() - startedAt > TAIL_DEADLINE_MS) break;
     const result = await dbBulkInsert("schemes", batch, token);
     schemesWritten += result.inserted.length;
   }
