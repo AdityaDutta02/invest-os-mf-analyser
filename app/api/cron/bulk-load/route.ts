@@ -102,16 +102,47 @@ function batchRows<T>(rows: T[]): T[][] {
   return batches;
 }
 
+// A transient failure anywhere in one cycle (GitHub raw fetch blip, a
+// gateway hiccup) must not permanently end the backfill — retry the exact
+// same cursor position from a fresh invocation rather than let an uncaught
+// exception skip straight past createDelayedTask. Confirmed necessary live:
+// the chain died twice at cycle 2 even after bounding the known slow tail,
+// which pointed at an upstream failure (most likely repeatedly re-fetching
+// a large partially-processed chunk file) killing the request before it
+// ever reached the reschedule call.
 export async function POST(req: NextRequest) {
   const startedAt = Date.now();
   const auth = req.headers.get("authorization") || "";
   const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
   if (!token) return NextResponse.json({ error: "missing task token" }, { status: 401 });
 
+  let chunkIdx = 0;
+  let lineOffset = 0;
+  try {
+    const packed = await getIngestCursor(CURSOR_KEY, token);
+    chunkIdx = Math.floor(packed / 1_000_000);
+    lineOffset = packed % 1_000_000;
+  } catch (e) {
+    await retry(token);
+    return NextResponse.json({ error: "cursor read failed, retrying", detail: String(e) }, { status: 200 });
+  }
+
+  try {
+    return await run(token, chunkIdx, lineOffset, startedAt);
+  } catch (e) {
+    await retry(token);
+    return NextResponse.json({ error: "cycle failed, retrying same position", chunkIdx, lineOffset, detail: String(e) }, { status: 200 });
+  }
+}
+
+async function retry(token: string): Promise<void> {
+  await createDelayedTask({ name: "Bulk load continue", callbackPath: "/api/cron/bulk-load", delayMinutes: 1 }, token).catch(() => {});
+}
+
+async function run(token: string, startChunkIdx: number, startLineOffset: number, startedAt: number): Promise<NextResponse> {
+  let chunkIdx = startChunkIdx;
+  let lineOffset = startLineOffset;
   const index: ChunkIndex = JSON.parse(await fetchRaw("index.json"));
-  const packed = await getIngestCursor(CURSOR_KEY, token);
-  let chunkIdx = Math.floor(packed / 1_000_000);
-  let lineOffset = packed % 1_000_000;
 
   if (chunkIdx >= index.chunkFiles.length) {
     return NextResponse.json({ done: true, totalChunks: index.chunkFiles.length, totalRecords: index.totalRecords });

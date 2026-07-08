@@ -23,7 +23,17 @@ const MAP_PATH = join(OUT_DIR, "scheme-map.json");
 const CHUNKS_DIR = join(OUT_DIR, "chunks");
 const INDEX_PATH = join(CHUNKS_DIR, "index.json");
 
-const CHUNK_SIZE = 2000;
+// Lowered from 2000: the app's bulk-load route re-fetches a chunk's ENTIRE
+// raw file from GitHub every invocation it touches that chunk (no
+// byte-range support), so a large ~20MB chunk that can't be fully
+// processed within one invocation's time budget gets re-downloaded in
+// full on the next cycle too — and that repeated large fetch is the
+// prime suspect for the self-rescheduling chain dying at cycle 2 in
+// production (confirmed: budget-timing fixes on the write side alone
+// didn't solve it). At ~150 records/chunk (~1-1.5MB), one invocation can
+// reliably finish an entire chunk (or several) well within budget,
+// eliminating the re-fetch-of-a-huge-partial-file case in the common path.
+const CHUNK_SIZE = 150;
 
 interface MapEntry {
   scheme_code: string;
