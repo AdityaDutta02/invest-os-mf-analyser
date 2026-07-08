@@ -47,9 +47,22 @@ const DEFAULT_LIMIT = 3;
 // Lowered from 40s to leave more headroom below the callback's real ceiling.
 const BUDGET_MS = 25_000;
 
+// Neither of these fetches had a timeout — the try/catch below only guards
+// against a real network error, not a hang. fetchManifest in particular
+// runs once at the very top of the route, before BUDGET_MS's first check;
+// a stalled connection to GitHub raw content would block the whole
+// invocation indefinitely with no internal bail-out, which is consistent
+// with ingest-staged still failing on live runs after both the route-level
+// (a4bbb60c) and mfapi.ts (cfada772) timeout fixes — neither touched this
+// path. Same 8s AbortController pattern as lib/registry.ts's fetchBuf.
+const RAW_FETCH_TIMEOUT_MS = 8000;
+
 async function fetchManifest(): Promise<ManifestEntry[]> {
   try {
-    const res = await fetch(`${RAW_BASE}/staging/manifest.json`, { cache: "no-store" });
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), RAW_FETCH_TIMEOUT_MS);
+    const res = await fetch(`${RAW_BASE}/staging/manifest.json`, { cache: "no-store", signal: ctrl.signal });
+    clearTimeout(t);
     if (!res.ok) return [];
     return (await res.json()) as ManifestEntry[];
   } catch {
@@ -59,7 +72,10 @@ async function fetchManifest(): Promise<ManifestEntry[]> {
 
 async function fetchStagedFile(stagedPath: string): Promise<ArrayBuffer | null> {
   try {
-    const res = await fetch(`${RAW_BASE}/staging/${stagedPath}`, { cache: "no-store" });
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), RAW_FETCH_TIMEOUT_MS);
+    const res = await fetch(`${RAW_BASE}/staging/${stagedPath}`, { cache: "no-store", signal: ctrl.signal });
+    clearTimeout(t);
     if (!res.ok) return null;
     return await res.arrayBuffer();
   } catch {
