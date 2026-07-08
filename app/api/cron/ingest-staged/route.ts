@@ -160,6 +160,78 @@ async function processWorkbook(
   return "success";
 }
 
+// Handles one manifest entry (single workbook or zip archive). Extracted
+// from the POST loop so it can be raced against a hard deadline below —
+// three targeted timeout fixes (route BUDGET_MS in a4bbb60c, mfapi.ts's
+// retry budget in cfada772, the raw-fetch AbortControllers above) each
+// closed one specific hang source, but ingest-staged kept failing on live
+// runs after every one of them. None of those fixes bounds the *total*
+// per-entry wall-clock — a hang anywhere unaccounted for (gateway call,
+// XLSX.read on a malformed workbook, JSZip decompression) still blocks the
+// whole invocation past the callback's real execution ceiling with no
+// internal escape. This deadline is the backstop of last resort: whatever
+// is actually hanging, the route now always returns a response instead of
+// getting killed mid-request.
+async function processEntry(entry: ManifestEntry, token: string, startedAt: number): Promise<string> {
+  const buf = await fetchStagedFile(entry.staged_path);
+  if (!buf) {
+    await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "transient", error: `fetch failed: ${entry.staged_path}`, source_url: entry.source_url }, token);
+    return "fetch_failed";
+  }
+
+  if (entry.packaging === "zip") {
+    // Multi-scheme archive: unpack, parse+write each xls/xlsx member.
+    // Counts as one `limit` slot at the entry level — a large archive's
+    // member count doesn't blow the invocation's time budget unbounded,
+    // but does mean a single zip can itself take a while; that's fine,
+    // it still finishes within one request rather than needing to be
+    // resumed member-by-member (dedupe is per-member so a retry after a
+    // timeout just re-skips already-written members).
+    let zip: JSZip;
+    try {
+      zip = await JSZip.loadAsync(buf);
+    } catch {
+      await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "unreadable zip", source_url: entry.source_url }, token);
+      return "unreadable_zip";
+    }
+    const memberNames = Object.keys(zip.files).filter((n) => /\.(xls|xlsx)$/i.test(n) && !zip.files[n].dir);
+    const memberStatuses: string[] = [];
+    for (const name of memberNames) {
+      // A multi-scheme archive (e.g. ICICI's monthly ZIP) can have
+      // dozens of members — the outer budget check only runs once per
+      // manifest entry, so without this a single large zip could still
+      // run past the callback's real execution ceiling. Dedupe (above,
+      // per-member) means whatever's deferred here just resumes as
+      // "not yet done" on the zip's next pass.
+      if (Date.now() - startedAt > BUDGET_MS) {
+        memberStatuses.push("deferred_budget");
+        continue;
+      }
+      const memberBuf = await zip.files[name].async("arraybuffer");
+      const status = await processWorkbook(entry.amc, memberBuf, `${entry.source_url}#${name}`, name, `${entry.staged_path}#${name}`, token);
+      memberStatuses.push(status);
+    }
+    return `zip(${memberNames.length} members: ${memberStatuses.join(",")})`;
+  }
+
+  return processWorkbook(entry.amc, buf, entry.source_url, entry.link_text || entry.staged_path, entry.staged_path, token);
+}
+
+// Zip member processing already self-bounds against BUDGET_MS inside its
+// own loop (above), so this only needs to catch a genuine hang in a single
+// fetch/parse/gateway call that no other checkpoint covers — not legitimate
+// multi-member zip work. Kept short so even the worst case (limit entries
+// each maxing out this deadline) stays under BUDGET_MS's already-tight
+// headroom below the callback's real execution ceiling.
+const ENTRY_DEADLINE_MS = 12_000;
+
+function withDeadline<T>(p: Promise<T>, ms: number): Promise<T> {
+  return Promise.race([
+    p,
+    new Promise<T>((_, reject) => setTimeout(() => reject(new Error("deadline_exceeded")), ms)),
+  ]);
+}
+
 export async function POST(req: NextRequest) {
   const startedAt = Date.now();
   const auth = req.headers.get("authorization") || "";
@@ -189,55 +261,12 @@ export async function POST(req: NextRequest) {
     }
     processed++;
     try {
-      const buf = await fetchStagedFile(entry.staged_path);
-      if (!buf) {
-        await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "transient", error: `fetch failed: ${entry.staged_path}`, source_url: entry.source_url }, token);
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "fetch_failed" });
-        continue;
-      }
-
-      if (entry.packaging === "zip") {
-        // Multi-scheme archive: unpack, parse+write each xls/xlsx member.
-        // Counts as one `limit` slot at the entry level — a large archive's
-        // member count doesn't blow the invocation's time budget unbounded,
-        // but does mean a single zip can itself take a while; that's fine,
-        // it still finishes within one request rather than needing to be
-        // resumed member-by-member (dedupe is per-member so a retry after a
-        // timeout just re-skips already-written members).
-        let zip: JSZip;
-        try {
-          zip = await JSZip.loadAsync(buf);
-        } catch {
-          await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "parse_failed", error: "unreadable zip", source_url: entry.source_url }, token);
-          results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "unreadable_zip" });
-          continue;
-        }
-        const memberNames = Object.keys(zip.files).filter((n) => /\.(xls|xlsx)$/i.test(n) && !zip.files[n].dir);
-        const memberStatuses: string[] = [];
-        for (const name of memberNames) {
-          // A multi-scheme archive (e.g. ICICI's monthly ZIP) can have
-          // dozens of members — the outer budget check only runs once per
-          // manifest entry, so without this a single large zip could still
-          // run past the callback's real execution ceiling. Dedupe (above,
-          // per-member) means whatever's deferred here just resumes as
-          // "not yet done" on the zip's next pass.
-          if (Date.now() - startedAt > BUDGET_MS) {
-            memberStatuses.push("deferred_budget");
-            continue;
-          }
-          const memberBuf = await zip.files[name].async("arraybuffer");
-          const status = await processWorkbook(entry.amc, memberBuf, `${entry.source_url}#${name}`, name, `${entry.staged_path}#${name}`, token);
-          memberStatuses.push(status);
-        }
-        results.push({ staged_path: entry.staged_path, amc: entry.amc, status: `zip(${memberNames.length} members: ${memberStatuses.join(",")})` });
-        continue;
-      }
-
-      const status = await processWorkbook(entry.amc, buf, entry.source_url, entry.link_text || entry.staged_path, entry.staged_path, token);
+      const status = await withDeadline(processEntry(entry, token, startedAt), ENTRY_DEADLINE_MS);
       results.push({ staged_path: entry.staged_path, amc: entry.amc, status });
     } catch (e) {
-      await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "transient", error: e instanceof Error ? e.message : String(e), source_url: entry.source_url }, token);
-      results.push({ staged_path: entry.staged_path, amc: entry.amc, status: "transient" });
+      const msg = e instanceof Error ? e.message : String(e);
+      await logIngestRun({ amc_name: entry.amc, scheme_code: null, period: "unknown", status: "transient", error: msg, source_url: entry.source_url }, token);
+      results.push({ staged_path: entry.staged_path, amc: entry.amc, status: msg === "deadline_exceeded" ? "timed_out" : "transient" });
     }
   }
 
