@@ -37,12 +37,16 @@ interface CronPayload {
   limit?: number;
 }
 
-// Lowered from 15 for the same reason as /api/cron/ingest — writeSnapshot's
-// per-holding fan-out to holdings_index/securities makes each scheme cost
-// far more than one gateway round trip. See lib/ingest-write.ts. The
-// BUDGET_MS wall-clock guard below is the real backstop.
-// Lowered from 5, same rationale as /api/cron/ingest.
-const DEFAULT_LIMIT = 3;
+// Raised back up now that BUDGET_MS + the per-entry deadline (below) are
+// the real backstops: BUDGET_MS already stops starting new entries once
+// ~25s has elapsed regardless of this value, so a low `limit` was only
+// ever an *extra*, unnecessary throttle on top of that — and a costly one,
+// since the manifest scan now has a cursor (lib/ingest-write.ts's
+// getIngestCursor/setIngestCursor) that must advance past `limit` entries
+// per run to make progress through a 28k+-entry manifest at all. At the
+// old limit of 3, reaching PPFAS's first staged file (manifest index 948)
+// alone would have taken ~13 days of hourly runs.
+const DEFAULT_LIMIT = 100;
 // Same rationale as /api/cron/ingest's BUDGET_MS — bail out with time to
 // spare so the route always returns instead of risking a mid-request kill.
 // Lowered from 40s to leave more headroom below the callback's real ceiling.
