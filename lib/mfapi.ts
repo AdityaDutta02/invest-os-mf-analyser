@@ -24,14 +24,23 @@ export interface MfApiDetail {
   status: string;
 }
 
+// Lowered from 3 attempts / 12s each (worst case ~38s including backoff) —
+// callers in the cron routes (getIdentity, navOnOrBefore) run inside a
+// per-item loop gated by a ~25s BUDGET_MS that's only re-checked *between*
+// items, not during one. A single slow mfapi call could alone exceed the
+// whole invocation's budget and push the callback past its real execution
+// ceiling — confirmed as the cause of ingest-staged's post-timeout-fix
+// failures (still failing after lib/registry.ts/route BUDGET_MS changes,
+// since those don't touch this retry loop). 2 attempts / 8s keeps a single
+// call's worst case (~8.6s incl. one backoff) comfortably inside budget.
 async function get<T>(path: string): Promise<T> {
   // Retry transient network/5xx failures — the runtime's outbound network to
   // mfapi can blip, and an unhandled "fetch failed" must not become a 500.
   let lastErr: unknown;
-  for (let attempt = 0; attempt < 3; attempt++) {
+  for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const ctrl = new AbortController();
-      const t = setTimeout(() => ctrl.abort(), 12000);
+      const t = setTimeout(() => ctrl.abort(), 8000);
       const res = await fetch(`${BASE}${path}`, {
         headers: { "User-Agent": UA, Accept: "application/json" },
         signal: ctrl.signal,
