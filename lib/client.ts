@@ -9,6 +9,7 @@ import type {
   PeriodOption,
   SchemeSummary,
   ScreenerRow,
+  SearchResult,
 } from "./types";
 
 export interface ApiError extends Error {
@@ -74,6 +75,11 @@ export async function fetchCompare(
 
 export async function fetchScreener(token: string | null): Promise<ScreenerRow[]> {
   return getJSON<ScreenerRow[]>(`/api/screen`, token);
+}
+
+export async function fetchSearch(q: string, token: string | null): Promise<SearchResult> {
+  if (!q.trim()) return { type: "empty" };
+  return getJSON<SearchResult>(`/api/search?q=${encodeURIComponent(q)}`, token);
 }
 
 export async function fetchAIInsight(

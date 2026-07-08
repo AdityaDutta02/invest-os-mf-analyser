@@ -2,12 +2,13 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LineChart, GitCompare, LayoutGrid, Upload } from 'lucide-react';
+import { LineChart, GitCompare, LayoutGrid, Upload, Search } from 'lucide-react';
 
 const TABS = [
   { to: '/', label: 'Analyse', icon: LineChart, exact: true },
   { to: '/compare', label: 'Compare', icon: GitCompare, exact: false },
   { to: '/screen', label: 'Screen', icon: LayoutGrid, exact: false },
+  { to: '/search', label: 'Search', icon: Search, exact: false },
   { to: '/upload', label: 'Upload', icon: Upload, exact: false },
 ];
 

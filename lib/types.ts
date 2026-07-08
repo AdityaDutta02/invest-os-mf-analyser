@@ -126,3 +126,44 @@ export interface ScreenerRow {
   top10_concentration: number;
   errors?: boolean;
 }
+
+// M6: /api/search response shapes (see app/api/search/route.ts).
+export interface SearchHolding {
+  scheme_code: string;
+  scheme_name: string;
+  amc_name: string;
+  period: string;
+  weight: number | null;
+}
+
+export interface IsinSearchResult {
+  type: "isin";
+  isin: string;
+  security_name: string | null;
+  holder_count: number;
+  holdings: SearchHolding[];
+}
+
+export interface SecurityMatch {
+  isin: string;
+  name: string;
+  score: number;
+}
+
+export interface SchemeMatch {
+  scheme_code: string;
+  amc_name: string;
+  scheme_name: string;
+  category: string;
+  asset_class: string;
+  score: number;
+}
+
+export interface NameSearchResult {
+  type: "name";
+  query: string;
+  securities: SecurityMatch[];
+  schemes: SchemeMatch[];
+}
+
+export type SearchResult = IsinSearchResult | NameSearchResult | { type: "empty" };
