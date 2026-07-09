@@ -135,8 +135,20 @@ export async function POST(req: NextRequest) {
   }
 }
 
+// Task names must be unique per app — every prior reschedule reused the
+// literal string "Bulk load continue", which fails once a task with that
+// name already exists (the first cycle's one-shot task, disabled but not
+// deleted after firing — nothing in the route's own authority can delete
+// it; only the owner-level platform API can). That exactly explains the
+// repeatable "succeeds once, then dies at the identical next step" pattern
+// seen across three separate live test runs. Suffix with the current
+// timestamp so every reschedule call gets a distinct name.
+function reschedName(): string {
+  return `Bulk load continue ${Date.now()}`;
+}
+
 async function retry(token: string): Promise<void> {
-  await createDelayedTask({ name: "Bulk load continue", callbackPath: "/api/cron/bulk-load", delayMinutes: 1 }, token).catch(() => {});
+  await createDelayedTask({ name: reschedName(), callbackPath: "/api/cron/bulk-load", delayMinutes: 1 }, token).catch(() => {});
 }
 
 async function run(token: string, startChunkIdx: number, startLineOffset: number, startedAt: number): Promise<NextResponse> {
@@ -212,7 +224,7 @@ async function run(token: string, startChunkIdx: number, startLineOffset: number
   const done = chunkIdx >= index.chunkFiles.length;
   if (!done) {
     await createDelayedTask(
-      { name: "Bulk load continue", callbackPath: "/api/cron/bulk-load", delayMinutes: 1 },
+      { name: reschedName(), callbackPath: "/api/cron/bulk-load", delayMinutes: 1 },
       token,
     );
   }
