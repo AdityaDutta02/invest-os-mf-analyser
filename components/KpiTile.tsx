@@ -16,12 +16,16 @@ export function KpiTile({ label, value, hint, tooltip, accent }: KpiProps) {
   return (
     <div
       className={[
-        'relative bg-card border border-line-subtle rounded-sm p-4 overflow-hidden',
+        'relative bg-card border border-line-subtle rounded-sm p-4',
         accent ? 'pl-[15px]' : '',
       ].join(' ')}
       data-testid={`kpi-${label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
     >
-      {accent && <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary" />}
+      {/* Rounded on its own corners (not clipped via the tile's overflow) so
+          the tooltip below can pop out above the tile without being cut off
+          — overflow-hidden on the tile was clipping it, causing tooltips to
+          render truncated/overlapping the row above. */}
+      {accent && <span className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary rounded-l-sm" />}
       <div className="flex items-center gap-1.5">
         <span className="font-mono text-[10px] tracking-wide2 uppercase text-fg-secondary">{label}</span>
         {tooltip && (

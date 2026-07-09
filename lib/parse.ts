@@ -386,32 +386,46 @@ function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
     category_breakdown = agg(holdings.map((h) => ({ name: h.sector, weight: h.weight })));
   }
 
+  // Single predicate for everything that counts as "deployable cash" —
+  // cash_breakdown, deployable_cash, and the top_holdings exclusion filter
+  // must all agree on this set, or they silently disagree with each other.
+  // Confirmed live: deployable_cash included "arbitrage"-classified rows
+  // (a small equity-derivative hedge position, not the "Arbitrage Fund"
+  // category) via its own `|| types[i] === "arbitrage"` clause, but
+  // cash_breakdown's push condition only checked CASH_TYPES — so that
+  // weight counted toward the total shown but had no line item explaining
+  // it, making the displayed breakdown sum to less than the total (e.g. a
+  // real fund showed 7.24% deployable_cash but only 5.10% across its
+  // TREPS/Liquid Fund/Net Receivables line items — the missing 2.14% was
+  // exactly its arbitrage-classified weight).
+  const isDeployableCashType = (t: InstrumentType) => CASH_TYPES.has(t) || t === "arbitrage";
+
   // cash breakdown
   const cashItems: CashItem[] = [];
   rows.forEach((r, i) => {
     const t = types[i];
-    if (CASH_TYPES.has(t)) {
+    if (isDeployableCashType(t)) {
       const label =
         t === "treps"
           ? "TREPS"
           : t === "liquid_fund"
             ? "Liquid Fund"
-            : /receivable|current asset/i.test(r.name)
-              ? "Net Receivables"
-              : "Cash";
+            : t === "arbitrage"
+              ? "Arbitrage"
+              : /receivable|current asset/i.test(r.name)
+                ? "Net Receivables"
+                : "Cash";
       cashItems.push({ section: label, weight: round2(r.weight) });
     }
   });
   const cash_breakdown = aggCash(cashItems);
 
-  const deployable_cash = round2(
-    rows.reduce((s, r, i) => (CASH_TYPES.has(types[i]) || types[i] === "arbitrage" ? s + r.weight : s), 0),
-  );
+  const deployable_cash = round2(rows.reduce((s, r, i) => (isDeployableCashType(types[i]) ? s + r.weight : s), 0));
 
   // Top holdings = highest-weight non-cash positions (ISIN optional — PDF
   // factsheets often omit ISINs, so we must not require one here).
   const top_holdings = holdings
-    .filter((_, i) => !CASH_TYPES.has(types[i]))
+    .filter((_, i) => !isDeployableCashType(types[i]))
     .sort((a, b) => b.weight - a.weight)
     .slice(0, 10)
     .map((h) => ({ name: h.name, isin: h.isin, sector: h.sector, weight: h.weight }));
