@@ -93,6 +93,10 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   let manifest: ManifestEntry[] = JSON.parse(readFileSync(MANIFEST_PATH, "utf8"));
   manifest.sort((a, b) => (a.period < b.period ? 1 : a.period > b.period ? -1 : 0)); // newest-first
+  // Comma-separated AMC name substrings — for a targeted re-run of just the
+  // AMCs affected by a parser fix, instead of the full 28k-file corpus.
+  const amcFilter = process.env.BULK_AMC_FILTER?.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+  if (amcFilter?.length) manifest = manifest.filter((e) => amcFilter.some((f) => e.amc.toLowerCase().includes(f)));
   const limit = process.env.BULK_LIMIT ? parseInt(process.env.BULK_LIMIT, 10) : undefined;
   if (limit) manifest = manifest.slice(0, limit);
 
