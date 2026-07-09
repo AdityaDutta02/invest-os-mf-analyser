@@ -1,9 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { SchemeSearch } from './SchemeSearch';
-import { CuratedPicker } from './CuratedPicker';
 import { PeriodPicker } from './PeriodPicker';
-import { SEARCH_DEV } from '@/lib/curated';
 import type { SchemeSummary } from '@/lib/types';
 
 export function FundContextBar({
@@ -19,17 +18,21 @@ export function FundContextBar({
   onSelectPeriod: (p: string) => void;
   token: string | null;
 }) {
+  const router = useRouter();
+
   return (
     <div className="flex items-center gap-2 sm:gap-3 py-3 flex-wrap">
-      <span className="hidden md:inline font-mono text-[10px] tracking-wide2 uppercase text-fg-secondary shrink-0">
-        Context
-      </span>
-      {SEARCH_DEV ? (
-        <SchemeSearch scheme={scheme} onSelect={onSelectScheme} />
-      ) : (
-        <CuratedPicker scheme={scheme} onSelect={onSelectScheme} />
-      )}
-      <PeriodPicker scheme={scheme} period={period} onSelect={onSelectPeriod} token={token} />
+      <SchemeSearch
+        scheme={scheme}
+        onSelect={(s) => {
+          onSelectScheme(s);
+          // A default period auto-selects the moment a scheme is set
+          // (FundProvider's fetchPeriods effect) — go straight to Analyse
+          // instead of waiting for the user to also open the month picker.
+          router.push('/');
+        }}
+      />
+      {scheme && <PeriodPicker scheme={scheme} period={period} onSelect={onSelectPeriod} token={token} />}
     </div>
   );
 }

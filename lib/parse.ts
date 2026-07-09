@@ -26,8 +26,21 @@ export type InstrumentType =
   | "arbitrage"
   | "reit"
   | "fund"
+  | "liquid_fund"
   | "treps"
   | "cash";
+
+// A fund parking cash in its own (or another AMC's) liquid/overnight/money-
+// market fund — economically a cash equivalent, unlike a real ETF/index-fund
+// holding (a fund-of-funds' actual growth position). Must be checked before
+// the generic ETF/index-fund pattern below, which would otherwise also match
+// "liquid fund" via no rule at all (it used to be lumped into the same "fund"
+// bucket, which meant it was invisible in asset_allocation — no bucket built
+// for "fund" at all — and excluded from deployable_cash even though it's the
+// literal purpose of the holding; confirmed live on Parag Parikh Arbitrage
+// Fund, where a 13.05% "Parag Parikh Liquid Fund" holding was silently
+// dropped from both the allocation display and the cash figure).
+const LIQUID_FUND_RE = /liquid fund|overnight fund|money market fund/i;
 
 // Classify from the row's own text. Returns null when nothing specific matches
 // (so the caller can fall back to the section context, then to equity default).
@@ -41,7 +54,8 @@ function classifyText(t: string): InstrumentType | null {
   if (/g-?sec|government (of india )?stock|govt |goi |sovereign|gilt|state development|\bsdl\b/.test(t)) return "gsec";
   if (/arbitrage/.test(t)) return "arbitrage";
   if (/reit|invit|infrastructure investment trust|real estate investment/.test(t)) return "reit";
-  if (/\betf\b|index fund|units? of |mutual fund units|liquid fund/.test(t)) return "fund";
+  if (LIQUID_FUND_RE.test(t)) return "liquid_fund";
+  if (/\betf\b|index fund|units? of |mutual fund units/.test(t)) return "fund";
   if (/debenture|\bncd\b|bond|notes?\b|perpetual|\bzcb\b|pass through|securit/.test(t)) return "debt";
   if (/\b(adr|gdr)\b|overseas|foreign (equity|securit)/.test(t)) return "foreign_equity";
   return null;
@@ -60,7 +74,7 @@ function classifySection(section: string): InstrumentType | null {
   if (/government|g-?sec|gilt|sovereign|\bsdl\b/.test(s)) return "gsec";
   if (/arbitrage/.test(s)) return "arbitrage";
   if (/reit|invit/.test(s)) return "reit";
-  if (/mutual fund unit|units of/.test(s)) return "fund";
+  if (/mutual fund unit|units of/.test(s)) return "fund"; // section header alone can't tell liquid vs. non-liquid; row text (classifyText) already runs first
   if (/debt|bond|debenture|\bncd\b/.test(s)) return "debt";
   if (/equity/.test(s)) return "equity";
   return null;
@@ -91,6 +105,7 @@ const TYPE_ALIASES: Record<string, InstrumentType> = {
   reit: "reit",
   invit: "reit",
   fund: "fund",
+  liquid_fund: "liquid_fund",
   arbitrage: "arbitrage",
 };
 function normaliseTypeHint(hint?: string): InstrumentType | null {
@@ -118,7 +133,7 @@ export function classify(name: string, isin: string, industry: string, section =
   return "equity";
 }
 
-const CASH_TYPES = new Set<InstrumentType>(["treps", "cash"]);
+const CASH_TYPES = new Set<InstrumentType>(["treps", "cash", "liquid_fund"]);
 const MM_TYPES = new Set<InstrumentType>(["cp", "cd", "tbill"]);
 const DEBT_TYPES = new Set<InstrumentType>(["gsec", "debt"]);
 
@@ -209,7 +224,14 @@ function extractRows(rows: unknown[][]): ExtractResult {
     if (/^(sub ?total|total|net asset)/.test(low)) continue;
 
     const hasISIN = ISIN_RE.test(isin);
-    const hasWeight = weight > 0;
+    // A genuine section-header row has a blank weight cell (weight === 0);
+    // a real data row can legitimately have a NEGATIVE weight (e.g. "Net
+    // Receivables / (Payables)" showing a net payable position) — using
+    // weight > 0 here treated any such negative-weight row as a section
+    // header instead of a holding, silently dropping it. Confirmed live:
+    // Parag Parikh Arbitrage Fund's "-0.0247" net-payables line vanished
+    // entirely rather than counting against deployable cash.
+    const hasWeight = weight !== 0;
     const isCashish = CASHISH.test(low);
 
     // A labelled row with no ISIN and no weight is a section header → set context.
@@ -261,6 +283,7 @@ const TYPE_LABEL: Record<InstrumentType, string> = {
   arbitrage: "Arbitrage",
   reit: "REIT / InvIT",
   fund: "Fund Units",
+  liquid_fund: "Liquid Fund",
   treps: "TREPS",
   cash: "Cash & Equivalent",
 };
@@ -368,7 +391,14 @@ function deriveRows(rows: RawRow[], aumCr: number | null): ParseResult {
   rows.forEach((r, i) => {
     const t = types[i];
     if (CASH_TYPES.has(t)) {
-      const label = t === "treps" ? "TREPS" : /receivable|current asset/i.test(r.name) ? "Net Receivables" : "Cash";
+      const label =
+        t === "treps"
+          ? "TREPS"
+          : t === "liquid_fund"
+            ? "Liquid Fund"
+            : /receivable|current asset/i.test(r.name)
+              ? "Net Receivables"
+              : "Cash";
       cashItems.push({ section: label, weight: round2(r.weight) });
     }
   });

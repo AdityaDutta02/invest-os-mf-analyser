@@ -1,7 +1,8 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Search, X, CornerDownLeft, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { Search, X, CornerDownLeft, Loader2, Upload } from 'lucide-react';
 import { searchSchemes, fetchSchemeMeta } from '@/lib/client';
 import { useFund } from '@/components/FundProvider';
 import type { SchemeSummary } from '@/lib/types';
@@ -186,15 +187,26 @@ export function SchemeSearch({
           <ul className="max-h-72 overflow-y-auto scroll-thin">
             {results.length === 0 && (
               <li className="px-3 py-6 text-center text-[13px] text-fg-secondary">
-                {loading
-                  ? 'Searching schemes…'
-                  : failed
-                    ? "Couldn't search just now — try again."
-                    : !query.trim()
-                      ? 'Type to search schemes…'
-                      : searched
-                        ? `No scheme matches "${query}".`
-                        : 'Searching schemes…'}
+                {loading ? (
+                  'Searching schemes…'
+                ) : failed ? (
+                  "Couldn't search just now — try again."
+                ) : !query.trim() ? (
+                  'Type to search schemes…'
+                ) : searched ? (
+                  <div className="space-y-2">
+                    <div>No scheme matches &quot;{query}&quot;.</div>
+                    <Link
+                      href="/upload"
+                      className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-meta uppercase text-primary hover:underline focus-ring rounded-sm"
+                    >
+                      <Upload className="h-3 w-3" strokeWidth={2} />
+                      Upload its disclosure instead
+                    </Link>
+                  </div>
+                ) : (
+                  'Searching schemes…'
+                )}
               </li>
             )}
             {results.map((s, i) => (
