@@ -4,12 +4,13 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, FileWarning, UploadCloud, Layers } from 'lucide-react';
 import { useFund } from '@/components/FundProvider';
-import { fetchAnalyse, fetchAIInsight } from '@/lib/client';
+import { fetchAnalyse, fetchAIInsight, fetchPeriods, fetchCompare } from '@/lib/client';
 import type { ApiError } from '@/lib/client';
-import type { AnalyseData, AIInsight, PortfolioMetrics } from '@/lib/types';
+import type { AnalyseData, AIInsight, PortfolioMetrics, CompareData } from '@/lib/types';
 import { ResultsHeader } from '@/components/ResultsHeader';
 import { KpiTile } from '@/components/KpiTile';
 import { AIInsightPanel } from '@/components/AIInsightPanel';
+import { ChangesPanel, ChangesUnavailable } from '@/components/ChangesPanel';
 import { AssetAllocationBar } from '@/components/AssetAllocationBar';
 import { CategoryDonut } from '@/components/CategoryDonut';
 import { MarketCapBar } from '@/components/MarketCapBar';
@@ -150,6 +151,9 @@ export function AnalyseView() {
   const [toast, setToast] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [reloadKey, setReloadKey] = useState(0);
+  const [compare, setCompare] = useState<CompareData | null>(null);
+  const [compareLabels, setCompareLabels] = useState<{ from: string; to: string } | null>(null);
+  const [compareUnavailable, setCompareUnavailable] = useState<string | null>(null);
   const didMount = useRef(false);
 
   const steps = scheme ? makeSteps(scheme.scheme_name) : [];
@@ -187,6 +191,10 @@ export function AnalyseView() {
     const schemeName = scheme.scheme_name;
     const currentPeriod = period;
 
+    setCompare(null);
+    setCompareUnavailable(null);
+    setCompareLabels(null);
+
     fetchAnalyse(schemeId, currentPeriod, token)
       .then((d) => {
         clearInterval(iv);
@@ -196,6 +204,25 @@ export function AnalyseView() {
         fetchAIInsight(schemeId, currentPeriod, token).then((ins) => {
           if (ins) setAi(ins);
         });
+        // Month-over-month changes: the previous CALENDAR month, not just
+        // "whatever period sorts before this one" — a fund with a gap in
+        // its disclosure history shouldn't get compared across the gap.
+        const [y, m] = currentPeriod.split('-').map(Number);
+        const prevDate = new Date(y, m - 2, 1); // m is 1-indexed; -2 lands on the prior month
+        const prevPeriod = `${prevDate.getFullYear()}-${String(prevDate.getMonth() + 1).padStart(2, '0')}`;
+        fetchPeriods(schemeId, token)
+          .then((periods) => {
+            const prev = periods.find((p) => p.period === prevPeriod && p.status === 'ready');
+            if (!prev) {
+              setCompareUnavailable(`No stored disclosure for ${prevPeriod} — can't show month-over-month changes yet.`);
+              return;
+            }
+            setCompareLabels({ from: prev.label, to: currentPeriod });
+            return fetchCompare(schemeId, prevPeriod, currentPeriod, token)
+              .then((c) => setCompare(c))
+              .catch(() => setCompareUnavailable(`Couldn't load changes vs ${prev.label} — try again shortly.`));
+          })
+          .catch(() => setCompareUnavailable("Couldn't check for a previous month's disclosure."));
       })
       .catch((e: ApiError) => {
         clearInterval(iv);
@@ -355,11 +382,28 @@ export function AnalyseView() {
       {/* Portfolio characteristics (factsheet aggregates) */}
       {data.metrics && <MetricsStrip metrics={data.metrics} />}
 
-      {/* AI interpretation — distinct tinted commentary block */}
-      {ai && (
+      {/* AI interpretation (left, internally scrollable) + month-over-month
+          changes (right) — two independent panels of the same height so
+          neither's content length forces the whole page to grow. */}
+      {(ai || compare || compareUnavailable) && (
         <section className="pt-8 sm:pt-9 mt-8 sm:mt-9 border-t border-line-subtle">
           <SectionLabel>Interpretation</SectionLabel>
-          <AIInsightPanel insight={ai} data={data} />
+          <div className="grid md:grid-cols-2 gap-4 items-stretch">
+            <div className="overflow-y-auto scroll-thin" style={{ maxHeight: '420px' }}>
+              {ai ? (
+                <AIInsightPanel insight={ai} data={data} />
+              ) : (
+                <div className="bg-card border border-line-subtle rounded-sm h-full flex items-center justify-center px-4 py-8 text-center">
+                  <span className="text-[12.5px] text-fg-secondary">Generating AI interpretation…</span>
+                </div>
+              )}
+            </div>
+            {compare && compareLabels ? (
+              <ChangesPanel compare={compare} fromLabel={compareLabels.from} toLabel={data.period_label} />
+            ) : (
+              <ChangesUnavailable message={compareUnavailable ?? 'Checking for a previous month…'} />
+            )}
+          </div>
         </section>
       )}
 
