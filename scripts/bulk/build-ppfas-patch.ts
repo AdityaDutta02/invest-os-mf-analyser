@@ -21,6 +21,12 @@ const CODES: Record<string, { code: string; name: string }> = {
 const FILES: { path: string; period: string; asOf: string }[] = [
   { path: join(homedir(), "Downloads", "PPFAS_Monthly_Portfolio_Report_May_31_2026.xls"), period: "2026-05", asOf: "2026-05-31" },
   { path: join(homedir(), "Downloads", "PPFAS_Monthly_Portfolio_Report_June_30_2026.xls"), period: "2026-06", asOf: "2026-06-30" },
+  // PPLCF (Large Cap) launched ~March 2026 — not in the scraped corpus at
+  // all (confirmed: Feb 2026 and earlier 404 on the AMC's own site). Its
+  // first two months have no sibling funds in the same workbook (PPLCF is
+  // the only tab), unlike May/June's combined 7-tab reports above.
+  { path: "/tmp/pplcf/PPLCF_March_2026.xlsx", period: "2026-03", asOf: "2026-03-31" },
+  { path: "/tmp/pplcf/PPLCF_April_2026.xlsx", period: "2026-04", asOf: "2026-04-30" },
 ];
 
 const OUT_DIR = join(homedir(), "mf-corpus-tools", "bulk-artifacts");
