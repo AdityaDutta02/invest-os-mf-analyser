@@ -11,7 +11,8 @@ import * as XLSX from "xlsx";
 import JSZip from "jszip";
 import { buildFromRows, pickSheet, validate } from "@/lib/parse";
 import { assemble } from "@/lib/parse";
-import { detectPeriod, detectName, hashCode, synthIdentity } from "@/lib/detect";
+import { detectPeriod, hashCode, synthIdentity } from "@/lib/detect";
+import { resolveSchemeName } from "@/lib/scheme-name";
 import { writeSnapshot, logIngestRun, alreadyIngested, getIngestCursor, setIngestCursor } from "@/lib/ingest-write";
 import { navOnOrBefore } from "@/lib/mfapi";
 import { searchSchemes } from "@/lib/mfapi";
@@ -148,7 +149,7 @@ async function processWorkbook(
   const det = detectPeriod(sheet.rows);
   const period = det?.period ?? "unknown";
   const asOf = det?.asOf ?? "";
-  const guessedName = detectName(sheet.rows, hintName);
+  const guessedName = resolveSchemeName(wb, sheet.name, sheet.rows, amcName, hintName).name;
 
   if (await alreadyIngested(amcName, `staged:${dedupeKey}`, period, token)) return "skipped_already_done";
 

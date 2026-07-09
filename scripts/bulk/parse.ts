@@ -16,6 +16,7 @@ import { join, basename, extname } from "path";
 import JSZip from "jszip";
 import * as XLSX from "xlsx";
 import { buildFromRows, validate, sheetRows } from "../../lib/parse";
+import { resolveSchemeName } from "../../lib/scheme-name";
 
 const CORPUS_DIR = join(homedir(), "mf-corpus");
 const MANIFEST_PATH = join(CORPUS_DIR, "staging", "manifest.json");
@@ -59,81 +60,6 @@ function schemeHintFrom(name: string): string {
   // genuine English word collides with it.
   s = s.replace(/[0-9a-f]{16,}\s*$/i, "");
   return s.replace(/\s+/g, " ").trim();
-}
-
-// Look for an explicit "SCHEME NAME :" (or similar) label in the sheet's own
-// text — far more reliable than the Excel tab name (often a cryptic ticker
-// code like "SMEEF") or the filename (identical across every scheme in a
-// bundled all-schemes workbook).
-const SCHEME_LABEL_RE = /scheme\s*name/i;
-function schemeNameFromSheetLabel(rows: unknown[][]): string | null {
-  for (let i = 0; i < Math.min(rows.length, 20); i++) {
-    const cells = (rows[i] || []).map((c) => String(c ?? "").trim());
-    const idx = cells.findIndex((c) => SCHEME_LABEL_RE.test(c));
-    if (idx === -1) continue;
-    // value is usually the next non-empty cell on the same row; some layouts
-    // put it on the following row instead.
-    const sameRow = cells.slice(idx + 1).find((c) => c && !SCHEME_LABEL_RE.test(c));
-    if (sameRow) return sameRow;
-    const nextRow = (rows[i + 1] || []).map((c) => String(c ?? "").trim()).find((c) => c);
-    if (nextRow) return nextRow;
-  }
-  return null;
-}
-
-// Last resort before falling back to the filename/tab-name: some AMCs (e.g.
-// Mirae's per-scheme ETF sheets) print the scheme name as plain text in an
-// early cell with no "SCHEME NAME" label at all — just the name itself,
-// often followed by a "(An open-ended...)" description line and an
-// "NSE Symbol:.../BSE Scrip Code:..." line. Grab the first cell that looks
-// like a title (multi-word, reasonable length) and isn't obvious boilerplate.
-const EARLY_TEXT_BOILERPLATE_RE =
-  /monthly portfolio|portfolio statement|as on |nse symbol|bse scrip|exchange traded|open[- ]ended|scheme replicating|name of the instrument|equity & equity|grand total|pursuant to regulation|securities (and|&) exchange board/i;
-function schemeNameFromEarlyText(rows: unknown[][], amcName: string): string | null {
-  // The AMC's own name repeated as a page header (bare, or "X Mutual Fund")
-  // is common across formats and is never itself a valid scheme name —
-  // reject it explicitly rather than let it masquerade as one.
-  const bareAmc = amcName.replace(/\s*mutual fund\s*$/i, "").trim().toLowerCase();
-  for (let i = 0; i < Math.min(rows.length, 10); i++) {
-    for (const raw of rows[i] || []) {
-      const c = String(raw ?? "").trim();
-      if (c.length < 8 || c.length > 100) continue;
-      if (c.startsWith("(")) continue;
-      if (/^\d/.test(c)) continue;
-      if (!/\s/.test(c)) continue; // require multi-word
-      if (EARLY_TEXT_BOILERPLATE_RE.test(c)) continue;
-      const cLower = c.toLowerCase();
-      if (cLower === amcName.toLowerCase() || cLower === bareAmc || cLower === `${bareAmc} mutual fund`) continue;
-      return c;
-    }
-  }
-  return null;
-}
-
-// Several AMCs' RTA-templated workbooks (Tata, Nippon, and likely others)
-// carry no per-sheet name label at all — instead an "Index"-named tab lists
-// short tab-codes ("TSLVFOF", "IP", "ST"...) next to the full scheme name
-// (sometimes with a trailing parenthetical scheme-type description to
-// strip), and the data sheets are named by that same short code. Build a
-// code -> clean-name map from any sheet whose name contains "index".
-function buildIndexMap(wb: XLSX.WorkBook): Map<string, string> {
-  const map = new Map<string, string>();
-  const sheetNames = new Set(wb.SheetNames.map((n) => n.toUpperCase()));
-  for (const sn of wb.SheetNames) {
-    if (!/index/i.test(sn)) continue;
-    const rows = sheetRows(wb.Sheets[sn]);
-    for (const row of rows) {
-      const cells = (row || []).map((c) => String(c ?? "").trim()).filter(Boolean);
-      if (cells.length < 2) continue;
-      const codeCell = cells.find((c) => sheetNames.has(c.toUpperCase()) && c.toUpperCase() !== sn.toUpperCase());
-      if (!codeCell) continue;
-      const nameCell = cells.filter((c) => c !== codeCell).sort((a, b) => b.length - a.length)[0];
-      if (!nameCell) continue;
-      const clean = nameCell.split("(")[0].replace(/\s+/g, " ").trim();
-      if (clean) map.set(codeCell.toUpperCase(), clean);
-    }
-  }
-  return map;
 }
 
 interface WorkbookItem {
@@ -258,31 +184,18 @@ async function main() {
       }
 
       const filenameHint = schemeHintFrom(item.memberName ?? entry.staged_path);
-      const indexMap = buildIndexMap(wb);
       for (const sheetName of wb.SheetNames) {
         const rows = sheetRows(wb.Sheets[sheetName]);
         const parsed = buildFromRows(rows);
         if (!parsed.ok) continue; // not a holdings sheet (cover page, index, notes) — not a failure
         const v = validate(parsed.data);
-        // Prefer an in-sheet "SCHEME NAME :" label (reliable per-scheme signal even
-        // when many schemes share one workbook); then an Index-tab code->name
-        // lookup (Tata/Nippon-style templates); then plain early-cell title
-        // text (Mirae-style: name printed with no label at all); then the
-        // filename hint (fine for genuinely single-scheme files); then the
-        // raw tab name.
-        const labelHint = schemeNameFromSheetLabel(rows);
-        const indexHint = !labelHint ? indexMap.get(sheetName.toUpperCase()) : undefined;
-        const earlyTextHint = !labelHint && !indexHint ? schemeNameFromEarlyText(rows, entry.amc) : undefined;
-        const hint = labelHint || indexHint || earlyTextHint || filenameHint || sheetName;
-        const hintMethod = labelHint
-          ? "label_in_sheet"
-          : indexHint
-            ? "index_sheet_lookup"
-            : earlyTextHint
-              ? "early_text"
-              : filenameHint
-                ? "filename"
-                : "tab_name";
+        // Same priority chain the live ingest path now uses (lib/scheme-name.ts):
+        // in-sheet "SCHEME NAME:" label > Index-tab code->name lookup
+        // (Tata/Nippon/Axis-style templates) > early-cell plain-text title
+        // (Mirae-style, boilerplate-guarded) > filename hint > raw tab name.
+        const resolved = resolveSchemeName(wb, sheetName, rows, entry.amc, filenameHint);
+        const hint = resolved.name;
+        const hintMethod = resolved.method === "fallback" ? "filename" : resolved.method;
         if (!v.ok) {
           bump(failReasons, `validation:${v.reason}`);
           failedOut.write(

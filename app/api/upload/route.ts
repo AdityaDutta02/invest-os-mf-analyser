@@ -5,7 +5,8 @@ import { assemble, buildFromHoldings, buildFromRows, pickSheet, validate, period
 import { getIdentity } from "@/lib/identity";
 import { navOnOrBefore, type SchemeIdentity } from "@/lib/mfapi";
 import { extractPdf } from "@/lib/pdf";
-import { detectPeriod, detectName, overlaps, hashCode, synthIdentity } from "@/lib/detect";
+import { detectPeriod, overlaps, hashCode, synthIdentity } from "@/lib/detect";
+import { resolveSchemeName } from "@/lib/scheme-name";
 import type { ParseResult } from "@/lib/parse";
 
 export const runtime = "nodejs";
@@ -112,7 +113,7 @@ export async function POST(req: NextRequest) {
     const det = detectPeriod(sheet.rows);
     detectedPeriod = det?.period ?? null;
     asOf = det?.asOf ?? "";
-    detectedName = detectName(sheet.rows, file.name.replace(/\.(xls|xlsx)$/i, ""));
+    detectedName = resolveSchemeName(wb, sheet.name, sheet.rows, selectedId?.amc_name ?? "", file.name.replace(/\.(xls|xlsx)$/i, "")).name;
   } else {
     return NextResponse.json({ error: "Unsupported file. Upload a .pdf, .xls or .xlsx." }, { status: 415 });
   }
