@@ -172,39 +172,39 @@ async function run(token: string, startChunkIdx: number, startLineOffset: number
   let snapshotErrors = 0;
   const seenSchemeCodes = new Map<string, WriteRow["data"]>();
 
+  // Chunks are small (150 records) so a single dbBulkInsert call (up to
+  // 1000 rows) can hold several chunks' worth at once. Fetch GROUP chunks
+  // concurrently and issue one insert call per group instead of one per
+  // chunk — if per-call latency (GitHub raw / gateway round-trip), not row
+  // count, is the throughput bottleneck, this cuts round-trips ~GROUP-fold
+  // per invocation. Groups are always processed whole, so lineOffset stays
+  // 0 (kept in the cursor packing only for format compatibility).
+  const GROUP = 6; // 6 * 150 = 900 rows, stays under the 1000-row bulk cap
   outer: while (chunkIdx < index.chunkFiles.length) {
-    const text = await fetchRaw(index.chunkFiles[chunkIdx]);
-    const lines = text.split("\n").filter(Boolean);
-    let i = lineOffset;
+    if (Date.now() - startedAt > BUDGET_MS) break;
 
-    while (i < lines.length) {
+    const groupIdxs: number[] = [];
+    for (let k = 0; k < GROUP && chunkIdx + k < index.chunkFiles.length; k++) groupIdxs.push(chunkIdx + k);
+
+    const texts = await Promise.all(groupIdxs.map((idx) => fetchRaw(index.chunkFiles[idx])));
+    const rows: WriteRow[] = [];
+    for (const text of texts) {
+      for (const line of text.split("\n").filter(Boolean)) rows.push(JSON.parse(line));
+    }
+    const snapshotRows = rows.map((r) => ({ scheme_code: r.scheme_code, period: r.period, source: r.source, data: r.data }));
+
+    for (const batch of batchRows(snapshotRows)) {
       if (Date.now() - startedAt > BUDGET_MS) break outer;
-
-      // Take as many remaining lines as fit one processing pass this
-      // invocation (bounded by the byte-aware batcher below anyway).
-      const rows: WriteRow[] = lines.slice(i, i + 2000).map((l) => JSON.parse(l));
-      const snapshotRows = rows.map((r) => ({ scheme_code: r.scheme_code, period: r.period, source: r.source, data: r.data }));
-
-      for (const batch of batchRows(snapshotRows)) {
-        if (Date.now() - startedAt > BUDGET_MS) break outer;
-        const result = await dbBulkInsert("snapshots", batch, token);
-        snapshotsWritten += result.inserted.length;
-        snapshotErrors += result.errors.filter((e) => e.error !== "unique_violation").length;
-      }
-      for (const r of rows) {
-        if (!seenSchemeCodes.has(r.scheme_code)) seenSchemeCodes.set(r.scheme_code, r.data);
-      }
-
-      i += rows.length;
+      const result = await dbBulkInsert("snapshots", batch, token);
+      snapshotsWritten += result.inserted.length;
+      snapshotErrors += result.errors.filter((e) => e.error !== "unique_violation").length;
+    }
+    for (const r of rows) {
+      if (!seenSchemeCodes.has(r.scheme_code)) seenSchemeCodes.set(r.scheme_code, r.data);
     }
 
-    lineOffset = i;
-    if (lineOffset >= lines.length) {
-      chunkIdx++;
-      lineOffset = 0;
-    } else {
-      break; // ran out of budget mid-chunk
-    }
+    chunkIdx += groupIdxs.length;
+    lineOffset = 0;
   }
 
   // Lower priority than keeping the chain alive — skip remaining batches
