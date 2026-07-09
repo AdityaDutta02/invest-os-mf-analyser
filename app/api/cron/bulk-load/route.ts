@@ -42,8 +42,15 @@ const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_REPO}/${STAGING_BRA
 // headroom below budget for the tail, and make the tail skip low-priority
 // work (schemes) rather than skip the cursor/reschedule that keeps the
 // chain alive.
-const BUDGET_MS = 15_000;
-const TAIL_DEADLINE_MS = 20_000; // hard ceiling incl. schemes tail — never skip cursor/reschedule
+// Raised from 15s now that the real root cause (task-name collision, see
+// commit 4bc52d9b) is fixed and chunks are small (150 records) — the
+// original risk this guarded against (a large partially-processed chunk
+// re-fetched in full) no longer applies. 22s matches the value
+// ingest-staged's route already runs safely in production. Higher budget
+// = more chunks drained per cycle = fewer total cycles needed for the
+// 990-chunk backlog.
+const BUDGET_MS = 22_000;
+const TAIL_DEADLINE_MS = 27_000; // hard ceiling incl. schemes tail — never skip cursor/reschedule
 const FETCH_TIMEOUT_MS = 15_000;
 const BULK_MAX_ROWS = 1000;
 const BULK_MAX_BYTES = 5_000_000; // stay well under the endpoint's ~10MB cap
